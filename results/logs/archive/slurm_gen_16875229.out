@@ -1,0 +1,281 @@
+=== Starting Slurm Job ===
+Node: origin01
+Date: Thu Jun 18 01:13:40 PM IDT 2026
+Starting local evaluation using Gemma 4...
+[INFO] Loaded 280 tasks.
+[INFO] Evaluating model 'instruct-pix2pix' for rounds: ['round3', 'round2', 'round1']
+Loading local evaluation model: google/gemma-4-E4B-it...
+Evaluation model loaded successfully.
+
+--- Evaluating round3 ---
+[INFO] Completed round round3 evaluation. Saved to /home/dsi/sinayyo/BabyVision/babyvision_gen_eval/results/instruct-pix2pix/round3/eval.jsonl
+
+--- Evaluating round2 ---
+[INFO] Completed round round2 evaluation. Saved to /home/dsi/sinayyo/BabyVision/babyvision_gen_eval/results/instruct-pix2pix/round2/eval.jsonl
+
+--- Evaluating round1 ---
+[INFO] Completed round round1 evaluation. Saved to /home/dsi/sinayyo/BabyVision/babyvision_gen_eval/results/instruct-pix2pix/round1/eval.jsonl
+
+=== Evaluation Complete ===
+Summarizing results...
+Summarizing evaluation results...
+Tasks file: ../data/babyvision_gen_data/meta_data.jsonl
+Total tasks in dataset: 280
+Loaded 280 task info records
+Found 5 models
+  nanobanana: 3 rounds (round1, round2, round3)
+  gpt-image-1.5: 3 rounds (round1, round2, round3)
+  instruct-pix2pix: 3 rounds (round1, round2, round3)
+  nanobanana-pro: 3 rounds (round1, round2, round3)
+  qwen-image-edit-2511: 3 rounds (round1, round2, round3)
+
+================================================================================
+BabyVision Evaluation Summary
+Generated: 2026-06-18 13:13:57
+Total tasks in dataset: 280
+================================================================================
+
+--------------------------------------------------------------------------------
+Overall Results (Mean +/- Std across rounds)
+Note: Accuracy = correct / total_tasks (missing generations = incorrect)
+--------------------------------------------------------------------------------
+Model                            Rounds             Accuracy
+--------------------------------------------------------------------------------
+gpt-image-1.5                         3     9.76% +/-  1.03%
+instruct-pix2pix                      3    10.12% +/-  1.09%
+nanobanana                            3     8.45% +/-  1.44%
+nanobanana-pro                        3    18.33% +/-  2.18%
+qwen-image-edit-2511                  3     4.76% +/-  0.74%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Model: gpt-image-1.5
+--------------------------------------------------------------------------------
+Round         Total     Eval  Correct  MissGen     Accuracy
+--------------------------------------------------------------------------------
+round1          280      280       24        1        8.57%
+round2          280      280       29        1       10.36%
+round3          280      280       29        1       10.36%
+--------------------------------------------------------------------------------
+AVERAGE                                            9.76% +/- 1.03%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Model: instruct-pix2pix
+--------------------------------------------------------------------------------
+Round         Total     Eval  Correct  MissGen     Accuracy
+--------------------------------------------------------------------------------
+round1          280      280       25        0        8.93%
+round2          280      280       29        0       10.36%
+round3          280      280       31        0       11.07%
+--------------------------------------------------------------------------------
+AVERAGE                                           10.12% +/- 1.09%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Model: nanobanana
+--------------------------------------------------------------------------------
+Round         Total     Eval  Correct  MissGen     Accuracy
+--------------------------------------------------------------------------------
+round1          280      280       23        1        8.21%
+round2          280      280       28        1       10.00%
+round3          280      280       20        1        7.14%
+--------------------------------------------------------------------------------
+AVERAGE                                            8.45% +/- 1.44%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Model: nanobanana-pro
+--------------------------------------------------------------------------------
+Round         Total     Eval  Correct  MissGen     Accuracy
+--------------------------------------------------------------------------------
+round1          280      280       46        1       16.43%
+round2          280      280       50        1       17.86%
+round3          280      280       58        1       20.71%
+--------------------------------------------------------------------------------
+AVERAGE                                           18.33% +/- 2.18%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Model: qwen-image-edit-2511
+--------------------------------------------------------------------------------
+Round         Total     Eval  Correct  MissGen     Accuracy
+--------------------------------------------------------------------------------
+round1          280      280       11        2        3.93%
+round2          280      280       15        2        5.36%
+round3          280      280       14        2        5.00%
+--------------------------------------------------------------------------------
+AVERAGE                                            4.76% +/- 0.74%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Breakdown by Task Type (averaged across rounds)
+--------------------------------------------------------------------------------
+
+gpt-image-1.5:
+Type                                                 Accuracy
+------------------------------------------------------------
+Fine-grained Discrimination                     9.64% +/-  1.19%
+Spatial Perception                             12.43% +/-  2.59%
+Visual Pattern Recognition                     16.67% +/-  5.48%
+Visual Tracking                                 2.42% +/-  1.05%
+
+instruct-pix2pix:
+Type                                                 Accuracy
+------------------------------------------------------------
+Fine-grained Discrimination                     8.85% +/-  1.19%
+Spatial Perception                              6.21% +/-  1.96%
+Visual Pattern Recognition                     27.19% +/-  7.60%
+Visual Tracking                                 5.45% +/-  1.82%
+
+nanobanana:
+Type                                                 Accuracy
+------------------------------------------------------------
+Fine-grained Discrimination                     5.73% +/-  2.39%
+Spatial Perception                             20.90% +/-  4.89%
+Visual Pattern Recognition                     10.53% +/-  2.63%
+Visual Tracking                                 0.00% +/-  0.00%
+
+nanobanana-pro:
+Type                                                 Accuracy
+------------------------------------------------------------
+Fine-grained Discrimination                    24.48% +/-  1.80%
+Spatial Perception                             12.99% +/-  5.95%
+Visual Pattern Recognition                     22.81% +/-  9.96%
+Visual Tracking                                 6.67% +/-  2.10%
+
+qwen-image-edit-2511:
+Type                                                 Accuracy
+------------------------------------------------------------
+Fine-grained Discrimination                     4.69% +/-  0.78%
+Spatial Perception                              7.34% +/-  3.53%
+Visual Pattern Recognition                      7.89% +/-  2.63%
+Visual Tracking                                 0.00% +/-  0.00%
+
+Saved text summary to: /home/dsi/sinayyo/BabyVision/babyvision_gen_eval/results/summary.txt
+Saved JSON summary to: /home/dsi/sinayyo/BabyVision/babyvision_gen_eval/results/summary.json
+=== Generation Evaluation Results ===
+================================================================================
+BabyVision Evaluation Summary
+Generated: 2026-06-18 13:13:57
+Total tasks in dataset: 280
+================================================================================
+
+--------------------------------------------------------------------------------
+Overall Results (Mean +/- Std across rounds)
+Note: Accuracy = correct / total_tasks (missing generations = incorrect)
+--------------------------------------------------------------------------------
+Model                            Rounds             Accuracy
+--------------------------------------------------------------------------------
+gpt-image-1.5                         3     9.76% +/-  1.03%
+instruct-pix2pix                      3    10.12% +/-  1.09%
+nanobanana                            3     8.45% +/-  1.44%
+nanobanana-pro                        3    18.33% +/-  2.18%
+qwen-image-edit-2511                  3     4.76% +/-  0.74%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Model: gpt-image-1.5
+--------------------------------------------------------------------------------
+Round         Total     Eval  Correct  MissGen     Accuracy
+--------------------------------------------------------------------------------
+round1          280      280       24        1        8.57%
+round2          280      280       29        1       10.36%
+round3          280      280       29        1       10.36%
+--------------------------------------------------------------------------------
+AVERAGE                                            9.76% +/- 1.03%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Model: instruct-pix2pix
+--------------------------------------------------------------------------------
+Round         Total     Eval  Correct  MissGen     Accuracy
+--------------------------------------------------------------------------------
+round1          280      280       25        0        8.93%
+round2          280      280       29        0       10.36%
+round3          280      280       31        0       11.07%
+--------------------------------------------------------------------------------
+AVERAGE                                           10.12% +/- 1.09%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Model: nanobanana
+--------------------------------------------------------------------------------
+Round         Total     Eval  Correct  MissGen     Accuracy
+--------------------------------------------------------------------------------
+round1          280      280       23        1        8.21%
+round2          280      280       28        1       10.00%
+round3          280      280       20        1        7.14%
+--------------------------------------------------------------------------------
+AVERAGE                                            8.45% +/- 1.44%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Model: nanobanana-pro
+--------------------------------------------------------------------------------
+Round         Total     Eval  Correct  MissGen     Accuracy
+--------------------------------------------------------------------------------
+round1          280      280       46        1       16.43%
+round2          280      280       50        1       17.86%
+round3          280      280       58        1       20.71%
+--------------------------------------------------------------------------------
+AVERAGE                                           18.33% +/- 2.18%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Model: qwen-image-edit-2511
+--------------------------------------------------------------------------------
+Round         Total     Eval  Correct  MissGen     Accuracy
+--------------------------------------------------------------------------------
+round1          280      280       11        2        3.93%
+round2          280      280       15        2        5.36%
+round3          280      280       14        2        5.00%
+--------------------------------------------------------------------------------
+AVERAGE                                            4.76% +/- 0.74%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Breakdown by Task Type (averaged across rounds)
+--------------------------------------------------------------------------------
+
+gpt-image-1.5:
+Type                                                 Accuracy
+------------------------------------------------------------
+Fine-grained Discrimination                     9.64% +/-  1.19%
+Spatial Perception                             12.43% +/-  2.59%
+Visual Pattern Recognition                     16.67% +/-  5.48%
+Visual Tracking                                 2.42% +/-  1.05%
+
+instruct-pix2pix:
+Type                                                 Accuracy
+------------------------------------------------------------
+Fine-grained Discrimination                     8.85% +/-  1.19%
+Spatial Perception                              6.21% +/-  1.96%
+Visual Pattern Recognition                     27.19% +/-  7.60%
+Visual Tracking                                 5.45% +/-  1.82%
+
+nanobanana:
+Type                                                 Accuracy
+------------------------------------------------------------
+Fine-grained Discrimination                     5.73% +/-  2.39%
+Spatial Perception                             20.90% +/-  4.89%
+Visual Pattern Recognition                     10.53% +/-  2.63%
+Visual Tracking                                 0.00% +/-  0.00%
+
+nanobanana-pro:
+Type                                                 Accuracy
+------------------------------------------------------------
+Fine-grained Discrimination                    24.48% +/-  1.80%
+Spatial Perception                             12.99% +/-  5.95%
+Visual Pattern Recognition                     22.81% +/-  9.96%
+Visual Tracking                                 6.67% +/-  2.10%
+
+qwen-image-edit-2511:
+Type                                                 Accuracy
+------------------------------------------------------------
+Fine-grained Discrimination                     4.69% +/-  0.78%
+Spatial Perception                              7.34% +/-  3.53%
+Visual Pattern Recognition                      7.89% +/-  2.63%
+Visual Tracking                                 0.00% +/-  0.00%
+==========================
+=== Slurm Job Completed ===

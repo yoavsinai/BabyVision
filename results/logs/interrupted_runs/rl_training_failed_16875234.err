@@ -1,0 +1,8 @@
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/2076 [00:00<?, ?it/s]Loading weights:  16%|█▌        | 330/2076 [00:00<00:00, 3271.00it/s]Loading weights:  32%|███▏      | 658/2076 [00:00<00:00, 3093.74it/s]Loading weights:  47%|████▋     | 968/2076 [00:01<00:02, 436.87it/s] Loading weights:  55%|█████▌    | 1147/2076 [00:01<00:01, 470.38it/s]Loading weights:  62%|██████▏   | 1279/2076 [00:02<00:01, 471.55it/s]Loading weights:  67%|██████▋   | 1381/2076 [00:02<00:01, 473.92it/s]Loading weights:  74%|███████▍  | 1545/2076 [00:02<00:00, 606.94it/s]Loading weights:  97%|█████████▋| 2015/2076 [00:02<00:00, 1181.20it/s]Loading weights: 100%|██████████| 2076/2076 [00:02<00:00, 769.92it/s] 
+Traceback (most recent call last):
+  File "/home/dsi/sinayyo/BabyVision/babyvision_eval/rl_train_gemma4.py", line 186, in <module>
+    main()
+  File "/home/dsi/sinayyo/BabyVision/babyvision_eval/rl_train_gemma4.py", line 150, in main
+    training_args = GRPOConfig(
+TypeError: GRPOConfig.__init__() got an unexpected keyword argument 'max_prompt_length'

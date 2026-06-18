@@ -1,0 +1,26 @@
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/2076 [00:00<?, ?it/s]Loading weights:  21%|██▏       | 442/2076 [00:00<00:00, 4363.18it/s]Loading weights:  42%|████▏     | 879/2076 [00:01<00:02, 530.92it/s] Loading weights:  52%|█████▏    | 1078/2076 [00:01<00:01, 540.63it/s]Loading weights:  58%|█████▊    | 1213/2076 [00:02<00:01, 511.92it/s]Loading weights:  63%|██████▎   | 1311/2076 [00:02<00:01, 481.72it/s]Loading weights:  67%|██████▋   | 1388/2076 [00:02<00:01, 468.54it/s]Loading weights:  74%|███████▍  | 1545/2076 [00:02<00:00, 607.95it/s]Loading weights:  98%|█████████▊| 2025/2076 [00:02<00:00, 1251.14it/s]Loading weights: 100%|██████████| 2076/2076 [00:02<00:00, 751.28it/s] 
+Traceback (most recent call last):
+  File "/home/dsi/sinayyo/BabyVision/babyvision_eval/rl_train_gemma4.py", line 185, in <module>
+    main()
+  File "/home/dsi/sinayyo/BabyVision/babyvision_eval/rl_train_gemma4.py", line 168, in main
+    trainer = GRPOTrainer(
+  File "/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/site-packages/trl/trainer/grpo_trainer.py", line 366, in __init__
+    model = get_peft_model(model, peft_config)
+  File "/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/site-packages/peft/mapping_func.py", line 122, in get_peft_model
+    return MODEL_TYPE_TO_PEFT_MODEL_MAPPING[peft_config.task_type](
+  File "/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/site-packages/peft/peft_model.py", line 1955, in __init__
+    super().__init__(model, peft_config, adapter_name, **kwargs)
+  File "/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/site-packages/peft/peft_model.py", line 129, in __init__
+    self.base_model = cls(model, {adapter_name: peft_config}, adapter_name)
+  File "/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/site-packages/peft/tuners/tuners_utils.py", line 315, in __init__
+    self.inject_adapter(self.model, adapter_name, low_cpu_mem_usage=low_cpu_mem_usage, state_dict=state_dict)
+  File "/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/site-packages/peft/tuners/tuners_utils.py", line 913, in inject_adapter
+    self._create_and_replace(
+  File "/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/site-packages/peft/tuners/lora/model.py", line 269, in _create_and_replace
+    new_module = self._create_new_module(lora_config, adapter_name, target, device_map=device_map, **kwargs)
+  File "/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/site-packages/peft/tuners/lora/model.py", line 424, in _create_new_module
+    raise ValueError(
+ValueError: Target module Gemma4ClippableLinear(
+  (linear): Linear(in_features=768, out_features=768, bias=False)
+) is not supported. Currently, only the following modules are supported: `torch.nn.Linear`, `torch.nn.Embedding`, `torch.nn.Conv1d`, `torch.nn.Conv2d`, `torch.nn.Conv3d`, `transformers.pytorch_utils.Conv1D`, `torch.nn.MultiheadAttention.`.

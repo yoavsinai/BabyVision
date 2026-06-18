@@ -1,0 +1,36 @@
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/2076 [00:00<?, ?it/s]Loading weights:  17%|█▋        | 345/2076 [00:00<00:00, 3444.25it/s]Loading weights:  33%|███▎      | 690/2076 [00:00<00:00, 3054.80it/s]Loading weights:  48%|████▊     | 999/2076 [00:01<00:02, 413.63it/s] Loading weights:  57%|█████▋    | 1176/2076 [00:02<00:02, 446.64it/s]Loading weights:  63%|██████▎   | 1306/2076 [00:02<00:01, 454.48it/s]Loading weights:  68%|██████▊   | 1407/2076 [00:02<00:01, 456.98it/s]Loading weights:  87%|████████▋ | 1806/2076 [00:02<00:00, 847.13it/s]Loading weights:  96%|█████████▌| 1992/2076 [00:02<00:00, 825.54it/s]Loading weights: 100%|██████████| 2076/2076 [00:02<00:00, 692.78it/s]
+[transformers] The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 1, 'bos_token_id': 2, 'pad_token_id': 0}.
+  0%|          | 0/465 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/home/dsi/sinayyo/BabyVision/babyvision_eval/rl_train_gemma4.py", line 185, in <module>
+    main()
+  File "/home/dsi/sinayyo/BabyVision/babyvision_eval/rl_train_gemma4.py", line 178, in main
+    trainer.train()
+  File "/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/site-packages/transformers/trainer.py", line 1433, in train
+    return inner_training_loop(
+  File "/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/site-packages/transformers/trainer.py", line 1515, in _inner_training_loop
+    self._run_epoch(
+  File "/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/site-packages/transformers/trainer.py", line 1743, in _run_epoch
+    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+  File "/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/site-packages/trl/trainer/grpo_trainer.py", line 1139, in training_step
+    output = super().training_step(model, inputs, num_items_in_batch)
+  File "/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/site-packages/transformers/trainer.py", line 1909, in training_step
+    inputs = self._prepare_inputs(inputs)
+  File "/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/site-packages/trl/extras/profiling.py", line 202, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/site-packages/trl/trainer/grpo_trainer.py", line 1168, in _prepare_inputs
+    generation_batch = self._generate_and_score_completions(generation_batch)
+  File "/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/site-packages/trl/trainer/grpo_trainer.py", line 2165, in _generate_and_score_completions
+    rewards_per_func = self._calculate_rewards(inputs, prompts, completions, completion_ids_list)
+  File "/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/site-packages/trl/extras/profiling.py", line 202, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/site-packages/trl/trainer/grpo_trainer.py", line 1251, in _calculate_rewards
+    output_reward_func = reward_func(
+  File "/home/dsi/sinayyo/BabyVision/babyvision_eval/rl_train_gemma4.py", line 37, in correctness_reward
+    extracted = extract_boxed_answer(comp)
+  File "/home/dsi/sinayyo/BabyVision/babyvision_eval/rl_train_gemma4.py", line 28, in extract_boxed_answer
+    matches = re.findall(r"\\boxed\{([^{}]+)\}", text)
+  File "/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/re.py", line 240, in findall
+    return _compile(pattern, flags).findall(string)
+TypeError: expected string or bytes-like object
+  0%|          | 0/465 [00:23<?, ?it/s]

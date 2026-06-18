@@ -37,17 +37,19 @@ def process(data):
             answer = data['answer']
 
             # Call the model
-            completion = client.chat.completions.create(
-                model=MODEL_NAME,
-                messages=[{
+            kwargs = {
+                "model": MODEL_NAME,
+                "messages": [{
                     "role": "user",
                     "content": [
                         {"type": "image_url", "image_url": {"url": image_base64}},
                         {"type": "text", "text": question},
                     ]
-                }],
-                extra_body={"reasoning": {"enabled": True}}
-            )
+                }]
+            }
+            if "thinking" in MODEL_NAME or "reasoning" in MODEL_NAME:
+                kwargs["extra_body"] = {"reasoning": {"enabled": True}}
+            completion = client.chat.completions.create(**kwargs)
 
             model_output_result = completion.choices[0].message.content
             extracted_answer = extract_boxed_answer(model_output_result)
@@ -87,6 +89,7 @@ def process(data):
                 "Subtype": data['Subtype'],
             }
         except Exception as e:
+            last_error = e
             print(f"Error during processing ID {data['Id']}: {e}. Retrying...")
 
     # Return error result after all retries failed
@@ -98,7 +101,7 @@ def process(data):
         "GroundTruth": data.get('answer', ''),
         "ExtractedAnswer": "",
         "LLMJudgeResult": False,
-        "Error": str(e),
+        "Error": str(last_error),
         "Type": data['Type'],
         "Subtype": data['Subtype'],
     }

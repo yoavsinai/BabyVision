@@ -11,3 +11,10 @@
 
 # remove all __pycache__ folders in all folders
 **/__pycache__/
+
+/data/babyvision_data
+/data/babyvision_gen_data
+
+.env
+
+local_ollama

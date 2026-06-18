@@ -1,0 +1,62 @@
+[
+  {
+    "Id": 445,
+    "Question": "The image shows a total of 49 tiger patterns arranged in 7 rows and 7 columns. One of them is different from the others. Which row and column is it in? The answer format is (x,y). (For example, the answer for the 2nd row and 3rd column is (2,3)).",
+    "ModelReasoning": "",
+    "ModelResult": "",
+    "GroundTruth": "(4,7)",
+    "ExtractedAnswer": "",
+    "LLMJudgeResult": false,
+    "Error": "Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'meta-llama/llama-3.2-3b-instruct:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 30, 'retry_after_seconds_raw': 29.349, 'headers': {'Retry-After': '30'}}}, 'user_id': 'user_3FDqANUNEFb70A50oOcUvoBcbZM'}",
+    "Type": "Fine-grained Discrimination",
+    "Subtype": "Find the different"
+  },
+  {
+    "Id": 464,
+    "Question": "The image shows 25 rows and 10 columns, totaling 250 English words. All but one of them are \"Poem\". Each coordinate can be represented as (x,y), for example, the coordinate of the 2nd column in the 1st row is (1,2). What is the coordinate of the word that is not \"Poem\"?",
+    "ModelReasoning": "",
+    "ModelResult": "",
+    "GroundTruth": "(5,9)",
+    "ExtractedAnswer": "",
+    "LLMJudgeResult": false,
+    "Error": "Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'meta-llama/llama-3.2-3b-instruct:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 30, 'retry_after_seconds_raw': 29.093, 'headers': {'Retry-After': '30'}}}, 'user_id': 'user_3FDqANUNEFb70A50oOcUvoBcbZM'}",
+    "Type": "Fine-grained Discrimination",
+    "Subtype": "Find the different"
+  },
+  {
+    "Id": 507,
+    "Question": "There are 308 uppercase letters \"C\" in the image, arranged in 11 rows and 28 columns. One of them is different from the others. What is the coordinate of this different element? (The X-th row and Y-th column are represented by (X,Y))",
+    "ModelReasoning": "",
+    "ModelResult": "",
+    "GroundTruth": "(5,7)",
+    "ExtractedAnswer": "",
+    "LLMJudgeResult": false,
+    "Error": "Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'meta-llama/llama-3.2-3b-instruct:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 29, 'retry_after_seconds_raw': 28.863, 'headers': {'Retry-After': '29'}}}, 'user_id': 'user_3FDqANUNEFb70A50oOcUvoBcbZM'}",
+    "Type": "Fine-grained Discrimination",
+    "Subtype": "Find the different"
+  },
+  {
+    "Id": 525,
+    "Question": "Find the pattern that is different from the others (color is not considered). The answer format is (a,b), which means the a-th row from top to bottom and the b-th column from left to right.",
+    "ModelReasoning": "",
+    "ModelResult": "",
+    "GroundTruth": "(7,8)",
+    "ExtractedAnswer": "",
+    "LLMJudgeResult": false,
+    "Error": "Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'meta-llama/llama-3.2-3b-instruct:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 30, 'retry_after_seconds_raw': 29.378, 'headers': {'Retry-After': '30'}}}, 'user_id': 'user_3FDqANUNEFb70A50oOcUvoBcbZM'}",
+    "Type": "Fine-grained Discrimination",
+    "Subtype": "Find the different"
+  },
+  {
+    "Id": 534,
+    "Question": "The image shows a pattern of 260 locks in 13 rows and 20 columns. One of them is different from the other 259. What are the coordinates of this different lock? (The coordinates of the i-th row and j-th column are (i,j))",
+    "ModelReasoning": "",
+    "ModelResult": "",
+    "GroundTruth": "(6,12)",
+    "ExtractedAnswer": "",
+    "LLMJudgeResult": false,
+    "Error": "Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'meta-llama/llama-3.2-3b-instruct:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 29, 'retry_after_seconds_raw': 28.886, 'headers': {'Retry-After': '29'}}}, 'user_id': 'user_3FDqANUNEFb70A50oOcUvoBcbZM'}",
+    "Type": "Fine-grained Discrimination",
+    "Subtype": "Find the different"
+  }
+]
