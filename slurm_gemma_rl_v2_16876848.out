@@ -1,0 +1,17 @@
+=== Starting Gemma 4 RL Training v2 Job ===
+Node: origin01
+Date: Fri Jun 19 02:24:55 AM IDT 2026
+=== Gemma 4 RL Training v2 ===
+Output directory: ./gemma4_rl_output_v2
+Correctness reward weight: 2.0
+Format reward weights: 0.1 (strict) / 0.05 (partial)
+Loading dataset...
+Loaded and formatted 388 tasks.
+Train dataset size: 310
+Val dataset size: 78
+Loading model and processor...
+Initializing GRPOTrainer...
+Starting RL/GRPO training...
+{'loss': '-0.06209', 'grad_norm': '1.022', 'learning_rate': '1e-05', 'num_tokens': '3265', 'completions/mean_length': '49.12', 'completions/min_length': '39', 'completions/max_length': '63', 'completions/clipped_ratio': '0', 'completions/mean_terminated_length': '49.12', 'completions/min_terminated_length': '39', 'completions/max_terminated_length': '63', 'rewards/correctness_reward/mean': '0', 'rewards/correctness_reward/std': '0', 'rewards/format_reward/mean': '0.0875', 'rewards/format_reward/std': '0.02315', 'reward': '0.0875', 'reward_std': '0.02315', 'frac_reward_zero_std': '0', 'entropy': '0.505', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '40.74', 'epoch': '0.006452'}
+{'loss': '0.1488', 'grad_norm': '0.7033', 'learning_rate': '9.978e-06', 'num_tokens': '7383', 'completions/mean_length': '136.8', 'completions/min_length': '57', 'completions/max_length': '256', 'completions/clipped_ratio': '0.375', 'completions/mean_terminated_length': '65.2', 'completions/min_terminated_length': '57', 'completions/max_terminated_length': '81', 'rewards/correctness_reward/mean': '0', 'rewards/correctness_reward/std': '0', 'rewards/format_reward/mean': '0.0625', 'rewards/format_reward/std': '0.04432', 'reward': '0.0625', 'reward_std': '0.04432', 'frac_reward_zero_std': '0', 'entropy': '0.9271', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '82.27', 'epoch': '0.0129'}
+{'loss': '0.4653', 'grad_norm': '0.3831', 'learning_rate': '9.957e-06', 'num_tokens': '1.114e+04', 'completions/mean_length': '118.6', 'completions/min_length': '32', 'completions/max_length': '256', 'completions/clipped_ratio': '0.25', 'completions/mean_terminated_length': '72.83', 'completions/min_terminated_length': '32', 'completions/max_terminated_length': '154', 'rewards/correctness_reward/mean': '0.25', 'rewards/correctness_reward/std': '0.7071', 'rewards/format_reward/mean': '0.075', 'rewards/format_reward/std': '0.04629', 'reward': '0.325', 'reward_std': '0.7186', 'frac_reward_zero_std': '0', 'entropy': '0.5527', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '80.03', 'epoch': '0.01935'}
