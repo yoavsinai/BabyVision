@@ -1,0 +1,11 @@
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/2076 [00:00<?, ?it/s]Loading weights:  21%|██▏       | 445/2076 [00:00<00:00, 4419.08it/s]Loading weights:  43%|████▎     | 887/2076 [00:01<00:02, 526.85it/s] Loading weights:  52%|█████▏    | 1089/2076 [00:01<00:01, 534.82it/s]Loading weights:  59%|█████▉    | 1224/2076 [00:02<00:01, 531.85it/s]Loading weights:  64%|██████▍   | 1327/2076 [00:02<00:01, 527.63it/s]Loading weights:  68%|██████▊   | 1411/2076 [00:02<00:01, 519.71it/s]Loading weights:  88%|████████▊ | 1828/2076 [00:02<00:00, 1014.72it/s]Loading weights: 100%|██████████| 2076/2076 [00:02<00:00, 794.66it/s] 
+Traceback (most recent call last):
+  File "/home/dsi/sinayyo/BabyVision/babyvision_eval/rl_train_system_prompt.py", line 304, in <module>
+    main()
+  File "/home/dsi/sinayyo/BabyVision/babyvision_eval/rl_train_system_prompt.py", line 270, in main
+    training_args = GRPOConfig(
+  File "<string>", line 181, in __init__
+  File "/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/site-packages/trl/trainer/grpo_config.py", line 976, in __post_init__
+    raise ValueError(
+ValueError: generation_batch_size (8) must be divisible by num_generations (3).

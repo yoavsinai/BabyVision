@@ -1,0 +1,6 @@
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/2076 [00:00<?, ?it/s]Loading weights:  21%|██        | 441/2076 [00:00<00:00, 4402.13it/s]Loading weights:  42%|████▏     | 882/2076 [00:01<00:02, 531.81it/s] Loading weights:  52%|█████▏    | 1083/2076 [00:01<00:01, 538.53it/s]Loading weights:  59%|█████▊    | 1218/2076 [00:02<00:01, 543.42it/s]Loading weights:  64%|██████▎   | 1322/2076 [00:02<00:01, 525.68it/s]Loading weights:  68%|██████▊   | 1405/2076 [00:02<00:01, 521.63it/s]Loading weights:  86%|████████▌ | 1786/2076 [00:02<00:00, 969.75it/s]Loading weights: 100%|██████████| 2076/2076 [00:02<00:00, 800.79it/s]
+[transformers] The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 1, 'bos_token_id': 2, 'pad_token_id': 0}.
+  0%|          | 0/234 [00:00<?, ?it/s][transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[transformers] Caching is incompatible with gradient checkpointing in Gemma4TextDecoderLayer. Setting `past_key_values=None`.
+slurmstepd: error: *** JOB 16877034 ON hpc8l4-01 CANCELLED AT 2026-06-19T18:21:14 ***

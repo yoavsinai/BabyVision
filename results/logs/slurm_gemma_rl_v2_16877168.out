@@ -1,0 +1,19 @@
+=== Starting Gemma 4 RL Training v2 Job ===
+Node: hpc8l4-01
+Date: Sat Jun 20 04:14:50 AM IDT 2026
+=== Gemma 4 RL Training v2 ===
+Output directory: ./gemma4_rl_output_v2
+Correctness reward weight: 2.0
+Format reward weights: 0.1 (strict) / 0.05 (partial)
+Loading dataset...
+Loaded and formatted 388 tasks.
+Train dataset size: 310
+Val dataset size: 78
+Loading model and processor...
+Initializing GRPOTrainer...
+Found existing checkpoints: ['checkpoint-325', 'checkpoint-465', 'checkpoint-125', 'checkpoint-75', 'checkpoint-425', 'checkpoint-150', 'checkpoint-250', 'checkpoint-350', 'checkpoint-175', 'checkpoint-25', 'checkpoint-100', 'checkpoint-400', 'checkpoint-50', 'checkpoint-275', 'checkpoint-300', 'checkpoint-225', 'checkpoint-450', 'checkpoint-200', 'checkpoint-375']. Resuming training from the latest checkpoint...
+Starting RL/GRPO training...
+{'train_runtime': '0.0194', 'train_samples_per_second': '4.785e+04', 'train_steps_per_second': '2.392e+04', 'train_loss': '0', 'epoch': '3'}
+Saving final LoRA adapter...
+RL training completed successfully.
+=== Slurm Job Completed ===

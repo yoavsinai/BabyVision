@@ -1,0 +1,11 @@
+=== Starting Slurm Job ===
+Node: hpc8l4-01
+Date: Sat Jun 20 04:15:58 AM IDT 2026
+Loaded 388 tasks from ../data/babyvision_data/meta_data.jsonl
+
+--- Phase 1: Starting Vision Inference using google/gemma-4-E4B-it ---
+Loading vision model and processor...
+Loading Peft LoRA adapter from ./gemma4_rl_output_v2/final_lora...
+Model loaded successfully.
+
+Running pass 1/3...

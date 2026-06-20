@@ -1,0 +1,14 @@
+=== Starting Gemma 4 System Prompt RL Training Job ===
+Node: origin01
+Date: Fri Jun 19 06:20:13 PM IDT 2026
+=== Gemma 4 System Prompt RL Training ===
+Output directory: ./gemma4_system_prompt_rl_output
+Correctness reward weight: 2.0
+Format reward weights: 0.1 (strict) / 0.05 (partial)
+Loading dataset...
+Loaded and formatted 388 tasks.
+Train dataset size: 310
+Val dataset size: 78
+Loading model and processor...
+Initializing GRPOTrainer...
+Starting RL/GRPO training (System Prompt optimization)...

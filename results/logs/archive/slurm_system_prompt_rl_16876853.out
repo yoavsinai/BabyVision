@@ -1,0 +1,13 @@
+=== Starting Gemma 4 System Prompt RL Training Job ===
+Node: hpc8l4-01
+Date: Fri Jun 19 02:38:37 AM IDT 2026
+=== Gemma 4 System Prompt RL Training ===
+Output directory: ./gemma4_system_prompt_rl_output
+Correctness reward weight: 2.0
+Format reward weights: 0.1 (strict) / 0.05 (partial)
+Loading dataset...
+Loaded and formatted 388 tasks.
+Train dataset size: 310
+Val dataset size: 78
+Loading model and processor...
+=== Slurm Job Completed ===

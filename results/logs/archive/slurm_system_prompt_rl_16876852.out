@@ -1,0 +1,16 @@
+=== Starting Gemma 4 System Prompt RL Training Job ===
+Node: hpc8l4-01
+Date: Fri Jun 19 02:30:13 AM IDT 2026
+=== Gemma 4 System Prompt RL Training ===
+Output directory: ./gemma4_system_prompt_rl_output
+Correctness reward weight: 2.0
+Format reward weights: 0.1 (strict) / 0.05 (partial)
+Loading dataset...
+Loaded and formatted 388 tasks.
+Train dataset size: 310
+Val dataset size: 78
+Loading model and processor...
+Initializing GRPOTrainer...
+Starting RL/GRPO training (System Prompt optimization)...
+{'loss': '0.07668', 'grad_norm': '0.4111', 'learning_rate': '1e-05', 'num_tokens': '4574', 'completions/mean_length': '165.8', 'completions/min_length': '104', 'completions/max_length': '207', 'completions/clipped_ratio': '0', 'completions/mean_terminated_length': '165.8', 'completions/min_terminated_length': '104', 'completions/max_terminated_length': '207', 'rewards/system_prompt_correctness_reward/mean': '0', 'rewards/system_prompt_correctness_reward/std': '0', 'rewards/system_prompt_format_reward/mean': '0.08125', 'rewards/system_prompt_format_reward/std': '0.02588', 'reward': '0.08125', 'reward_std': '0.02588', 'frac_reward_zero_std': '0', 'entropy': '0.6857', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '205.6', 'epoch': '0.006452'}
+{'loss': '0.04665', 'grad_norm': '0.2163', 'learning_rate': '9.978e-06', 'num_tokens': '9767', 'completions/mean_length': '224.1', 'completions/min_length': '197', 'completions/max_length': '256', 'completions/clipped_ratio': '0.25', 'completions/mean_terminated_length': '213.5', 'completions/min_terminated_length': '197', 'completions/max_terminated_length': '235', 'rewards/system_prompt_correctness_reward/mean': '0', 'rewards/system_prompt_correctness_reward/std': '0', 'rewards/system_prompt_format_reward/mean': '0.08125', 'rewards/system_prompt_format_reward/std': '0.0372', 'reward': '0.08125', 'reward_std': '0.0372', 'frac_reward_zero_std': '0.5', 'entropy': '0.6839', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '188.4', 'epoch': '0.0129'}

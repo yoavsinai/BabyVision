@@ -1,0 +1,6 @@
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/2076 [00:00<?, ?it/s]Loading weights:  36%|███▋      | 754/2076 [00:00<00:00, 5129.41it/s]Loading weights:  61%|██████    | 1267/2076 [00:00<00:00, 1340.16it/s]Loading weights:  73%|███████▎  | 1524/2076 [00:00<00:00, 1476.45it/s]Loading weights: 100%|██████████| 2076/2076 [00:00<00:00, 2090.13it/s]
+[transformers] The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 1, 'bos_token_id': 2, 'pad_token_id': 0}.
+  0%|          | 0/310 [00:00<?, ?it/s][transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[transformers] Caching is incompatible with gradient checkpointing in Gemma4TextDecoderLayer. Setting `past_key_values=None`.
+slurmstepd: error: *** JOB 16877035 ON origin01 CANCELLED AT 2026-06-19T18:21:51 ***
