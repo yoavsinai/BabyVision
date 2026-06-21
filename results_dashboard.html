@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BabyVision Benchmark Showcase</title>
+  
+  <!-- Modern Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <style>
+    /* CSS Variables for Premium Dark Theme */
+    :root {
+      --bg-dark: #0b0f19;
+      --card-bg: rgba(17, 24, 39, 0.7);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --primary: #6366f1;       /* Indigo Glow */
+      --primary-hover: #4f46e5;
+      --secondary: #10b981;     /* SOTA Emerald */
+      --accent: #f59e0b;        /* Amber */
+      --error: #ef4444;         /* Coral Red */
+      --card-blur: blur(16px);
+      --glow-purple: rgba(99, 102, 241, 0.15);
+      --glow-emerald: rgba(16, 185, 129, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Ambient Background Glows */
+    .glow-orb-1 {
+      position: fixed;
+      top: -10%;
+      right: -10%;
+      width: 50vw;
+      height: 50vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--glow-purple) 0%, transparent 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .glow-orb-2 {
+      position: fixed;
+      bottom: -10%;
+      left: -10%;
+      width: 50vw;
+      height: 50vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--glow-emerald) 0%, transparent 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Layout & Header */
+    header {
+      padding: 2.5rem 2rem 1.5rem;
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .header-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .header-logo {
+      width: 45px;
+      height: 45px;
+      object-fit: contain;
+    }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      font-weight: 400;
+    }
+
+    main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* Tabs Navigation */
+    .tabs-nav {
+      display: flex;
+      gap: 0.75rem;
+      background: rgba(17, 24, 39, 0.4);
+      padding: 0.4rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 2.5rem;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.8rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      font-family: 'Outfit', sans-serif;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .tab-btn.active {
+      color: #fff;
+      background: var(--primary);
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+    }
+
+    /* Tab Content Pane */
+    .tab-pane {
+      display: none;
+      animation: fadeIn 0.4s ease-out forwards;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Card System */
+    .grid-overview {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .metric-card {
+      background: var(--card-bg);
+      backdrop-filter: var(--card-blur);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(99, 102, 241, 0.3);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--primary);
+      opacity: 0.7;
+    }
+
+    .metric-card.sota::before {
+      background: var(--secondary);
+    }
+
+    .metric-card.bagel::before {
+      background: var(--accent);
+    }
+
+    .metric-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    .metric-value {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0.5rem 0 0.2rem;
+    }
+
+    .metric-subtext {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .card-large {
+      background: var(--card-bg);
+      backdrop-filter: var(--card-blur);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .card-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 0.75rem;
+    }
+
+    /* Flex Columns */
+    .flex-row-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .flex-col {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    /* Beautiful Charts Container */
+    .chart-container {
+      position: relative;
+      height: 380px;
+      width: 100%;
+      background: rgba(17, 24, 39, 0.3);
+      border-radius: 12px;
+      padding: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    /* Comparison Table Styling */
+    .table-container {
+      overflow-x: auto;
+      margin-bottom: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.03);
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.95rem;
+    }
+
+    td {
+      padding: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      font-size: 0.9rem;
+    }
+
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    .highlight-cell {
+      font-weight: 600;
+      color: var(--secondary);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .badge-sota {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--secondary);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .badge-baseline {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .badge-accent {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    /* Alert callouts */
+    .alert-box {
+      background: rgba(99, 102, 241, 0.07);
+      border-left: 4px solid var(--primary);
+      padding: 1rem 1.25rem;
+      border-radius: 0 12px 12px 0;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+    }
+
+    .alert-box.secondary {
+      background: rgba(16, 185, 129, 0.05);
+      border-left-color: var(--secondary);
+    }
+
+    .alert-box.accent {
+      background: rgba(245, 158, 11, 0.05);
+      border-left-color: var(--accent);
+    }
+
+    /* Interactive Filters & Subtype controls */
+    .filter-bar {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-select {
+      background: #111827;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      outline: none;
+      transition: border 0.3s;
+    }
+
+    .filter-select:focus {
+      border-color: var(--primary);
+    }
+
+    /* Code Block Styling */
+    pre {
+      background: #070a13;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.25rem;
+      overflow-x: auto;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: #e5e7eb;
+    }
+
+    /* Folder structure visualization */
+    .folder-tree {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      padding-left: 0.5rem;
+    }
+
+    .folder-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .folder-item.directory {
+      color: #60a5fa;
+      font-weight: 500;
+    }
+
+    .folder-item.file {
+      color: #cbd5e1;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .folder-item.file::before {
+      content: '├─';
+      position: absolute;
+      left: 0.2rem;
+      color: rgba(255,255,255,0.15);
+    }
+
+    .folder-item a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .folder-item a:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    /* Expandable Log details list */
+    .log-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .log-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .log-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .log-name {
+      font-weight: 600;
+      color: var(--text-main);
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+    }
+
+    .log-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .log-action-btn {
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #a5b4fc;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-family: 'Outfit', sans-serif;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .log-action-btn:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* Embedded image displays */
+    .img-showcase {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .img-box {
+      flex: 1;
+      min-width: 320px;
+      max-width: 600px;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .img-box img {
+      width: 100%;
+      height: 300px;
+      object-fit: contain;
+      background: #000;
+      padding: 0.5rem;
+      cursor: pointer;
+    }
+
+    .img-box img:hover {
+      opacity: 0.9;
+    }
+
+    .img-caption {
+      padding: 0.75rem 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+      background: rgba(17, 24, 39, 0.5);
+      text-align: center;
+    }
+
+    /* Footer */
+    footer {
+      max-width: 1280px;
+      margin: 4rem auto 2rem;
+      padding: 2rem;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      header {
+        padding: 1.5rem 1rem;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      main {
+        padding: 1rem;
+      }
+      .card-large {
+        padding: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Light Orbs -->
+  <div class="glow-orb-1"></div>
+  <div class="glow-orb-2"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-logo-row">
+      <img src="assets/baby_logo.png" class="header-logo" alt="BabyVision Logo" onerror="this.style.display='none'">
+      <h1>BabyVision Benchmark Showcase</h1>
+    </div>
+    <div class="subtitle">MLLM Evaluation & Reinforcement Learning (GRPO) Experiments on Visual Reasoning</div>
+  </header>
+
+  <!-- Main Dashboard Container -->
+  <main>
+    
+    <!-- Tab Controls Navigation -->
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab(event, 'overview')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+        Overview Dashboard
+      </button>
+      <button class="tab-btn" onclick="switchTab(event, 'category-scores')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+        Model Performance
+      </button>
+      <button class="tab-btn" onclick="switchTab(event, 'grpo-details')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        GRPO Reinforcement Learning
+      </button>
+      <button class="tab-btn" onclick="switchTab(event, 'bagel-study')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 16v-4M12 8h.01"/></svg>
+        BAGEL CoT Case Study
+      </button>
+      <button class="tab-btn" onclick="switchTab(event, 'logs-explorer')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        Log Explorer & Artifacts
+      </button>
+    </div>
+
+    <!-- PANE 1: OVERVIEW -->
+    <div id="overview" class="tab-pane active">
+      
+      <!-- Top Level Stats Summary Cards -->
+      <div class="grid-overview">
+        <div class="metric-card">
+          <div class="metric-label">Gemma-4 Baseline</div>
+          <div class="metric-value">11.08%</div>
+          <div class="metric-subtext">± 1.17% (Greedy Decoding)</div>
+        </div>
+        <div class="metric-card sota">
+          <div class="metric-label">Gemma-4 RL V2 (Ours)</div>
+          <div class="metric-value" style="color: var(--secondary)">13.14%</div>
+          <div class="metric-subtext" style="color: #6ee7b7">★ SOTA (+18.6% Relative Improvement)</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Gemma-4 RL V1</div>
+          <div class="metric-value">9.54%</div>
+          <div class="metric-subtext">± 1.05% (Representation Drift)</div>
+        </div>
+        <div class="metric-card bagel">
+          <div class="metric-label">BAGEL (7B-MoT)</div>
+          <div class="metric-value" style="color: var(--accent)">4.12%</div>
+          <div class="metric-subtext">18.8% on non-truncated answers</div>
+        </div>
+      </div>
+
+      <!-- Main Project Intro & SOTA highlights -->
+      <div class="card-large">
+        <div class="card-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9.09 9 1.24 5.12 2.67-9.12 1.24 5.12 1.67-2.12"/></svg>
+          Executive Summary
+        </div>
+        <div class="flex-row-wrap">
+          <div class="flex-col" style="flex: 1.5;">
+            <p style="margin-bottom: 1rem;">
+              This dashboard hosts the results of extensive visual reasoning evaluations on the <strong>BabyVision Dataset</strong> (388 visual reasoning puzzles) designed to stress-test multimodal models on basic cognitive abilities (fine-grained discrimination, visual tracking, spatial perception, and pattern recognition).
+            </p>
+            <p style="margin-bottom: 1rem;">
+              Our core objective was investigating the impact of **Reinforcement Learning (GRPO)** on vision-language grounding, using <code>google/gemma-4-E4B-it</code> as our backbone policy. By optimizing multimodal LoRA target layers and scaling correctness reward distributions, we achieved a new project high of <strong>13.14% overall accuracy</strong> (an absolute improvement of <strong>+2.06%</strong> over baseline).
+            </p>
+            <p>
+              In parallel, we completed a detailed evaluation of ByteDance's **BAGEL-7B-MoT** model. The analysis exposed critical token limit bottlenecks for verbose Chain-of-Thought models in visual benchmarks.
+            </p>
+            <div class="alert-box secondary">
+              <strong>Key Conclusion:</strong> GRPO works on visual reasoning, but only when parameter updates are distributed across the multimodal connectors (LoRA visual connectors) and correctness reward weights are scaled high enough to prevent models from learning trivial formatting exploits.
+            </div>
+          </div>
+          
+          <div class="flex-col" style="flex: 1; display: flex; align-items: center; justify-content: center;">
+            <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; width: 100%;">
+              <h4 style="font-family: 'Outfit'; margin-bottom: 0.75rem;">Model Standings Summary</h4>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; padding: 0.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.05)">
+                  <span>1. Gemma 4 RL V2</span>
+                  <span class="highlight-cell">13.14%</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; padding: 0.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.05)">
+                  <span>2. Gemma 4 Baseline</span>
+                  <span>11.08%</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; padding: 0.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.05)">
+                  <span>3. Gemma 4 System Prompt RL</span>
+                  <span>9.71%</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; padding: 0.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.05)">
+                  <span>4. Gemma 4 RL V1</span>
+                  <span>9.54%</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; padding: 0.25rem 0;">
+                  <span>5. BAGEL (7B-MoT)</span>
+                  <span style="color: var(--accent);">4.12%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PANE 2: MODEL PERFORMANCE -->
+    <div id="category-scores" class="tab-pane">
+      
+      <!-- Chart Row -->
+      <div class="card-large">
+        <div class="card-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83M22 12A10 10 0 0 0 12 2v10z"/></svg>
+          Overall Performance Chart Comparison
+        </div>
+        <div class="chart-container">
+          <canvas id="categoryChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Comparison Matrix Table -->
+      <div class="card-large">
+        <div class="card-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3zM3 9h18M3 15h18M12 3v18"/></svg>
+          Category Accuracy Breakdowns
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Baseline</th>
+                <th>RL V1</th>
+                <th>RL V2 (Ours)</th>
+                <th>System Prompt RL</th>
+                <th>BAGEL</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>🧩 <strong>Fine-grained Discrimination</strong></td>
+                <td>10.84% ± 1.90%</td>
+                <td>8.38% ± 1.26%</td>
+                <td class="highlight-cell">11.04% ± 1.50%</td>
+                <td>8.59% ± 0.50%</td>
+                <td>4.91%</td>
+              </tr>
+              <tr>
+                <td>📍 <strong>Spatial Perception</strong></td>
+                <td>13.92% ± 1.37%</td>
+                <td>13.55% ± 2.26%</td>
+                <td class="highlight-cell">15.75% ± 1.37%</td>
+                <td>11.36% ± 1.04%</td>
+                <td>2.20%</td>
+              </tr>
+              <tr>
+                <td>🌀 <strong>Visual Pattern Recognition</strong></td>
+                <td>9.80% ± 0.00%</td>
+                <td>6.54% ± 3.33%</td>
+                <td class="highlight-cell">19.61% ± 6.40%</td>
+                <td>8.50% ± 1.85%</td>
+                <td>5.88%</td>
+              </tr>
+              <tr>
+                <td>👁️ <strong>Visual Tracking</strong></td>
+                <td>9.24% ± 3.16%</td>
+                <td>9.24% ± 0.57%</td>
+                <td>10.44% ± 2.05%</td>
+                <td class="highlight-cell">10.84% ± 2.60%</td>
+                <td>3.61%</td>
+              </tr>
+              <tr style="background: rgba(255,255,255,0.02)">
+                <td>⭐ <strong>Overall Accuracy Score</strong></td>
+                <td><strong>11.08% ± 1.17%</strong></td>
+                <td><strong>9.54% ± 1.05%</strong></td>
+                <td class="highlight-cell" style="font-size: 1.05rem;"><strong>13.14% ± 1.64%</strong></td>
+                <td><strong>9.71% ± 0.64%</strong></td>
+                <td style="color: var(--accent);"><strong>4.12%</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Subtype-wise scores browser -->
+      <div class="card-large">
+        <div class="card-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21 21-6-6m2-5a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/></svg>
+          Detailed Subtype Explorer
+        </div>
+        <div class="filter-bar">
+          <label for="categoryFilter" style="font-size:0.9rem; align-self:center; font-weight:600;">Filter by Category:</label>
+          <select id="categoryFilter" class="filter-select" onchange="filterSubtypes()">
+            <option value="all">-- All Categories --</option>
+            <option value="Fine-grained Discrimination">Fine-grained Discrimination</option>
+            <option value="Spatial Perception">Spatial Perception</option>
+            <option value="Visual Pattern Recognition">Visual Pattern Recognition</option>
+            <option value="Visual Tracking">Visual Tracking</option>
+          </select>
+        </div>
+        <div class="table-container">
+          <table id="subtypeTable">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Subtype</th>
+                <th>Baseline</th>
+                <th>RL V2 SOTA</th>
+                <th>BAGEL Accuracy</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Row 1 -->
+              <tr data-cat="Fine-grained Discrimination">
+                <td>🧩 Fine-grained Discrimination</td>
+                <td>2D Pattern Completion</td>
+                <td>43.33% ± 10.27%</td>
+                <td class="highlight-cell">35.00% ± 7.07%</td>
+                <td>15.00%</td>
+              </tr>
+              <!-- Row 2 -->
+              <tr data-cat="Fine-grained Discrimination">
+                <td>🧩 Fine-grained Discrimination</td>
+                <td>Count Clusters</td>
+                <td>5.56% ± 3.93%</td>
+                <td class="highlight-cell">11.11% ± 3.93%</td>
+                <td>5.56%</td>
+              </tr>
+              <!-- Row 3 -->
+              <tr data-cat="Fine-grained Discrimination">
+                <td>🧩 Fine-grained Discrimination</td>
+                <td>Find the Shadow</td>
+                <td>8.70% ± 0.00%</td>
+                <td class="highlight-cell">10.14% ± 2.05%</td>
+                <td>8.70%</td>
+              </tr>
+              <!-- Row 4 -->
+              <tr data-cat="Fine-grained Discrimination">
+                <td>🧩 Fine-grained Discrimination</td>
+                <td>Pattern and Color Completion</td>
+                <td>10.00% ± 0.00%</td>
+                <td class="highlight-cell">10.00% ± 0.00%</td>
+                <td>10.00%</td>
+              </tr>
+              <!-- Row 5 -->
+              <tr data-cat="Fine-grained Discrimination">
+                <td>🧩 Fine-grained Discrimination</td>
+                <td>Find the same</td>
+                <td>0.00% ± 0.00%</td>
+                <td class="highlight-cell">5.88% ± 0.00%</td>
+                <td>0.00%</td>
+              </tr>
+              <!-- Row 6 -->
+              <tr data-cat="Visual Pattern Recognition">
+                <td>🌀 Visual Pattern Recognition</td>
+                <td>Rotation Patterns</td>
+                <td>20.00% ± 8.16%</td>
+                <td class="highlight-cell">33.33% ± 9.43%</td>
+                <td>20.00%</td>
+              </tr>
+              <!-- Row 7 -->
+              <tr data-cat="Visual Pattern Recognition">
+                <td>🌀 Visual Pattern Recognition</td>
+                <td>Logic Patterns</td>
+                <td>4.76% ± 6.73%</td>
+                <td class="highlight-cell">16.67% ± 8.91%</td>
+                <td>0.00%</td>
+              </tr>
+              <!-- Row 8 -->
+              <tr data-cat="Visual Pattern Recognition">
+                <td>🌀 Visual Pattern Recognition</td>
+                <td>Overlay Patterns</td>
+                <td>9.80% ± 2.77%</td>
+                <td class="highlight-cell">19.61% ± 7.34%</td>
+                <td>5.88%</td>
+              </tr>
+              <!-- Row 9 -->
+              <tr data-cat="Spatial Perception">
+                <td>📍 Spatial Perception</td>
+                <td>3D Pattern Completion</td>
+                <td>31.48% ± 6.93%</td>
+                <td class="highlight-cell">25.93% ± 2.62%</td>
+                <td>11.11%</td>
+              </tr>
+              <!-- Row 10 -->
+              <tr data-cat="Spatial Perception">
+                <td>📍 Spatial Perception</td>
+                <td>Paper Folding</td>
+                <td>8.33% ± 0.00%</td>
+                <td class="highlight-cell">22.22% ± 3.93%</td>
+                <td>0.00%</td>
+              </tr>
+              <!-- Row 11 -->
+              <tr data-cat="Visual Tracking">
+                <td>👁️ Visual Tracking</td>
+                <td>Connect the lines</td>
+                <td>5.26% ± 0.00%</td>
+                <td class="highlight-cell">5.26% ± 0.00%</td>
+                <td>5.26%</td>
+              </tr>
+              <!-- Row 12 -->
+              <tr data-cat="Visual Tracking">
+                <td>👁️ Visual Tracking</td>
+                <td>Maze</td>
+                <td>5.00% ± 0.00%</td>
+                <td class="highlight-cell">5.00% ± 0.00%</td>
+                <td>5.00%</td>
+              </tr>
+              <!-- Row 13 -->
+              <tr data-cat="Visual Tracking">
+                <td>👁️ Visual Tracking</td>
+                <td>Recognize numbers/letters</td>
+                <td>4.35% ± 0.00%</td>
+                <td class="highlight-cell">4.35% ± 0.00%</td>
+                <td>4.35%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PANE 3: GRPO DETAILS -->
+    <div id="grpo-details" class="tab-pane">
+      
+      <div class="card-large">
+        <div class="card-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          Why GRPO v2 Succeeded Where V1 Fell Back
+        </div>
+        <p style="margin-bottom: 1rem;">
+          In Group Relative Policy Optimization (GRPO), the agent generates multiple sample pathways and updates the policy based on their relative reward rankings within the group. However, initial training (RL V1) led to a score drop from 11.08% to 9.54%.
+        </p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+          <div style="background: rgba(239, 68, 68, 0.04); border: 1px solid rgba(239, 68, 68, 0.15); border-radius: 12px; padding: 1.25rem;">
+            <h4 style="color: var(--error); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              RL V1 Pitfalls (Text-Only PEFT Bias)
+            </h4>
+            <ul style="list-style-position: inside; font-size: 0.9rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.5rem;">
+              <li><strong>Alignment Drift:</strong> Updating only standard causal language layers broke the model's visual-text cross-modal connector grounding.</li>
+              <li><strong>Format Over-optimization:</strong> Low correctness reward weight (1.0) compared to formatting constraints allowed the model to maximize rewards by outputting empty boxes <code>\boxed{}</code> without reasoning.</li>
+            </ul>
+          </div>
+          
+          <div style="background: rgba(16, 185, 129, 0.04); border: 1px solid rgba(16, 185, 129, 0.15); border-radius: 12px; padding: 1.25rem;">
+            <h4 style="color: var(--secondary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+              RL V2 Fixes (Multimodal PEFT & Scaling)
+            </h4>
+            <ul style="list-style-position: inside; font-size: 0.9rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.5rem;">
+              <li><strong>Multimodal PEFT targets:</strong> Extended LoRA weight matrices to target visual connector and projection layers (modality alignment parameters).</li>
+              <li><strong>Reward scaling:</strong> Boosted correctness weight to <code>2.0</code>, overriding the formatting gradient and forcing visual check verifications.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Training Curves -->
+      <div class="card-large">
+        <div class="card-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          GRPO Training Metrics Visualized
+        </div>
+        <div class="img-showcase">
+          <div class="img-box">
+            <img src="results/training_progress.png" alt="Training Progress Curves" onclick="window.open(this.src)">
+            <div class="img-caption">GRPO RL V2 Training Progress Curves: Policy Loss and Mean Rewards optimization over 3 epochs. Click to expand.</div>
+          </div>
+          <div class="img-box">
+            <img src="results/accuracy_comparison.png" alt="Accuracy Comparison Graph" onclick="window.open(this.src)">
+            <div class="img-caption">Accuracy Comparison Graph: Baseline, RL V1, RL V2, and System Prompt RL. Click to expand.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PANE 4: BAGEL CASE STUDY -->
+    <div id="bagel-study" class="tab-pane">
+      
+      <div class="card-large">
+        <div class="card-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          The CoT Token Truncation Dilemma
+        </div>
+        <p style="margin-bottom: 1.25rem;">
+          ByteDance's <strong>BAGEL-7B-MoT</strong> is a visual model optimized for Chain-of-Thought reasoning. During evaluation, it achieved an overall score of only <strong>4.12%</strong>. This case study details the mathematical and structural reason for this rating.
+        </p>
+
+        <div style="background: rgba(245, 158, 11, 0.04); border: 1px solid rgba(245, 158, 11, 0.15); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;">
+          <h4 style="color: var(--accent); margin-bottom: 0.5rem;">Visual Reasoning vs. Context Truncation</h4>
+          <p style="font-size: 0.95rem; line-height: 1.6; color: #d1d5db; margin-bottom: 0.75rem;">
+            BAGEL features a highly structured, descriptive internal dialogue. In our evaluations, the maximum thinking length was capped at <code>max_think_token_n=1024</code>.
+          </p>
+          <ul style="list-style-type: square; list-style-position: inside; font-size: 0.9rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.4rem;">
+            <li><strong>78.1% Truncation rate:</strong> In 303 of the 388 tasks, BAGEL hit the 1024-token ceiling during its descriptive planning stage, cutting off before ever outputting a final boxed answer.</li>
+            <li><strong>Robust Accuracy on Completed Chains:</strong> On the 85 tasks where it was able to conclude its thinking within the token bounds, BAGEL scored <strong>18.8% accuracy (16/85 correct)</strong>. This significantly outperforms Gemma-4's baseline logic on the same subset.</li>
+          </ul>
+        </div>
+        
+        <h4 style="font-family:'Outfit'; font-size: 1.1rem; margin-bottom: 0.75rem;">Typical BAGEL Truncation Log Sample:</h4>
+        <pre><code>[BAGEL Reasoning Process]
+**Inspecting Grid Silhouettes**
+I have begun scanning the 7x7 grid of tiger silhouettes...
+I am verifying the tail positioning of tigers in Row 1.
+Tiger (1,1): tail tip points upwards. Tiger (1,2): tail tip points upwards...
+[... 1020 tokens of step-by-step description ...]
+Checking Row 5, Column 6 tail alignment. Tail tip curves left...
+>> [CRITICAL SHUTDOWN: max_think_token_n (1024) exceeded. Generation halted.]
+Extracted Answer: None (Graded as 0%)</code></pre>
+      </div>
+
+    </div>
+
+    <!-- PANE 5: LOG EXPLORER -->
+    <div id="logs-explorer" class="tab-pane">
+      
+      <!-- Repository Folder Structure -->
+      <div class="card-large">
+        <div class="card-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          Organized Repository Structure
+        </div>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom: 1.25rem;">
+          To prepare this codebase for deployment and academic review, we consolidated all project assets, scripts, and logs into a transparent, standard folder architecture:
+        </p>
+        <div style="background:rgba(0,0,0,0.2); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 12px;">
+          <div class="folder-tree">
+            <div class="folder-item directory">📁 logs/ <span style="color:var(--text-muted); font-size:0.8rem; font-weight:400;">-- Centralized Slurm Execution and Setup Logs</span></div>
+            <div class="folder-item file">📂 <a href="file:///home/dsi/sinayyo/BabyVision/logs/setup/">setup/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- CUDA, flash-attn builds and library tests</span></div>
+            <div class="folder-item file">📂 <a href="file:///home/dsi/sinayyo/BabyVision/logs/training/">training/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Active GRPO reinforcement learning runs</span></div>
+            <div class="folder-item file">📂 <a href="file:///home/dsi/sinayyo/BabyVision/logs/evaluation/">evaluation/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Multi-pass evaluations for all model configs</span></div>
+            <div class="folder-item file">📂 <a href="file:///home/dsi/sinayyo/BabyVision/logs/archive/">archive/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Historic, duplicate, and interrupted test runs</span></div>
+            
+            <div class="folder-item directory" style="margin-top:0.5rem;">📁 sbatch_scripts/ <span style="color:var(--text-muted); font-size:0.8rem; font-weight:400;">-- Consolidated Slurm Submission Files</span></div>
+            <div class="folder-item file"><a href="file:///home/dsi/sinayyo/BabyVision/sbatch_scripts/run_bagel_eval.sbatch">run_bagel_eval.sbatch</a></div>
+            <div class="folder-item file"><a href="file:///home/dsi/sinayyo/BabyVision/sbatch_scripts/run_gemma_rl_v2.sbatch">run_gemma_rl_v2.sbatch</a></div>
+            <div class="folder-item file"><a href="file:///home/dsi/sinayyo/BabyVision/sbatch_scripts/run_gemma_rl_v2_eval.sbatch">run_gemma_rl_v2_eval.sbatch</a></div>
+            
+            <div class="folder-item directory" style="margin-top:0.5rem;">📁 babyvision_eval/ <span style="color:var(--text-muted); font-size:0.8rem; font-weight:400;">-- MLLM Evaluation Engine</span></div>
+            <div class="folder-item file">📂 <a href="file:///home/dsi/sinayyo/BabyVision/babyvision_eval/results_local_bagel/">results_local_bagel/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Raw JSON and summary scores for BAGEL</span></div>
+            <div class="folder-item file">📂 <a href="file:///home/dsi/sinayyo/BabyVision/babyvision_eval/results_local_gemma_4_rl_v2/">results_local_gemma_4_rl_v2/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- SOTA RL V2 outputs</span></div>
+            <div class="folder-item file">📂 <a href="file:///home/dsi/sinayyo/BabyVision/babyvision_eval/results_archive/">results_archive/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Staged directory for older testing folders</span></div>
+            
+            <div class="folder-item directory" style="margin-top:0.5rem;">📄 <a href="file:///home/dsi/sinayyo/BabyVision/results/final_report.md">results/final_report.md</a> <span style="color:var(--text-muted); font-size:0.8rem; font-weight:400;">-- Gemma 4 RL compilation report</span></div>
+            <div class="folder-item directory">📄 <a href="file:///home/dsi/sinayyo/BabyVision/BAGEL_EVALUATION_REPORT.md">BAGEL_EVALUATION_REPORT.md</a> <span style="color:var(--text-muted); font-size:0.8rem; font-weight:400;">-- Detailed BAGEL audit report</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Links to Main Active Logs -->
+      <div class="card-large">
+        <div class="card-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          Active Job Log Directory
+        </div>
+        <div class="log-list">
+          <!-- Log 1 -->
+          <div class="log-item">
+            <div class="log-info">
+              <span class="log-name">gemma_rl_v2_training_16877068.out</span>
+              <span class="log-desc">GRPO Reinforcement Learning V2 main training run (PEFT parameters, loss curves)</span>
+            </div>
+            <a href="file:///home/dsi/sinayyo/BabyVision/logs/training/gemma_rl_v2_training_16877068.out" class="log-action-btn">View Log File</a>
+          </div>
+          <!-- Log 2 -->
+          <div class="log-item">
+            <div class="log-info">
+              <span class="log-name">gemma_rl_v2_eval_16877072.out</span>
+              <span class="log-desc">Multi-pass evaluation log of Gemma RL V2 model showing judge score responses</span>
+            </div>
+            <a href="file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_rl_v2_eval_16877072.out" class="log-action-btn">View Log File</a>
+          </div>
+          <!-- Log 3 -->
+          <div class="log-item">
+            <div class="log-info">
+              <span class="log-name">bagel_eval_16877397.out</span>
+              <span class="log-desc">Final successful pass 3 evaluation chain and judge scoring for BAGEL model</span>
+            </div>
+            <a href="file:///home/dsi/sinayyo/BabyVision/logs/evaluation/bagel_eval_16877397.out" class="log-action-btn">View Log File</a>
+          </div>
+          <!-- Log 4 -->
+          <div class="log-item">
+            <div class="log-info">
+              <span class="log-name">gemma_baseline_eval_16875224.out</span>
+              <span class="log-desc">Original baseline evaluation results for unmodified Gemma-4 vision policy</span>
+            </div>
+            <a href="file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_baseline_eval_16875224.out" class="log-action-btn">View Log File</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <span>Project: BabyVision Benchmark Analysis</span>
+    <span>Date: June 2026</span>
+    <span>Model Backbone: Gemma 4 VLM & BAGEL 7B</span>
+  </footer>
+
+  <!-- Scripts for Tabs & Chart initialization -->
+  <script>
+    function switchTab(evt, tabId) {
+      // Hide all panes
+      const panes = document.querySelectorAll('.tab-pane');
+      panes.forEach(pane => pane.classList.remove('active'));
+      
+      // Deactivate all buttons
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      
+      // Show targeted pane
+      document.getElementById(tabId).classList.add('active');
+      evt.currentTarget.classList.add('active');
+    }
+
+    function filterSubtypes() {
+      const val = document.getElementById('categoryFilter').value;
+      const rows = document.querySelectorAll('#subtypeTable tbody tr');
+      rows.forEach(row => {
+        const cat = row.getAttribute('data-cat');
+        if (val === 'all' || cat === val) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    // Chart.js Category Breakdown Init
+    document.addEventListener("DOMContentLoaded", function() {
+      const ctx = document.getElementById('categoryChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Fine-grained Discrimination', 'Spatial Perception', 'Visual Pattern Recognition', 'Visual Tracking', 'Overall Score'],
+          datasets: [
+            {
+              label: 'Gemma 4 Baseline',
+              data: [10.84, 13.92, 9.80, 9.24, 11.08],
+              backgroundColor: 'rgba(255, 255, 255, 0.25)',
+              borderColor: 'rgba(255, 255, 255, 0.5)',
+              borderWidth: 1,
+              borderRadius: 6
+            },
+            {
+              label: 'Gemma 4 RL V2 (SOTA)',
+              data: [11.04, 15.75, 19.61, 10.44, 13.14],
+              backgroundColor: 'rgba(16, 185, 129, 0.65)',
+              borderColor: 'rgba(16, 185, 129, 0.95)',
+              borderWidth: 1,
+              borderRadius: 6
+            },
+            {
+              label: 'BAGEL (7B-MoT)',
+              data: [4.91, 2.20, 5.88, 3.61, 4.12],
+              backgroundColor: 'rgba(245, 158, 11, 0.5)',
+              borderColor: 'rgba(245, 158, 11, 0.9)',
+              borderWidth: 1,
+              borderRadius: 6
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              labels: {
+                color: '#e5e7eb',
+                font: {
+                  family: 'Outfit',
+                  size: 12
+                }
+              }
+            },
+            tooltip: {
+              padding: 10,
+              backgroundColor: 'rgba(17, 24, 39, 0.9)',
+              titleFont: { family: 'Outfit', size: 13 },
+              bodyFont: { family: 'Inter', size: 12 },
+              borderColor: 'rgba(255, 255, 255, 0.08)',
+              borderWidth: 1
+            }
+          },
+          scales: {
+            x: {
+              grid: {
+                color: 'rgba(255, 255, 255, 0.03)'
+              },
+              ticks: {
+                color: '#9ca3af',
+                font: { family: 'Outfit', size: 11 }
+              }
+            },
+            y: {
+              min: 0,
+              max: 25,
+              grid: {
+                color: 'rgba(255, 255, 255, 0.04)'
+              },
+              ticks: {
+                color: '#9ca3af',
+                callback: function(value) { return value + '%'; },
+                font: { family: 'Outfit', size: 11 }
+              }
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

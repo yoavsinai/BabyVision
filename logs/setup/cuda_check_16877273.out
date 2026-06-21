@@ -1,0 +1,54 @@
+=== CUDA Check on GPU Node ===
+Node: hpc2a100-01
+Checking nvcc in PATH:
+Checking nvidia-smi:
+/usr/bin/nvidia-smi
+Sat Jun 20 17:01:07 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 610.43.02              KMD Version: 610.43.02     CUDA UMD Version: 13.3     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100 80GB PCIe          On  |   00000000:65:00.0 Off |                    0 |
+| N/A   36C    P0             61W /  300W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Listing /usr/local/:
+total 16
+drwxr-xr-x. 14 root root  192 Mar  4  2025 .
+drwxr-xr-x. 13 root root  155 Jan  5  2025 ..
+drwxr-xr-x.  2 root root 4096 Jul 22  2025 bin
+lrwxrwxrwx.  1 root root   22 Feb 29  2024 cuda -> /etc/alternatives/cuda
+lrwxrwxrwx.  1 root root   25 Feb 29  2024 cuda-12 -> /etc/alternatives/cuda-12
+drwxr-xr-x. 15 root root 4096 Oct 31  2023 cuda-12.3
+drwxr-xr-x  15 root root 4096 Mar  4  2025 cuda-12.8
+drwxr-xr-x.  2 root root    6 Nov  3  2024 etc
+drwxr-xr-x.  2 root root    6 Nov  3  2024 games
+drwxr-xr-x.  2 root root    6 Nov  3  2024 include
+drwxr-xr-x.  4 root root   34 Nov  3  2024 lib
+drwxr-xr-x.  5 root root 4096 Jul 22  2025 lib64
+drwxr-xr-x.  2 root root    6 Nov  3  2024 libexec
+drwxr-xr-x.  2 root root   40 Jun 12 13:14 sbin
+drwxr-xr-x.  6 root root   66 Aug 10  2025 share
+drwxr-xr-x.  2 root root    6 Nov  3  2024 src
+Checking CUDA-related environment variables:
+CUDA_VISIBLE_DEVICES=0
+ANTIGRAVITY_SOURCE_METADATA={"tool":{"conversationId":"e792caa5-5a39-40d4-b193-ae650c7a12b5", "stepIndex":254, "toolCall":{"id":"bfp41f8t", "name":"run_command", "argumentsJson":"{\"CommandLine\":\"sbatch /home/dsi/sinayyo/.gemini/antigravity-cli/brain/e792caa5-5a39-40d4-b193-ae650c7a12b5/scratch/check_cuda.sh\",\"Cwd\":\"/home/dsi/sinayyo/BabyVision\",\"WaitMsBeforeAsync\":5000,\"toolAction\":\"Submit check_cuda.sh\",\"toolSummary\":\"Submitting Slurm job to check CUDA on GPU node\"}", "thinkingSignature":"EvwBCvkBAQw51seSzQQ2r9Zlyr6HLdLTHO3Fln3epCY/JQ2Bhphin2874+bzIoUgrylZ+UtsYROd4p1B38dcdstPwbHANuMoCohQgeB6v9zeQN6LyChDC5zJXkb63LSNhYvEaAYcsW7TP/lDELagAemfCydRygZ/8ZYcW5kej9/CJmMoW0Lh5hchC901n3BHmkPQFGlByMvwd3Myv+Go8qZRHrryOSDy38puTdF4ONj43DNYP07/J72p+I6I7TnyLSTWCpOhIXxBZIAxnLQ6HDG9w0aTA6s5H6hamdDvog6Fsxj6BEYDAPeZbflq8Mir2sEXqqsmqzx9RzrkjKcL", "originalName":"run_command"}}}
+SLURM_JOB_NAME=check_cuda
+Checking /usr/local/cuda/bin/nvcc:
+-rwxr-xr-x 1 root root 24803880 Jan 16  2025 /usr/local/cuda/bin/nvcc
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2025 NVIDIA Corporation
+Built on Wed_Jan_15_19:20:09_PST_2025
+Cuda compilation tools, release 12.8, V12.8.61
+Build cuda_12.8.r12.8/compiler.35404655_0

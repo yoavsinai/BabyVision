@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-RL Training Script for Gemma 4 on BabyVision Visual Reasoning tasks.
-Uses TRL's GRPOTrainer with Verifiable Rewards (correctness & format).
+RL Training Script v2 for Gemma 4 on BabyVision Visual Reasoning tasks.
+Uses TRL's GRPOTrainer with Multimodal LoRA and adjustable correctness reward weight.
 """
 
 import os
@@ -15,6 +15,9 @@ from datasets import Dataset
 from peft import LoraConfig
 from transformers import AutoModelForImageTextToText, AutoProcessor
 from trl import GRPOTrainer, GRPOConfig
+
+# Global correctness weight, can be updated via CLI args in main()
+CORRECTNESS_WEIGHT = 2.0
 
 def format_choices(options):
     formatted = []
@@ -47,7 +50,7 @@ def correctness_reward(prompts, completions, answer, **kwargs):
         extracted = extract_boxed_answer(content)
         target = str(ans).strip().lower()
         if extracted == target:
-            rewards.append(1.0)
+            rewards.append(CORRECTNESS_WEIGHT)
         else:
             rewards.append(0.0)
     return rewards
@@ -66,15 +69,25 @@ def format_reward(prompts, completions, **kwargs):
     return rewards
 
 def main():
-    parser = argparse.ArgumentParser(description="RL training of Gemma 4 on BabyVision prompts")
+    global CORRECTNESS_WEIGHT
+    
+    parser = argparse.ArgumentParser(description="RL training of Gemma 4 on BabyVision prompts (v2)")
     parser.add_argument("--model-id", type=str, default="google/gemma-4-E4B-it", help="Model ID to train")
     parser.add_argument("--data-path", type=str, default="../data/babyvision_data/meta_data.jsonl", help="Dataset file")
-    parser.add_argument("--output-dir", type=str, default="./gemma4_rl_output", help="Output directory")
+    parser.add_argument("--output-dir", type=str, default="./gemma4_rl_output_v2", help="Output directory")
     parser.add_argument("--epochs", type=int, default=3, help="Number of training epochs")
     parser.add_argument("--learning-rate", type=float, default=1e-5, help="Learning rate")
+    parser.add_argument("--correctness-weight", type=float, default=2.0, help="Weight multiplier for correctness reward")
     
     args = parser.parse_args()
+    CORRECTNESS_WEIGHT = args.correctness_weight
+    
     os.makedirs(args.output_dir, exist_ok=True)
+    
+    print(f"=== Gemma 4 RL Training v2 ===")
+    print(f"Output directory: {args.output_dir}")
+    print(f"Correctness reward weight: {CORRECTNESS_WEIGHT}")
+    print(f"Format reward weights: 0.1 (strict) / 0.05 (partial)")
     
     print("Loading dataset...")
     # Load and parse BabyVision tasks
@@ -147,7 +160,7 @@ def main():
     )
     model.config.use_cache = False
     
-    # PEFT (LoRA) Config
+    # PEFT (LoRA) Config - Multimodal target (both language & vision tower)
     target_modules = ".*(language_model.*self_attn\\.(q_proj|k_proj|v_proj|o_proj)|language_model.*mlp\\.(gate_proj|up_proj|down_proj)|vision_tower.*self_attn\\.(q_proj|k_proj|v_proj|o_proj)\\.linear|vision_tower.*mlp\\.(gate_proj|up_proj|down_proj)\\.linear)$"
     peft_config = LoraConfig(
         r=8,
@@ -186,8 +199,16 @@ def main():
         peft_config=peft_config
     )
     
+    # Check if we should resume from checkpoint
+    resume_from_checkpoint = None
+    if os.path.exists(args.output_dir):
+        checkpoints = [d for d in os.listdir(args.output_dir) if d.startswith("checkpoint-")]
+        if checkpoints:
+            resume_from_checkpoint = True
+            print(f"Found existing checkpoints: {checkpoints}. Resuming training from the latest checkpoint...")
+            
     print("Starting RL/GRPO training...")
-    trainer.train()
+    trainer.train(resume_from_checkpoint=resume_from_checkpoint)
     
     print("Saving final LoRA adapter...")
     trainer.save_model(os.path.join(args.output_dir, "final_lora"))

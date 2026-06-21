@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "/home/dsi/sinayyo/BabyVision/babyvision_eval/evaluate_bagel.py", line 40, in <module>
+    from inferencer import InterleaveInferencer
+  File "/home/dsi/sinayyo/BabyVision/BAGEL/inferencer.py", line 11, in <module>
+    from modeling.bagel.qwen2_navit import NaiveCache
+  File "/home/dsi/sinayyo/BabyVision/BAGEL/modeling/__init__.py", line 4, in <module>
+    from . import bagel, qwen2, siglip, autoencoder
+  File "/home/dsi/sinayyo/BabyVision/BAGEL/modeling/bagel/__init__.py", line 5, in <module>
+    from .bagel import BagelConfig, Bagel
+  File "/home/dsi/sinayyo/BabyVision/BAGEL/modeling/bagel/bagel.py", line 20, in <module>
+    from .qwen2_navit import NaiveCache
+  File "/home/dsi/sinayyo/BabyVision/BAGEL/modeling/bagel/qwen2_navit.py", line 24, in <module>
+    from flash_attn import flash_attn_varlen_func
+  File "/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/site-packages/flash_attn/__init__.py", line 3, in <module>
+    from flash_attn.flash_attn_interface import (
+  File "/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/site-packages/flash_attn/flash_attn_interface.py", line 15, in <module>
+    import flash_attn_2_cuda as flash_attn_gpu
+ImportError: libcudart.so.12: cannot open shared object file: No such file or directory
+Error: File not found: results_local_bagel/model_results_run_*.json

@@ -4,6 +4,10 @@
   <picture>
       <img src="./assets/baby_logo.png" width="30%">
   </picture>
+  <br><br>
+  <strong>📊 <a href="./index.html">View the Interactive Results & Evaluation Dashboard</a></strong>
+  <br>
+  <em>Open the local [index.html](./index.html) dashboard in your browser to view interactive charts, subtype comparisons, and execution logs.</em>
 </div>
 
 

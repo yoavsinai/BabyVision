@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/dsi/sinayyo/.gemini/antigravity-cli/brain/e792caa5-5a39-40d4-b193-ae650c7a12b5/scratch/test_inference.py", line 13, in <module>
+    from data.transforms import ImageTransform
+  File "/home/dsi/sinayyo/BabyVision/BAGEL/data/transforms.py", line 7, in <module>
+    import cv2
+ModuleNotFoundError: No module named 'cv2'

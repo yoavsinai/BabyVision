@@ -1,0 +1,15 @@
+/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/site-packages/transformers/modeling_rope_utils.py:1036: FutureWarning: `rope_config_validation` is deprecated and has been removed. Its functionality has been moved to RotaryEmbeddingConfigMixin.validate_rope method. PreTrainedConfig inherits this class, so please call self.validate_rope() instead. Also, make sure to use the new rope_parameters syntax. You can call self.standardize_rope_params() in the meantime.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/home/dsi/sinayyo/BabyVision/babyvision_eval/evaluate_bagel.py", line 281, in <module>
+    main()
+  File "/home/dsi/sinayyo/BabyVision/babyvision_eval/evaluate_bagel.py", line 109, in main
+    language_model = Qwen2ForCausalLM(llm_config)
+  File "/home/dsi/sinayyo/BabyVision/BAGEL/modeling/bagel/qwen2_navit.py", line 1100, in __init__
+    self.model = Qwen2Model(config)
+  File "/home/dsi/sinayyo/BabyVision/BAGEL/modeling/bagel/qwen2_navit.py", line 946, in __init__
+    self.padding_idx = config.pad_token_id
+  File "/home/dsi/sinayyo/.conda/envs/babyvision_py310/lib/python3.10/site-packages/transformers/configuration_utils.py", line 436, in __getattribute__
+    return super().__getattribute__(key)
+AttributeError: 'Qwen2Config' object has no attribute 'pad_token_id'. Did you mean: 'bos_token_id'?
+Error: File not found: results_local_bagel/model_results_run_*.json

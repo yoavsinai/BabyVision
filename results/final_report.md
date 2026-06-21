@@ -1,6 +1,10 @@
 # BabyVision Experiment Final Report: Baseline vs. RL V1 vs. RL V2 vs. System Prompt RL
 
+> [!TIP]
+> **📊 [Open the Interactive Results Dashboard](../index.html)**: View interactive charts, filterable tables, and detailed logs directly in your browser.
+
 This final report compiles and documents all experimental runs, reinforcement learning training setups, and evaluations performed on the **BabyVision** visual reasoning dataset using the `google/gemma-4-E4B-it` vision-language model.
+
 
 ---
 
@@ -10,13 +14,13 @@ Below is the chronological history of all Slurm job runs executed during this pr
 
 | Run Stage | Job ID | Description | Output Logs | Status |
 | :--- | :---: | :--- | :---: | :---: |
-| **Baseline Eval** | `16875224` | Evaluated the unmodified `google/gemma-4-E4B-it` model on 388 visual reasoning tasks. | [Out](file:///home/dsi/sinayyo/BabyVision/results/logs/baseline_evaluation_16875224.out) / [Err](file:///home/dsi/sinayyo/BabyVision/results/logs/baseline_evaluation_16875224.err) | **Success** |
-| **RL V1 Training** | `16875257` | Initial GRPO training run (LoRA causal LM layers, correctness reward weight = 1.0). | [Out](file:///home/dsi/sinayyo/BabyVision/results/logs/rl_training_16875257.out) / [Err](file:///home/dsi/sinayyo/BabyVision/results/logs/rl_training_16875257.err) | **Success** |
-| **RL V1 Evaluation** | `16876673` | Evaluated the RL V1 model on 388 tasks (3 passes). | [Out](file:///home/dsi/sinayyo/BabyVision/results/logs/rl_evaluation_16876673.out) / [Err](file:///home/dsi/sinayyo/BabyVision/results/logs/rl_evaluation_16876673.err) | **Success** |
-| **RL V2 Training** | `16877068`<br>(resumed `16877168`) | GRPO training run V2 (multimodal PEFT targets, correctness reward weight scaled to 2.0). | [Out](file:///home/dsi/sinayyo/BabyVision/results/logs/slurm_gemma_rl_v2_16877068.out) / [Err](file:///home/dsi/sinayyo/BabyVision/results/logs/slurm_gemma_rl_v2_16877068.err) | **Success** |
-| **RL V2 Evaluation** | `16877072` | Evaluated the RL V2 model on 388 tasks (3 passes). | [Out](file:///home/dsi/sinayyo/BabyVision/results/logs/slurm_gemma_rl_v2_eval_16877072.out) / [Err](file:///home/dsi/sinayyo/BabyVision/results/logs/slurm_gemma_rl_v2_eval_16877072.err) | **Success** |
-| **System Prompt RL Training** | `16877070` | GRPO training run targeting system prompt optimization (run by parallel agent). | [Out](file:///home/dsi/sinayyo/BabyVision/results/logs/archive/slurm_system_prompt_rl_16877070.out) / [Err](file:///home/dsi/sinayyo/BabyVision/results/logs/archive/slurm_system_prompt_rl_16877070.err) | **Success** |
-| **System Prompt RL Eval** | `16877197` | Evaluated the System Prompt RL model on 388 tasks (3 passes). | [Out](file:///home/dsi/sinayyo/BabyVision/results/logs/archive/slurm_system_prompt_eval_16877197.out) / [Err](file:///home/dsi/sinayyo/BabyVision/results/logs/archive/slurm_system_prompt_eval_16877197.err) | **Success** |
+| **Baseline Eval** | `16875224` | Evaluated the unmodified `google/gemma-4-E4B-it` model on 388 visual reasoning tasks. | [Out](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_baseline_eval_16875224.out) / [Err](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_baseline_eval_16875224.err) | **Success** |
+| **RL V1 Training** | `16875257` | Initial GRPO training run (LoRA causal LM layers, correctness reward weight = 1.0). | [Out](file:///home/dsi/sinayyo/BabyVision/logs/training/gemma_rl_v1_training_16875257.out) / [Err](file:///home/dsi/sinayyo/BabyVision/logs/training/gemma_rl_v1_training_16875257.err) | **Success** |
+| **RL V1 Evaluation** | `16876673` | Evaluated the RL V1 model on 388 tasks (3 passes). | [Out](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_rl_v1_eval_16876673.out) / [Err](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_rl_v1_eval_16876673.err) | **Success** |
+| **RL V2 Training** | `16877068`<br>(resumed `16877168`) | GRPO training run V2 (multimodal PEFT targets, correctness reward weight scaled to 2.0). | [Out](file:///home/dsi/sinayyo/BabyVision/logs/training/gemma_rl_v2_training_16877068.out) / [Err](file:///home/dsi/sinayyo/BabyVision/logs/training/gemma_rl_v2_training_16877068.err) | **Success** |
+| **RL V2 Evaluation** | `16877072` | Evaluated the RL V2 model on 388 tasks (3 passes). | [Out](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_rl_v2_eval_16877072.out) / [Err](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_rl_v2_eval_16877072.err) | **Success** |
+| **System Prompt RL Training** | `16877070` | GRPO training run targeting system prompt optimization (run by parallel agent). | [Out](file:///home/dsi/sinayyo/BabyVision/logs/training/gemma_system_prompt_rl_training_16877070.out) / [Err](file:///home/dsi/sinayyo/BabyVision/logs/training/gemma_system_prompt_rl_training_16877070.err) | **Success** |
+| **System Prompt RL Eval** | `16877197` | Evaluated the System Prompt RL model on 388 tasks (3 passes). | [Out](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_system_prompt_rl_eval_16877197.out) / [Err](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_system_prompt_rl_eval_16877197.err) | **Success** |
 
 ---
 
@@ -39,7 +43,10 @@ The evaluations consisted of **3 independent inference passes** per task. The mo
 | 🌀 **Visual Pattern Recognition** | `9.80% ± 0.00%` | `6.54% ± 3.33%` | `19.61% ± 6.40%` | `8.50% ± 1.85%` |
 | 👁️ **Visual Tracking** | `9.24% ± 3.16%` | `9.24% ± 0.57%` | `10.44% ± 2.05%` | `10.84% ± 2.60%` |
 
+![Accuracy Comparison Graph](/home/dsi/sinayyo/BabyVision/results/accuracy_comparison.png)
+
 ---
+
 
 ## 🔍 Detailed Subtype Findings
 
@@ -67,6 +74,12 @@ In language-only PEFT (RL V1 and System Prompt RL), updating only the causal lan
 ### 2. Correctness Reward Scaling (Squelching Formatting Exploits)
 Restricting correctness weight to `1.0` (RL V1 and System Prompt RL) allowed policy gradients to easily optimize for the formatting reward (`0.1` for outputting `\boxed{Answer}`) at the expense of correct answers. In RL V2, scaling the correctness reward weight to `2.0` forced actual logical reasoning updates.
 
+## 📉 GRPO Training Progress (RL V2)
+
+Below is the training progress dashboard showing the Policy Loss and Mean Rewards optimization curves over the 3 epochs of training:
+
+![GRPO Training Progress](/home/dsi/sinayyo/BabyVision/results/training_progress.png)
+
 ---
 
 ## 🎯 Conclusion & Verification
@@ -74,3 +87,4 @@ Restricting correctness weight to `1.0` (RL V1 and System Prompt RL) allowed pol
 The hypothesis that **Reinforcement Learning (GRPO) can improve visual reasoning** on the BabyVision dataset is **VERIFIED**. 
 
 By ensuring **multimodal parameter updates** and **robust correctness reward weighting**, we successfully mitigated the representation drift and formatting exploits of the initial runs, raising overall accuracy from a baseline of **`11.08%`** to **`13.14%`** (an absolute improvement of **`+2.06%`**).
+

@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/home/dsi/sinayyo/.gemini/antigravity-cli/brain/e792caa5-5a39-40d4-b193-ae650c7a12b5/scratch/test_inference.py", line 14, in <module>
+    from inferencer import InterleaveInferencer
+  File "/home/dsi/sinayyo/BabyVision/BAGEL/inferencer.py", line 11, in <module>
+    from modeling.bagel.qwen2_navit import NaiveCache
+  File "/home/dsi/sinayyo/BabyVision/BAGEL/modeling/__init__.py", line 4, in <module>
+    from . import bagel, qwen2, siglip, autoencoder
+  File "/home/dsi/sinayyo/BabyVision/BAGEL/modeling/bagel/__init__.py", line 5, in <module>
+    from .bagel import BagelConfig, Bagel
+  File "/home/dsi/sinayyo/BabyVision/BAGEL/modeling/bagel/bagel.py", line 20, in <module>
+    from .qwen2_navit import NaiveCache
+  File "/home/dsi/sinayyo/BabyVision/BAGEL/modeling/bagel/qwen2_navit.py", line 24, in <module>
+    from flash_attn import flash_attn_varlen_func
+ModuleNotFoundError: No module named 'flash_attn'

@@ -18,3 +18,13 @@
 .env
 
 local_ollama
+
+# Ignore checkpoints & PyTorch weights
+**/gemma4_rl_output/
+**/gemma4_rl_output_v2/
+**/gemma4_system_prompt_rl_output/
+
+# Ignore all image files
+*.png
+*.jpg
+*.jpeg
