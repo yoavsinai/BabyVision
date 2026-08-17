@@ -78,27 +78,42 @@ def main():
     # ==========================================
     # Phase 1: Model Generations (Two-Step Inference)
     # ==========================================
-    print(f"\n--- Phase 1: Starting Two-Step Meta-RL Inference using {args.model_id} ---")
-    print("Loading vision model and processor...")
-    
-    model = AutoModelForImageTextToText.from_pretrained(
-        args.model_id,
-        torch_dtype=torch.bfloat16,
-        device_map="auto",
-        trust_remote_code=True
-    )
-    if args.peft_adapter_path:
-        from peft import PeftModel
-        print(f"Loading Peft LoRA adapter from {args.peft_adapter_path}...")
-        model = PeftModel.from_pretrained(model, args.peft_adapter_path)
-    
-    processor = AutoProcessor.from_pretrained(args.model_id, trust_remote_code=True)
-    print("Model and processor loaded successfully.")
-
-    default_sp = "You are a helpful vision-language assistant. You can see the provided image and must answer questions about it accurately and concisely."
     all_passes_results = []
+    raw_paths = [os.path.join(args.output_dir, f"raw_results_run_{i + 1}.json") for i in range(args.num_passes)]
+    passes_to_run = [i for i in range(args.num_passes) if not os.path.exists(raw_paths[i])]
 
-    for pass_idx in range(args.num_passes):
+    for i in range(args.num_passes):
+        if i not in passes_to_run:
+            print(f"Pass {i + 1}/{args.num_passes} already has raw results at {raw_paths[i]}, loading from disk instead of re-running.")
+            with open(raw_paths[i]) as f:
+                all_passes_results.append(json.load(f))
+        else:
+            all_passes_results.append(None)  # filled in below
+
+    if not passes_to_run:
+        print("All passes already generated, skipping Phase 1 model loading entirely.")
+    else:
+        print(f"\n--- Phase 1: Starting Two-Step Meta-RL Inference using {args.model_id} ---")
+        print(f"Passes remaining to run: {[i + 1 for i in passes_to_run]}")
+        print("Loading vision model and processor...")
+
+        model = AutoModelForImageTextToText.from_pretrained(
+            args.model_id,
+            torch_dtype=torch.bfloat16,
+            device_map="auto",
+            trust_remote_code=True
+        )
+        if args.peft_adapter_path:
+            from peft import PeftModel
+            print(f"Loading Peft LoRA adapter from {args.peft_adapter_path}...")
+            model = PeftModel.from_pretrained(model, args.peft_adapter_path)
+
+        processor = AutoProcessor.from_pretrained(args.model_id, trust_remote_code=True)
+        print("Model and processor loaded successfully.")
+
+        default_sp = "You are a helpful vision-language assistant. You can see the provided image and must answer questions about it accurately and concisely."
+
+    for pass_idx in passes_to_run:
         print(f"\nRunning pass {pass_idx + 1}/{args.num_passes}...")
         pass_results = []
 
@@ -185,21 +200,22 @@ def main():
                 "Subtype": task['Subtype'],
             })
         
-        all_passes_results.append(pass_results)
-        
+        all_passes_results[pass_idx] = pass_results
+
         # Save raw predictions
-        raw_output_path = os.path.join(args.output_dir, f"raw_results_run_{pass_idx + 1}.json")
+        raw_output_path = raw_paths[pass_idx]
         with open(raw_output_path, "w") as f:
             json.dump(pass_results, f, indent=2)
         print(f"Saved raw inference results to {raw_output_path}")
 
     # Unload vision model to free VRAM
-    print("\nUnloading vision model to free VRAM for the judge model...")
-    del model
-    del processor
-    gc.collect()
-    torch.cuda.empty_cache()
-    print("VRAM cleared.")
+    if passes_to_run:
+        print("\nUnloading vision model to free VRAM for the judge model...")
+        del model
+        del processor
+        gc.collect()
+        torch.cuda.empty_cache()
+        print("VRAM cleared.")
 
     if args.skip_judge:
         print("Skipping judge phase as requested.")
@@ -208,7 +224,16 @@ def main():
     # ==========================================
     # Phase 2: Run LLM Judge
     # ==========================================
+    model_paths = [os.path.join(args.output_dir, f"model_results_run_{i + 1}.json") for i in range(args.num_passes)]
+    judge_passes_to_run = [i for i in range(args.num_passes) if not os.path.exists(model_paths[i])]
+
+    if not judge_passes_to_run:
+        print("All passes already judged, skipping Phase 2 judge model loading entirely.")
+        print("\n=== All Evaluation Passes Complete ===")
+        return
+
     print(f"\n--- Phase 2: Starting LLM Judge using {args.judge_model_id} ---")
+    print(f"Passes remaining to judge: {[i + 1 for i in judge_passes_to_run]}")
     print("Loading judge model and tokenizer...")
     judge_model = AutoModelForCausalLM.from_pretrained(
         args.judge_model_id,
@@ -219,9 +244,10 @@ def main():
     judge_tokenizer = AutoTokenizer.from_pretrained(args.judge_model_id, trust_remote_code=True)
     print("Judge model loaded successfully.")
 
-    for pass_idx, pass_results in enumerate(all_passes_results):
+    for pass_idx in judge_passes_to_run:
+        pass_results = all_passes_results[pass_idx]
         print(f"\nJudging pass {pass_idx + 1}/{args.num_passes}...")
-        
+
         for idx, result in enumerate(tqdm(pass_results, desc=f"Judging Pass {pass_idx + 1}")):
             if not result["ExtractedAnswer"]:
                 result["LLMJudgeResult"] = False

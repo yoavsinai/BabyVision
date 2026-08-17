@@ -653,10 +653,10 @@
         <div class="flex-row-wrap">
           <div class="flex-col" style="flex: 1.5;">
             <p style="margin-bottom: 1rem;">
-              This dashboard tracks experiments on top of the <strong>BabyVision Dataset</strong> (388 visual reasoning puzzles: fine-grained discrimination, visual tracking, spatial perception, and pattern recognition), done for a seminar — not a paper. It's meant to log what I tried and what happened, not to claim state-of-the-art anything.
+              This dashboard tracks experiments on top of the <strong>BabyVision Dataset</strong> (388 visual reasoning puzzles: fine-grained discrimination, visual tracking, spatial perception, and pattern recognition), done for a seminar - not a paper. It's meant to log what I tried and what happened, not to claim state-of-the-art anything.
             </p>
             <p style="margin-bottom: 1rem;">
-              The BabyVision paper shows RL fine-tuning (GRPO) can improve visual reasoning; the main thread here was applying that same recipe to a model the paper didn't cover, <code>google/gemma-4-E4B-it</code>, to see if it helps there too. Adding multimodal LoRA targets and scaling up the correctness reward weight got me to <strong>13.14% overall accuracy</strong>, up from an <strong>11.08%</strong> baseline — though see the note below, these numbers were run with a token-cap bug I later found and are being re-evaluated.
+              The BabyVision paper shows RL fine-tuning (GRPO) can improve visual reasoning; the main thread here was applying that same recipe to a model the paper didn't cover, <code>google/gemma-4-E4B-it</code>, to see if it helps there too. Adding multimodal LoRA targets and scaling up the correctness reward weight got me to <strong>13.14% overall accuracy</strong>, up from an <strong>11.08%</strong> baseline - though see the note below, these numbers were run with a token-cap bug I later found and are being re-evaluated.
             </p>
             <p>
               I also ran a comparison eval on ByteDance's <strong>BAGEL-7B-MoT</strong> model, which surfaced its own token-limit issues with verbose chain-of-thought outputs.
