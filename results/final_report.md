@@ -1,105 +1,77 @@
-# BabyVision Experiment Final Report: Baseline vs. RL (correctness_weight=1) vs. RL (correctness_weight=2) vs. System Prompt RL
+# BabyVision Experiments — Project Notes
 
 > [!TIP]
-> **📊 [Open the Interactive Results Dashboard](../index.html)**: View interactive charts, filterable tables, and detailed logs directly in your browser.
+> **📊 [Open the Interactive Results Dashboard](../index.html)**: charts, filterable tables, and logs.
 
-> [!WARNING]
-> **Numbers below use the 256-token generation cap.** On 2026-08-17 we found `evaluate_local_hf.py` capped Gemma's generation at 256 tokens while other models (e.g. Qwen) got 512, truncating ~25% of Gemma's answers before they reached `\boxed{...}`. All runs are being re-evaluated at 512 tokens (`runs/*_maxtok512/`); this report will be updated once those land. See `CLAUDE.md` for details and job status.
+## What this is
 
-This final report compiles and documents all experimental runs, reinforcement learning training setups, and evaluations performed on the **BabyVision** visual reasoning dataset using the `google/gemma-4-E4B-it` vision-language model.
+For my seminar, I've been experimenting on top of the [BabyVision benchmark](https://arxiv.org/pdf/2601.06521) — a visual reasoning benchmark of 388 puzzle-style tasks (things like finding the odd-one-out, solving mazes, folding paper, completing patterns). The original paper shows RL fine-tuning can improve a model's visual reasoning on this benchmark; my contribution is applying that same RL recipe to a model the paper didn't cover — **`google/gemma-4-E4B-it`** — and seeing whether the same approach helps there too.
 
+I used `Qwen/Qwen2.5-7B-Instruct` as an LLM judge that grades whether the model's answer matches the ground truth. I also ran a couple of side comparisons: against a stock `Qwen/Qwen2.5-VL-7B-Instruct` (no training), and against ByteDance's `BAGEL-7B-MoT` (see [BAGEL_EVALUATION_REPORT.md](file:///home/dsi/sinayyo/BabyVision/BAGEL_EVALUATION_REPORT.md)).
 
----
+This is a small-sample setup (388 tasks, 3 passes each) — good enough to get signal on what helps, not a rigorous claim about the state of the art.
 
-## 🗺️ Project Runs Overview
+## The story so far
 
-Below is the chronological history of all Slurm job runs executed during this project:
+**1. Baseline.** Ran stock Gemma with no training: **11.08% accuracy**.
 
-| Run Stage | Job ID | Description | Output Logs | Status |
-| :--- | :---: | :--- | :---: | :---: |
-| **Baseline Eval** | `16875224` | Evaluated the unmodified `google/gemma-4-E4B-it` model on 388 visual reasoning tasks. | [Out](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_baseline_eval_16875224.out) / [Err](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_baseline_eval_16875224.err) | **Success** |
-| **RL Training (correctness_weight=1)** | `16875257` | Initial GRPO training run (LoRA causal LM layers, correctness reward weight = 1.0). | [Out](file:///home/dsi/sinayyo/BabyVision/logs/training/gemma_rl_v1_training_16875257.out) / [Err](file:///home/dsi/sinayyo/BabyVision/logs/training/gemma_rl_v1_training_16875257.err) | **Success** |
-| **RL Evaluation (correctness_weight=1)** | `16876673` | Evaluated the correctness_weight=1 model on 388 tasks (3 passes). | [Out](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_rl_v1_eval_16876673.out) / [Err](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_rl_v1_eval_16876673.err) | **Success** |
-| **RL Training (correctness_weight=2)** | `16877068`<br>(resumed `16877168`) | GRPO training run with multimodal PEFT targets, correctness reward weight scaled to 2.0. | [Out](file:///home/dsi/sinayyo/BabyVision/logs/training/gemma_rl_v2_training_16877068.out) / [Err](file:///home/dsi/sinayyo/BabyVision/logs/training/gemma_rl_v2_training_16877068.err) | **Success** |
-| **RL Evaluation (correctness_weight=2)** | `16877072` | Evaluated the correctness_weight=2 model on 388 tasks (3 passes). | [Out](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_rl_v2_eval_16877072.out) / [Err](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_rl_v2_eval_16877072.err) | **Success** |
-| **System Prompt RL Training** | `16877070` | GRPO training run targeting system prompt optimization (run by parallel agent). | [Out](file:///home/dsi/sinayyo/BabyVision/logs/training/gemma_system_prompt_rl_training_16877070.out) / [Err](file:///home/dsi/sinayyo/BabyVision/logs/training/gemma_system_prompt_rl_training_16877070.err) | **Success** |
-| **System Prompt RL Eval** | `16877197` | Evaluated the System Prompt RL model on 388 tasks (3 passes). | [Out](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_system_prompt_rl_eval_16877197.out) / [Err](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_system_prompt_rl_eval_16877197.err) | **Success** |
-| **Baseline Eval (512 tokens)** | `23604080` | Re-evaluating baseline Gemma with the token-cap fix. | — | **Pending** |
-| **RL Eval, correctness_weight=1 (512 tokens)** | `23604081` | Re-evaluating with the token-cap fix. | — | **Pending** |
-| **RL Eval, correctness_weight=2 (512 tokens)** | `23604082` | Re-evaluating with the token-cap fix. | — | **Pending** |
-| **System Prompt RL Eval (512 tokens)** | `23604083` | Re-evaluating with the token-cap fix. | — | **Pending** |
-| **Qwen Baseline Eval** | *(archived, exact job ID not recorded)* | Evaluated `Qwen/Qwen2.5-VL-7B-Instruct` base model at 512 tokens, 388 tasks (3 passes). Promoted from `_deprecated/scratch_tests/` into `runs/qwen_baseline/`. | — | **Success** |
+**2. First RL attempt (GRPO, correctness reward weight = 1.0).** Only put LoRA adapters on the language-model layers. Accuracy went *down* to 9.54%. My read: with only the language layers being updated, the model's text output started drifting away from what the frozen vision encoder was actually seeing — plus the reward function made it too easy to get credit just for outputting the right `\boxed{...}` format without necessarily being correct.
 
----
+**3. Second RL attempt (correctness reward weight = 2.0, multimodal LoRA).** Two changes: (a) extended the LoRA adapters to also cover the multimodal connector/projection layers, not just the language layers, and (b) doubled the weight on the correctness reward so formatting alone was no longer enough to score well. This got to **13.14% accuracy** — the best result so far, and a real improvement over baseline.
 
-## 📈 Performance Summary & Comparison
+**4. Side experiment: system-prompt RL.** Instead of training the model to answer directly, I tried training it to *generate a system prompt* for itself, hoping it would learn to give itself better instructions. This underperformed baseline (9.71%) — same failure mode as attempt #2 (language-only PEFT).
 
-The evaluations consisted of **3 independent inference passes** per task. The model answers were graded using a local `Qwen/Qwen2.5-7B-Instruct` judge model.
+**5. Caught a bug.** My teacher pointed out that Gemma scoring worse than Qwen in some comparisons looked suspicious — and it was. I found that the evaluation script (`evaluate_local_hf.py`) was capping Gemma's generation at 256 tokens while every other model got 512. Since Gemma tends to reason for a while before giving its final `\boxed{answer}`, this was silently truncating roughly a quarter of its answers before it ever reached the answer. I fixed the cap and I'm currently re-running all the evaluations above at 512 tokens to see how much this changes the picture.
 
-> ⚠️ The numbers below are from the **256-token-capped** runs and will be superseded once the pending 512-token re-evaluations (above) complete.
+## Results (⚠️ current numbers use the old 256-token cap — being re-run)
 
-* **Baseline Model Accuracy:** **`11.08% ± 1.17%`** — [Detailed Baseline Results](file:///home/dsi/sinayyo/BabyVision/results/baseline_detailed_results.md)
-* **RL Model Accuracy (correctness_weight=1):** **`9.54% ± 1.05%`** (Regression due to visual-text representation drift & format bias) — [Detailed Results](file:///home/dsi/sinayyo/BabyVision/results/rl_detailed_results.md)
-* **RL Model Accuracy (correctness_weight=2):** **`13.14% ± 1.64%`** (best result so far) — [Detailed Results](file:///home/dsi/sinayyo/BabyVision/results/rl_correctness_weight2_detailed_results.md)
-* **System Prompt RL Accuracy:** **`9.71% ± 0.64%`** (Regression due to similar text format bias/representation drift) — [Detailed System Prompt RL Results](file:///home/dsi/sinayyo/BabyVision/results/system_prompt_detailed_results.md)
-* **Qwen Baseline Accuracy:** **`2.84% ± 0.21%`** (base `Qwen/Qwen2.5-VL-7B-Instruct`, 512 tokens — not a like-for-like comparison against RL-tuned Gemma variants above; only comparable against Gemma's own base/untrained result)
-* **Absolute Change (correctness_weight=2 vs. Baseline):** **`+2.06%`** (18.6% relative improvement)
-* **Absolute Change (correctness_weight=2 vs. correctness_weight=1):** **`+3.60%`** (37.7% relative improvement)
+| Model | Accuracy |
+| :--- | :---: |
+| Baseline Gemma | 11.08% ± 1.17% |
+| Gemma + RL (weight=1, language-only LoRA) | 9.54% ± 1.05% — regressed |
+| Gemma + RL (weight=2, multimodal LoRA) | **13.14% ± 1.64%** — best so far |
+| Gemma + system-prompt RL | 9.71% ± 0.64% — regressed |
+| Qwen baseline (untrained) | 2.84% ± 0.21% — see note below |
 
-### Category Accuracy Metrics:
-| Category | Baseline Accuracy | RL (cw=1) Accuracy | RL (cw=2) Accuracy (Ours) | System Prompt RL |
+**On the Qwen number:** it's not a fair comparison to the RL-tuned Gemma models above, since Qwen never went through any training — one model got extra help and the other didn't. The only comparison that's actually meaningful for "which base model is stronger" is base Gemma vs. base Qwen, same token budget, which is what I'm setting up next.
+
+### By category
+
+| Category | Baseline | RL (w=1) | RL (w=2) | System-prompt RL |
 | :--- | :---: | :---: | :---: | :---: |
-| 🧩 **Fine-grained Discrimination** | `10.84% ± 1.90%` | `8.38% ± 1.26%` | `11.04% ± 1.50%` | `8.59% ± 0.50%` |
-| 📍 **Spatial Perception** | `13.92% ± 1.37%` | `13.55% ± 2.26%` | `15.75% ± 1.37%` | `11.36% ± 1.04%` |
-| 🌀 **Visual Pattern Recognition** | `9.80% ± 0.00%` | `6.54% ± 3.33%` | `19.61% ± 6.40%` | `8.50% ± 1.85%` |
-| 👁️ **Visual Tracking** | `9.24% ± 3.16%` | `9.24% ± 0.57%` | `10.44% ± 2.05%` | `10.84% ± 2.60%` |
+| Fine-grained Discrimination | 10.84% | 8.38% | 11.04% | 8.59% |
+| Spatial Perception | 13.92% | 13.55% | 15.75% | 11.36% |
+| Visual Pattern Recognition | 9.80% | 6.54% | 19.61% | 8.50% |
+| Visual Tracking | 9.24% | 9.24% | 10.44% | 10.84% |
 
 ![Accuracy Comparison Graph](/home/dsi/sinayyo/BabyVision/results/accuracy_comparison.png)
 
----
+The best run's biggest gain was in Visual Pattern Recognition (6.5% → 19.6%); its biggest regression was 3D Pattern Completion (31.5% baseline → 25.9%), which I haven't dug into yet.
 
+## What I'm doing next
 
-## 🔍 Detailed Subtype Findings
-
-### 🟢 What Improved Most with correctness_weight=2?
-The combination of multimodal LoRA targets and a scaled correctness reward weight yielded substantial gains on logical, structural, and spatial tracking tasks:
-1. **Rotation Patterns** (Visual Pattern Recognition): **`33.33% ± 9.43%`** vs. `20.00% ± 8.16%` (Baseline) (**`+13.33%`**)
-   * *Findings:* Visual PEFT targets successfully aligned the model's visual representations of rotated objects with language descriptions.
-2. **Paper Folding** (Spatial Perception): **`22.22% ± 3.93%`** vs. `8.33% ± 0.00%` (Baseline) (**`+13.89%`**)
-   * *Findings:* Robust correctness rewards encouraged the model to verify intermediate crease-line logic step-by-step.
-3. **Logic Patterns** (Visual Pattern Recognition): **`16.67% ± 8.91%`** vs. `4.76% ± 6.73%` (Baseline) (**`+11.91%`**)
-4. **Overlay Patterns** (Visual Pattern Recognition): **`19.61% ± 7.34%`** vs. `9.80% ± 2.77%` (Baseline) (**`+9.81%`**)
-5. **Find the same** (Fine-grained Discrimination): **`5.88% ± 0.00%`** vs. `0.00% ± 0.00%` (Baseline) (**`+5.88%`**)
-
-### 🔴 Regressions and Partial Recoveries
-1. **2D Pattern Completion:** **`35.00% ± 7.07%`** (Partial Recovery with correctness_weight=2: up from `28.33%` at correctness_weight=1, but still below Baseline `43.33%`).
-2. **3D Pattern Completion:** **`25.93% ± 2.62%`** vs. `31.48% ± 6.93%` (Baseline) (**`-5.55%`**).
+1. Re-running every variant above at 512 tokens (4 jobs currently in the queue) to get clean numbers that aren't distorted by the truncation bug.
+2. Once that lands, doing an honest base-vs-base comparison against Qwen (same token budget, no training on either side) to answer the original "is Gemma actually worse than Qwen" question properly.
+3. Considering RL-training a Qwen variant too, so I can compare trained-vs-trained rather than trained-Gemma-vs-untrained-Qwen — this needs real adaptation work (Qwen's LoRA target modules and chat template differ from Gemma's), so only worth it if there's still a meaningful gap after the token-cap fix.
+4. Double-checking whether the RL *training* rollouts (separate 256-token completion cap during GRPO, not the eval bug above) were also getting truncated — if so, the reward signal itself may have been noisy.
 
 ---
+<details>
+<summary>Job IDs and raw logs (for reproducibility)</summary>
 
-## 🧠 Key Insights & Methodology Changes
+| Run | Job ID | Logs |
+| :--- | :---: | :---: |
+| Baseline eval | `16875224` | [Out](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_baseline_eval_16875224.out) / [Err](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_baseline_eval_16875224.err) |
+| RL training, w=1 | `16875257` | [Out](file:///home/dsi/sinayyo/BabyVision/logs/training/gemma_rl_v1_training_16875257.out) / [Err](file:///home/dsi/sinayyo/BabyVision/logs/training/gemma_rl_v1_training_16875257.err) |
+| RL eval, w=1 | `16876673` | [Out](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_rl_v1_eval_16876673.out) / [Err](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_rl_v1_eval_16876673.err) |
+| RL training, w=2 | `16877068` (resumed `16877168`) | [Out](file:///home/dsi/sinayyo/BabyVision/logs/training/gemma_rl_v2_training_16877068.out) / [Err](file:///home/dsi/sinayyo/BabyVision/logs/training/gemma_rl_v2_training_16877068.err) |
+| RL eval, w=2 | `16877072` | [Out](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_rl_v2_eval_16877072.out) / [Err](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_rl_v2_eval_16877072.err) |
+| System-prompt RL training | `16877070` | [Out](file:///home/dsi/sinayyo/BabyVision/logs/training/gemma_system_prompt_rl_training_16877070.out) / [Err](file:///home/dsi/sinayyo/BabyVision/logs/training/gemma_system_prompt_rl_training_16877070.err) |
+| System-prompt RL eval | `16877197` | [Out](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_system_prompt_rl_eval_16877197.out) / [Err](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_system_prompt_rl_eval_16877197.err) |
+| Baseline eval, 512 tokens | `23604080` | pending |
+| RL eval, w=1, 512 tokens | `23604081` | pending |
+| RL eval, w=2, 512 tokens | `23604082` | pending |
+| System-prompt RL eval, 512 tokens | `23604083` | pending |
+| Qwen baseline eval | *(archived, no job ID kept)* | — |
 
-### 1. Visual-Language Representation Grounding (Multimodal PEFT Targets)
-In language-only PEFT (correctness_weight=1 and System Prompt RL), updating only the causal language model layers resulted in alignment drift from the frozen visual encoder. For the correctness_weight=2 run, extending the LoRA configurations to target multimodal connector and projection sub-layers kept text-image alignments intact, preserving spatial grounding.
-
-### 2. Correctness Reward Scaling (Squelching Formatting Exploits)
-Restricting correctness weight to `1.0` (correctness_weight=1 run and System Prompt RL) allowed policy gradients to easily optimize for the formatting reward (`0.1` for outputting `\boxed{Answer}`) at the expense of correct answers. Scaling the correctness reward weight to `2.0` forced actual logical reasoning updates.
-
-### 3. Evaluation Token-Budget Bug (found 2026-08-17)
-`evaluate_local_hf.py` capped Gemma's generation at 256 tokens while other models (Qwen) were evaluated at 512, silently truncating ~25% of Gemma's answers before they reached `\boxed{...}`. This affected every Gemma variant's *evaluation* (not training — GRPO training used its own fixed, uniform `max_completion_length`). Fixed to 512 tokens across the board; all Gemma variants are being re-evaluated (see Pending rows above).
-
-## 📉 GRPO Training Progress (correctness_weight=2)
-
-Below is the training progress dashboard showing the Policy Loss and Mean Rewards optimization curves over the 3 epochs of training:
-
-![GRPO Training Progress](/home/dsi/sinayyo/BabyVision/results/training_progress.png)
-
----
-
-## 🎯 Conclusion & Verification
-
-The hypothesis that **Reinforcement Learning (GRPO) can improve visual reasoning** on the BabyVision dataset is **VERIFIED** under the 256-token-capped evaluation.
-
-By ensuring **multimodal parameter updates** and **robust correctness reward weighting**, we mitigated the representation drift and formatting exploits of the initial runs, raising overall accuracy from a baseline of **`11.08%`** to **`13.14%`** (an absolute improvement of **`+2.06%`**).
-
-**This conclusion is pending re-verification** at 512 tokens once the pending jobs (above) complete — the token-budget bug may have disproportionately affected some variants over others, so relative rankings could shift.
+</details>

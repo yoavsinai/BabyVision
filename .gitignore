@@ -19,6 +19,9 @@
 
 local_ollama
 
+# Local session notes for Claude, not meant to be shared
+CLAUDE.md
+
 # Ignore checkpoints & PyTorch weights
 babyvision_eval/checkpoints/
 

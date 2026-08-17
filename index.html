@@ -23,7 +23,7 @@
       --text-muted: #9ca3af;
       --primary: #6366f1;       /* Indigo Glow */
       --primary-hover: #4f46e5;
-      --secondary: #10b981;     /* SOTA Emerald */
+      --secondary: #10b981;     /* Emerald */
       --accent: #f59e0b;        /* Amber */
       --error: #ef4444;         /* Coral Red */
       --card-blur: blur(16px);
@@ -630,7 +630,7 @@
         <div class="metric-card sota">
           <div class="metric-label">Gemma-4 RL (cw=2, Ours)</div>
           <div class="metric-value" style="color: var(--secondary)">13.14%</div>
-          <div class="metric-subtext" style="color: #6ee7b7">★ SOTA (+18.6% Relative Improvement)</div>
+          <div class="metric-subtext" style="color: #6ee7b7">★ Best so far (+18.6% relative)</div>
         </div>
         <div class="metric-card">
           <div class="metric-label">Gemma-4 RL (cw=1)</div>
@@ -644,25 +644,25 @@
         </div>
       </div>
 
-      <!-- Main Project Intro & SOTA highlights -->
+      <!-- Main Project Intro -->
       <div class="card-large">
         <div class="card-title">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9.09 9 1.24 5.12 2.67-9.12 1.24 5.12 1.67-2.12"/></svg>
-          Executive Summary
+          Seminar Project Notes
         </div>
         <div class="flex-row-wrap">
           <div class="flex-col" style="flex: 1.5;">
             <p style="margin-bottom: 1rem;">
-              This dashboard hosts the results of extensive visual reasoning evaluations on the <strong>BabyVision Dataset</strong> (388 visual reasoning puzzles) designed to stress-test multimodal models on basic cognitive abilities (fine-grained discrimination, visual tracking, spatial perception, and pattern recognition).
+              This dashboard tracks experiments on top of the <strong>BabyVision Dataset</strong> (388 visual reasoning puzzles: fine-grained discrimination, visual tracking, spatial perception, and pattern recognition), done for a seminar — not a paper. It's meant to log what I tried and what happened, not to claim state-of-the-art anything.
             </p>
             <p style="margin-bottom: 1rem;">
-              Our core objective was investigating the impact of **Reinforcement Learning (GRPO)** on vision-language grounding, using <code>google/gemma-4-E4B-it</code> as our backbone policy. By optimizing multimodal LoRA target layers and scaling correctness reward distributions, we achieved a new project high of <strong>13.14% overall accuracy</strong> (an absolute improvement of <strong>+2.06%</strong> over baseline).
+              The BabyVision paper shows RL fine-tuning (GRPO) can improve visual reasoning; the main thread here was applying that same recipe to a model the paper didn't cover, <code>google/gemma-4-E4B-it</code>, to see if it helps there too. Adding multimodal LoRA targets and scaling up the correctness reward weight got me to <strong>13.14% overall accuracy</strong>, up from an <strong>11.08%</strong> baseline — though see the note below, these numbers were run with a token-cap bug I later found and are being re-evaluated.
             </p>
             <p>
-              In parallel, we completed a detailed evaluation of ByteDance's **BAGEL-7B-MoT** model. The analysis exposed critical token limit bottlenecks for verbose Chain-of-Thought models in visual benchmarks.
+              I also ran a comparison eval on ByteDance's <strong>BAGEL-7B-MoT</strong> model, which surfaced its own token-limit issues with verbose chain-of-thought outputs.
             </p>
             <div class="alert-box secondary">
-              <strong>Key Conclusion:</strong> GRPO works on visual reasoning, but only when parameter updates are distributed across the multimodal connectors (LoRA visual connectors) and correctness reward weights are scaled high enough to prevent models from learning trivial formatting exploits.
+              <strong>Working takeaway:</strong> GRPO seems to help on visual reasoning here, but only when LoRA also touches the multimodal connector layers (not just language layers) and the correctness reward is weighted high enough that the policy can't just farm the formatting reward instead of being right.
             </div>
           </div>
           
@@ -987,7 +987,7 @@
         <div style="background: rgba(245, 158, 11, 0.04); border: 1px solid rgba(245, 158, 11, 0.15); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;">
           <h4 style="color: var(--accent); margin-bottom: 0.5rem;">Visual Reasoning vs. Context Truncation</h4>
           <p style="font-size: 0.95rem; line-height: 1.6; color: #d1d5db; margin-bottom: 0.75rem;">
-            BAGEL features a highly structured, descriptive internal dialogue. In our evaluations, the maximum thinking length was capped at <code>max_think_token_n=1024</code>.
+            BAGEL features a highly structured, descriptive internal dialogue. In my evaluation, the maximum thinking length was capped at <code>max_think_token_n=1024</code>.
           </p>
           <ul style="list-style-type: square; list-style-position: inside; font-size: 0.9rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.4rem;">
             <li><strong>78.1% Truncation rate:</strong> In 303 of the 388 tasks, BAGEL hit the 1024-token ceiling during its descriptive planning stage, cutting off before ever outputting a final boxed answer.</li>
@@ -1019,7 +1019,7 @@ Extracted Answer: None (Graded as 0%)</code></pre>
           Organized Repository Structure
         </div>
         <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom: 1.25rem;">
-          To prepare this codebase for deployment and academic review, we consolidated all project assets, scripts, and logs into a transparent, standard folder architecture:
+          Project assets, scripts, and logs, organized so it's easy to find what ran what:
         </p>
         <div style="background:rgba(0,0,0,0.2); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 12px;">
           <div class="folder-tree">
@@ -1039,8 +1039,8 @@ Extracted Answer: None (Graded as 0%)</code></pre>
             <div class="folder-item file">📂 <a href="file:///home/dsi/sinayyo/BabyVision/babyvision_eval/runs/rl_correctness_weight2/">runs/rl_correctness_weight2/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- best RL (correctness_weight=2) outputs</span></div>
             <div class="folder-item file">📂 <a href="file:///home/dsi/sinayyo/BabyVision/babyvision_eval/_deprecated/scratch_tests/">_deprecated/scratch_tests/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Deprecated: older testing folders</span></div>
             
-            <div class="folder-item directory" style="margin-top:0.5rem;">📄 <a href="file:///home/dsi/sinayyo/BabyVision/results/final_report.md">results/final_report.md</a> <span style="color:var(--text-muted); font-size:0.8rem; font-weight:400;">-- Gemma 4 RL compilation report</span></div>
-            <div class="folder-item directory">📄 <a href="file:///home/dsi/sinayyo/BabyVision/BAGEL_EVALUATION_REPORT.md">BAGEL_EVALUATION_REPORT.md</a> <span style="color:var(--text-muted); font-size:0.8rem; font-weight:400;">-- Detailed BAGEL audit report</span></div>
+            <div class="folder-item directory" style="margin-top:0.5rem;">📄 <a href="file:///home/dsi/sinayyo/BabyVision/results/final_report.md">results/final_report.md</a> <span style="color:var(--text-muted); font-size:0.8rem; font-weight:400;">-- Gemma RL experiment notes</span></div>
+            <div class="folder-item directory">📄 <a href="file:///home/dsi/sinayyo/BabyVision/BAGEL_EVALUATION_REPORT.md">BAGEL_EVALUATION_REPORT.md</a> <span style="color:var(--text-muted); font-size:0.8rem; font-weight:400;">-- BAGEL comparison notes</span></div>
           </div>
         </div>
       </div>
@@ -1056,7 +1056,7 @@ Extracted Answer: None (Graded as 0%)</code></pre>
           <div class="log-item">
             <div class="log-info">
               <span class="log-name">gemma_rl_v2_training_16877068.out</span>
-              <span class="log-desc">GRPO Reinforcement Learning V2 main training run (PEFT parameters, loss curves)</span>
+              <span class="log-desc">RL (correctness_weight=2) main training run (PEFT parameters, loss curves)</span>
             </div>
             <a href="file:///home/dsi/sinayyo/BabyVision/logs/training/gemma_rl_v2_training_16877068.out" class="log-action-btn">View Log File</a>
           </div>
@@ -1144,7 +1144,7 @@ Extracted Answer: None (Graded as 0%)</code></pre>
               borderRadius: 6
             },
             {
-              label: 'Gemma 4 RL (cw=2) (SOTA)',
+              label: 'Gemma 4 RL (cw=2)',
               data: [11.04, 15.75, 19.61, 10.44, 13.14],
               backgroundColor: 'rgba(16, 185, 129, 0.65)',
               borderColor: 'rgba(16, 185, 129, 0.95)',
