@@ -149,7 +149,7 @@ def main():
                 inputs = get_inputs(args.model_id, processor, task["image_path"], task["question"])
                 inputs = inputs.to("cuda")
                 
-                max_tokens = 256 if "gemma" in args.model_id.lower() else 512
+                max_tokens = 512
                 with torch.no_grad():
                     generated_ids = model.generate(**inputs, max_new_tokens=max_tokens)
                 

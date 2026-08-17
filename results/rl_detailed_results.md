@@ -1,4 +1,4 @@
-# Detailed Evaluation Results: results_local_gemma_4_rl
+# Detailed Evaluation Results: runs/rl_correctness_weight1
 
 ## 📊 Summary Statistics
 ```text

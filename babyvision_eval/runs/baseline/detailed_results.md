@@ -1,4 +1,4 @@
-# Detailed Evaluation Results: results_local_gemma_4
+# Detailed Evaluation Results: runs/baseline
 
 ## 📊 Summary Statistics
 ```text

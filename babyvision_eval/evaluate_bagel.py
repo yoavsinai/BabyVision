@@ -53,7 +53,7 @@ def main():
     parser.add_argument("--model-path", type=str, default="/home/dsi/sinayyo/.cache/huggingface/hub/models--ByteDance-Seed--BAGEL-7B-MoT/snapshots/5019f57d168e5816e8f3f701b17cc816bb7cf24b", help="Path to BAGEL checkpoint")
     parser.add_argument("--judge-model-id", type=str, default="Qwen/Qwen2.5-7B-Instruct", help="Hugging Face model ID for the judge")
     parser.add_argument("--test-json-path", type=str, default="../data/babyvision_data/meta_data.jsonl", help="Path to test JSONL file")
-    parser.add_argument("--output-dir", type=str, default="./results_local_bagel", help="Output directory")
+    parser.add_argument("--output-dir", type=str, default="./runs/bagel", help="Output directory")
     parser.add_argument("--num-passes", type=int, default=3, help="Number of evaluation passes")
     parser.add_argument("--skip-judge", action="store_true", help="Skip running the judge phase")
 

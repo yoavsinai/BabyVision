@@ -1,4 +1,4 @@
-# Detailed Evaluation Results: results_system_prompt_rl
+# Detailed Evaluation Results: runs/system_prompt_rl
 
 ## 📊 Summary Statistics
 ```text

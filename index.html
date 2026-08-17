@@ -628,12 +628,12 @@
           <div class="metric-subtext">± 1.17% (Greedy Decoding)</div>
         </div>
         <div class="metric-card sota">
-          <div class="metric-label">Gemma-4 RL V2 (Ours)</div>
+          <div class="metric-label">Gemma-4 RL (cw=2, Ours)</div>
           <div class="metric-value" style="color: var(--secondary)">13.14%</div>
           <div class="metric-subtext" style="color: #6ee7b7">★ SOTA (+18.6% Relative Improvement)</div>
         </div>
         <div class="metric-card">
-          <div class="metric-label">Gemma-4 RL V1</div>
+          <div class="metric-label">Gemma-4 RL (cw=1)</div>
           <div class="metric-value">9.54%</div>
           <div class="metric-subtext">± 1.05% (Representation Drift)</div>
         </div>
@@ -671,7 +671,7 @@
               <h4 style="font-family: 'Outfit'; margin-bottom: 0.75rem;">Model Standings Summary</h4>
               <div style="display: flex; flex-direction: column; gap: 0.5rem;">
                 <div style="display: flex; justify-content: space-between; font-size: 0.9rem; padding: 0.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.05)">
-                  <span>1. Gemma 4 RL V2</span>
+                  <span>1. Gemma 4 RL (cw=2)</span>
                   <span class="highlight-cell">13.14%</span>
                 </div>
                 <div style="display: flex; justify-content: space-between; font-size: 0.9rem; padding: 0.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.05)">
@@ -683,7 +683,7 @@
                   <span>9.71%</span>
                 </div>
                 <div style="display: flex; justify-content: space-between; font-size: 0.9rem; padding: 0.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.05)">
-                  <span>4. Gemma 4 RL V1</span>
+                  <span>4. Gemma 4 RL (cw=1)</span>
                   <span>9.54%</span>
                 </div>
                 <div style="display: flex; justify-content: space-between; font-size: 0.9rem; padding: 0.25rem 0;">
@@ -724,8 +724,8 @@
               <tr>
                 <th>Category</th>
                 <th>Baseline</th>
-                <th>RL V1</th>
-                <th>RL V2 (Ours)</th>
+                <th>RL (cw=1)</th>
+                <th>RL (cw=2, Ours)</th>
                 <th>System Prompt RL</th>
                 <th>BAGEL</th>
               </tr>
@@ -799,7 +799,7 @@
                 <th>Category</th>
                 <th>Subtype</th>
                 <th>Baseline</th>
-                <th>RL V2 SOTA</th>
+                <th>RL (cw=2)</th>
                 <th>BAGEL Accuracy</th>
               </tr>
             </thead>
@@ -924,14 +924,14 @@
           Why GRPO v2 Succeeded Where V1 Fell Back
         </div>
         <p style="margin-bottom: 1rem;">
-          In Group Relative Policy Optimization (GRPO), the agent generates multiple sample pathways and updates the policy based on their relative reward rankings within the group. However, initial training (RL V1) led to a score drop from 11.08% to 9.54%.
+          In Group Relative Policy Optimization (GRPO), the agent generates multiple sample pathways and updates the policy based on their relative reward rankings within the group. However, initial training (correctness_weight=1) led to a score drop from 11.08% to 9.54%.
         </p>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
           <div style="background: rgba(239, 68, 68, 0.04); border: 1px solid rgba(239, 68, 68, 0.15); border-radius: 12px; padding: 1.25rem;">
             <h4 style="color: var(--error); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-              RL V1 Pitfalls (Text-Only PEFT Bias)
+              RL (correctness_weight=1) Pitfalls (Text-Only PEFT Bias)
             </h4>
             <ul style="list-style-position: inside; font-size: 0.9rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.5rem;">
               <li><strong>Alignment Drift:</strong> Updating only standard causal language layers broke the model's visual-text cross-modal connector grounding.</li>
@@ -942,7 +942,7 @@
           <div style="background: rgba(16, 185, 129, 0.04); border: 1px solid rgba(16, 185, 129, 0.15); border-radius: 12px; padding: 1.25rem;">
             <h4 style="color: var(--secondary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-              RL V2 Fixes (Multimodal PEFT & Scaling)
+              RL (correctness_weight=2) Fixes (Multimodal PEFT & Scaling)
             </h4>
             <ul style="list-style-position: inside; font-size: 0.9rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.5rem;">
               <li><strong>Multimodal PEFT targets:</strong> Extended LoRA weight matrices to target visual connector and projection layers (modality alignment parameters).</li>
@@ -961,11 +961,11 @@
         <div class="img-showcase">
           <div class="img-box">
             <img src="results/training_progress.png" alt="Training Progress Curves" onclick="window.open(this.src)">
-            <div class="img-caption">GRPO RL V2 Training Progress Curves: Policy Loss and Mean Rewards optimization over 3 epochs. Click to expand.</div>
+            <div class="img-caption">GRPO RL (correctness_weight=2) Training Progress Curves: Policy Loss and Mean Rewards optimization over 3 epochs. Click to expand.</div>
           </div>
           <div class="img-box">
             <img src="results/accuracy_comparison.png" alt="Accuracy Comparison Graph" onclick="window.open(this.src)">
-            <div class="img-caption">Accuracy Comparison Graph: Baseline, RL V1, RL V2, and System Prompt RL. Click to expand.</div>
+            <div class="img-caption">Accuracy Comparison Graph: Baseline, RL (cw=1), RL (cw=2), and System Prompt RL. Click to expand.</div>
           </div>
         </div>
       </div>
@@ -1030,14 +1030,14 @@ Extracted Answer: None (Graded as 0%)</code></pre>
             <div class="folder-item file">📂 <a href="file:///home/dsi/sinayyo/BabyVision/logs/archive/">archive/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Historic, duplicate, and interrupted test runs</span></div>
             
             <div class="folder-item directory" style="margin-top:0.5rem;">📁 sbatch_scripts/ <span style="color:var(--text-muted); font-size:0.8rem; font-weight:400;">-- Consolidated Slurm Submission Files</span></div>
-            <div class="folder-item file"><a href="file:///home/dsi/sinayyo/BabyVision/sbatch_scripts/run_bagel_eval.sbatch">run_bagel_eval.sbatch</a></div>
-            <div class="folder-item file"><a href="file:///home/dsi/sinayyo/BabyVision/sbatch_scripts/run_gemma_rl_v2.sbatch">run_gemma_rl_v2.sbatch</a></div>
-            <div class="folder-item file"><a href="file:///home/dsi/sinayyo/BabyVision/sbatch_scripts/run_gemma_rl_v2_eval.sbatch">run_gemma_rl_v2_eval.sbatch</a></div>
+            <div class="folder-item file"><a href="file:///home/dsi/sinayyo/BabyVision/sbatch_scripts/evaluation/run_bagel_eval.sbatch">evaluation/run_bagel_eval.sbatch</a></div>
+            <div class="folder-item file"><a href="file:///home/dsi/sinayyo/BabyVision/sbatch_scripts/training/run_gemma_rl_correctness_weight2.sbatch">training/run_gemma_rl_correctness_weight2.sbatch</a></div>
+            <div class="folder-item file"><a href="file:///home/dsi/sinayyo/BabyVision/sbatch_scripts/evaluation/run_gemma_rl_correctness_weight2_eval.sbatch">evaluation/run_gemma_rl_correctness_weight2_eval.sbatch</a></div>
             
             <div class="folder-item directory" style="margin-top:0.5rem;">📁 babyvision_eval/ <span style="color:var(--text-muted); font-size:0.8rem; font-weight:400;">-- MLLM Evaluation Engine</span></div>
-            <div class="folder-item file">📂 <a href="file:///home/dsi/sinayyo/BabyVision/babyvision_eval/results_local_bagel/">results_local_bagel/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Raw JSON and summary scores for BAGEL</span></div>
-            <div class="folder-item file">📂 <a href="file:///home/dsi/sinayyo/BabyVision/babyvision_eval/results_local_gemma_4_rl_v2/">results_local_gemma_4_rl_v2/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- SOTA RL V2 outputs</span></div>
-            <div class="folder-item file">📂 <a href="file:///home/dsi/sinayyo/BabyVision/babyvision_eval/results_archive/">results_archive/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Staged directory for older testing folders</span></div>
+            <div class="folder-item file">📂 <a href="file:///home/dsi/sinayyo/BabyVision/babyvision_eval/runs/bagel/">runs/bagel/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Raw JSON and summary scores for BAGEL</span></div>
+            <div class="folder-item file">📂 <a href="file:///home/dsi/sinayyo/BabyVision/babyvision_eval/runs/rl_correctness_weight2/">runs/rl_correctness_weight2/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- best RL (correctness_weight=2) outputs</span></div>
+            <div class="folder-item file">📂 <a href="file:///home/dsi/sinayyo/BabyVision/babyvision_eval/_deprecated/scratch_tests/">_deprecated/scratch_tests/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Deprecated: older testing folders</span></div>
             
             <div class="folder-item directory" style="margin-top:0.5rem;">📄 <a href="file:///home/dsi/sinayyo/BabyVision/results/final_report.md">results/final_report.md</a> <span style="color:var(--text-muted); font-size:0.8rem; font-weight:400;">-- Gemma 4 RL compilation report</span></div>
             <div class="folder-item directory">📄 <a href="file:///home/dsi/sinayyo/BabyVision/BAGEL_EVALUATION_REPORT.md">BAGEL_EVALUATION_REPORT.md</a> <span style="color:var(--text-muted); font-size:0.8rem; font-weight:400;">-- Detailed BAGEL audit report</span></div>
@@ -1064,7 +1064,7 @@ Extracted Answer: None (Graded as 0%)</code></pre>
           <div class="log-item">
             <div class="log-info">
               <span class="log-name">gemma_rl_v2_eval_16877072.out</span>
-              <span class="log-desc">Multi-pass evaluation log of Gemma RL V2 model showing judge score responses</span>
+              <span class="log-desc">Multi-pass evaluation log of Gemma RL (correctness_weight=2) model showing judge score responses</span>
             </div>
             <a href="file:///home/dsi/sinayyo/BabyVision/logs/evaluation/gemma_rl_v2_eval_16877072.out" class="log-action-btn">View Log File</a>
           </div>
@@ -1144,7 +1144,7 @@ Extracted Answer: None (Graded as 0%)</code></pre>
               borderRadius: 6
             },
             {
-              label: 'Gemma 4 RL V2 (SOTA)',
+              label: 'Gemma 4 RL (cw=2) (SOTA)',
               data: [11.04, 15.75, 19.61, 10.44, 13.14],
               backgroundColor: 'rgba(16, 185, 129, 0.65)',
               borderColor: 'rgba(16, 185, 129, 0.95)',

@@ -164,7 +164,7 @@ def main():
     parser = argparse.ArgumentParser(description="RL training on BabyVision prompts (System Prompt optimization)")
     parser.add_argument("--model-id", type=str, default="google/gemma-4-E4B-it", help="Model ID to train")
     parser.add_argument("--data-path", type=str, default="../data/babyvision_data/meta_data.jsonl", help="Dataset file")
-    parser.add_argument("--output-dir", type=str, default="./gemma4_system_prompt_rl_output", help="Output directory")
+    parser.add_argument("--output-dir", type=str, default="./checkpoints/system_prompt_rl", help="Output directory")
     parser.add_argument("--epochs", type=int, default=2, help="Number of training epochs")
     parser.add_argument("--learning-rate", type=float, default=1e-5, help="Learning rate")
     parser.add_argument("--correctness-weight", type=float, default=2.0, help="Weight multiplier for correctness reward")

@@ -23,14 +23,14 @@ cd babyvision_eval
     --model-path "/home/dsi/sinayyo/.cache/huggingface/hub/models--ByteDance-Seed--BAGEL-7B-MoT/snapshots/5019f57d168e5816e8f3f701b17cc816bb7cf24b" \
     --judge-model-id "Qwen/Qwen2.5-7B-Instruct" \
     --test-json-path "../data/babyvision_data/meta_data.jsonl" \
-    --output-dir "./results_local_bagel" \
+    --output-dir "./runs/bagel" \
     --num-passes 3
 
 echo "Computing final score summary..."
-/home/dsi/sinayyo/.conda/envs/babyvision_py310/bin/python3 compute_score.py results_local_bagel/model_results_run_*.json > results_local_bagel/score_summary.txt
+/home/dsi/sinayyo/.conda/envs/babyvision_py310/bin/python3 compute_score.py runs/bagel/model_results_run_*.json > runs/bagel/score_summary.txt
 
 echo "=== Evaluation Results ==="
-cat results_local_bagel/score_summary.txt
+cat runs/bagel/score_summary.txt
 echo "=========================="
 
 echo "=== Slurm Job Completed ==="

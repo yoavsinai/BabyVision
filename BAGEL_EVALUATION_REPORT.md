@@ -72,11 +72,11 @@ Unlike Gemma 4 which used stochastic sampling, BAGEL was run with greedy decodin
 
 ## 5. Artifacts and Raw Data Links
 
-* **Scoring Summary Output:** [score_summary.txt](file:///home/dsi/sinayyo/BabyVision/babyvision_eval/results_local_bagel/score_summary.txt)
+* **Scoring Summary Output:** [score_summary.txt](file:///home/dsi/sinayyo/BabyVision/babyvision_eval/runs/bagel/score_summary.txt)
 * **Model Result Passes:**
-  * [Pass 1 Results JSON](file:///home/dsi/sinayyo/BabyVision/babyvision_eval/results_local_bagel/model_results_run_1.json)
-  * [Pass 2 Results JSON](file:///home/dsi/sinayyo/BabyVision/babyvision_eval/results_local_bagel/model_results_run_2.json)
-  * [Pass 3 Results JSON](file:///home/dsi/sinayyo/BabyVision/babyvision_eval/results_local_bagel/model_results_run_3.json)
+  * [Pass 1 Results JSON](file:///home/dsi/sinayyo/BabyVision/babyvision_eval/runs/bagel/model_results_run_1.json)
+  * [Pass 2 Results JSON](file:///home/dsi/sinayyo/BabyVision/babyvision_eval/runs/bagel/model_results_run_2.json)
+  * [Pass 3 Results JSON](file:///home/dsi/sinayyo/BabyVision/babyvision_eval/runs/bagel/model_results_run_3.json)
 * **Execution Logs:**
   * [Evaluation Logs](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/)
   * [Setup Logs](file:///home/dsi/sinayyo/BabyVision/logs/setup/)

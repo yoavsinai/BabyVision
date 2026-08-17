@@ -17,7 +17,7 @@ cd babyvision_eval
 /home/dsi/sinayyo/.conda/envs/babyvision_py310/bin/python3 -u rl_train_gemma4.py \
     --model-id "google/gemma-4-E4B-it" \
     --data-path "../data/babyvision_data/meta_data.jsonl" \
-    --output-dir "./gemma4_rl_output" \
+    --output-dir "./checkpoints/rl_correctness_weight1" \
     --epochs 3 \
     --learning-rate 1e-5
 
