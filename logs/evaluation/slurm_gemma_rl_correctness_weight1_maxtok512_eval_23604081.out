@@ -1,0 +1,2400 @@
+=== Starting Slurm Job ===
+Node: origin01
+Date: Tue Aug 18 01:13:48 AM IDT 2026
+Loaded 388 tasks from ../data/babyvision_data/meta_data.jsonl
+
+--- Phase 1: Starting Vision Inference using google/gemma-4-E4B-it ---
+Loading vision model and processor...
+Loading Peft LoRA adapter from ./checkpoints/rl_correctness_weight1/final_lora...
+Model loaded successfully.
+
+Running pass 1/3...
+
+Error running model inference on task ID 445: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 464: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 507: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 525: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 534: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 638: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 779: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 879: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 910: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 984: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 986: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 988: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4152: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6161: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6164: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6165: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 437: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 462: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 469: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 475: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 476: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 478: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 498: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 522: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 617: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 626: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 635: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 651: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 711: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 720: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4698: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5597: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 7568: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 459: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 644: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 826: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4994: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4996: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4998: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5001: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5004: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5006: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5008: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5009: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5011: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5013: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5016: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5018: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5020: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5022: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5023: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5025: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5026: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5030: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6504: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6512: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 535: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 2353: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5270: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5271: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5274: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5275: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5276: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5277: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5339: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6131: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6134: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6136: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6137: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6273: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 457: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 494: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 637: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 640: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 673: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 765: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 876: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3995: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4026: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4104: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4133: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4142: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4173: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4188: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4190: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4386: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4399: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4405: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4415: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4712: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 559: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 628: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 633: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 639: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 645: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 652: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 695: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 699: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 721: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 790: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 792: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1594: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4146: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4148: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4181: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4768: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5123: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5399: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6206: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 7858: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4534: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4536: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4537: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4540: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4552: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4553: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4554: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4556: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4558: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4560: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4561: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4562: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4564: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4566: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4568: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4571: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5073: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5074: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5081: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5082: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5083: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5084: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5085: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5086: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5357: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5358: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5638: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5639: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5640: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5781: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5786: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6421: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6436: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6466: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6475: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 496: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4650: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4652: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4653: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5107: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5113: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5114: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5117: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5119: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5378: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5455: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5490: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5492: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5795: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6534: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6555: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6556: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6557: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 666: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 674: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 817: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 980: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 982: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 983: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1306: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1651: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3782: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5124: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5127: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5128: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5130: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5131: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5133: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5136: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5139: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5140: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5142: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5143: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 770: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1662: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 2492: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4327: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4329: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4330: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4332: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4337: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4352: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5152: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5154: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5156: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5161: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5164: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5245: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5246: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5247: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5248: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5249: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 447: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 520: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 542: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 543: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 544: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 545: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 665: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 671: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 757: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1298: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1587: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5227: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5228: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5229: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5238: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5239: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5240: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5241: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5242: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5505: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5507: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6435: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6509: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8326: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8327: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8328: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8329: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8330: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8331: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8332: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8339: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8340: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8341: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8342: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8343: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8162: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8163: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8164: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8165: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8166: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8167: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8323: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8324: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8325: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 431: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 514: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 524: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 526: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 527: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 548: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 562: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 694: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 696: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 713: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 886: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 888: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 2004: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4047: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5285: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5340: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5432: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5694: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5695: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6038: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6197: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6220: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6280: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6340: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6378: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6381: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6434: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 799: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1974: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 2065: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3838: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4064: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4077: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4759: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4760: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5388: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5449: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6344: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6467: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 501: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 893: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1217: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3234: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3240: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4009: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8333: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8334: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8335: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8336: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8337: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8338: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 454: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 480: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 481: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 484: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 502: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 505: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 512: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 621: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3777: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4375: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4391: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4420: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4735: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5308: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5320: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5525: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5531: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6430: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4453: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4456: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4457: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4458: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4460: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4593: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4594: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4596: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4597: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4598: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4599: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4603: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4604: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4607: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4610: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4613: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4614: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4616: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4618: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4619: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4621: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4624: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 434: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 435: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 438: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 441: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 458: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 465: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 479: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 504: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 509: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 536: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 625: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 664: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 693: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 708: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3992: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3993: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4097: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 362: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 448: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 467: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 487: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 553: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 642: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 657: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 669: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 676: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 687: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 718: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1293: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1914: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1925: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 510: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 540: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 631: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 684: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4180: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5293: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5519: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5565: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6455: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6462: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 537: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 538: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 547: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 773: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 819: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1929: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3691: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4769: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4785: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5288: Tensor on device meta is not on the expected device cuda:0!
+Saved raw inference results to ./runs/rl_correctness_weight1_maxtok512/raw_results_run_1.json
+
+Running pass 2/3...
+
+Error running model inference on task ID 445: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 464: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 507: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 525: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 534: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 638: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 779: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 879: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 910: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 984: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 986: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 988: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4152: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6161: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6164: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6165: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 437: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 462: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 469: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 475: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 476: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 478: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 498: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 522: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 617: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 626: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 635: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 651: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 711: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 720: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4698: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5597: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 7568: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 459: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 644: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 826: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4994: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4996: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4998: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5001: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5004: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5006: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5008: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5009: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5011: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5013: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5016: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5018: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5020: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5022: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5023: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5025: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5026: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5030: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6504: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6512: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 535: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 2353: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5270: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5271: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5274: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5275: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5276: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5277: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5339: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6131: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6134: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6136: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6137: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6273: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 457: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 494: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 637: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 640: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 673: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 765: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 876: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3995: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4026: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4104: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4133: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4142: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4173: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4188: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4190: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4386: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4399: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4405: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4415: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4712: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 559: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 628: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 633: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 639: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 645: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 652: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 695: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 699: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 721: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 790: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 792: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1594: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4146: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4148: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4181: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4768: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5123: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5399: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6206: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 7858: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4534: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4536: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4537: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4540: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4552: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4553: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4554: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4556: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4558: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4560: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4561: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4562: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4564: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4566: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4568: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4571: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5073: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5074: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5081: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5082: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5083: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5084: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5085: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5086: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5357: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5358: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5638: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5639: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5640: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5781: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5786: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6421: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6436: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6466: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6475: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 496: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4650: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4652: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4653: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5107: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5113: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5114: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5117: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5119: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5378: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5455: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5490: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5492: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5795: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6534: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6555: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6556: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6557: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 666: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 674: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 817: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 980: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 982: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 983: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1306: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1651: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3782: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5124: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5127: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5128: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5130: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5131: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5133: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5136: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5139: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5140: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5142: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5143: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 770: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1662: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 2492: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4327: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4329: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4330: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4332: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4337: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4352: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5152: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5154: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5156: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5161: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5164: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5245: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5246: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5247: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5248: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5249: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 447: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 520: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 542: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 543: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 544: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 545: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 665: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 671: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 757: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1298: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1587: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5227: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5228: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5229: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5238: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5239: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5240: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5241: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5242: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5505: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5507: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6435: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6509: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8326: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8327: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8328: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8329: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8330: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8331: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8332: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8339: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8340: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8341: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8342: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8343: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8162: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8163: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8164: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8165: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8166: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8167: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8323: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8324: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8325: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 431: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 514: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 524: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 526: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 527: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 548: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 562: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 694: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 696: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 713: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 886: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 888: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 2004: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4047: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5285: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5340: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5432: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5694: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5695: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6038: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6197: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6220: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6280: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6340: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6378: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6381: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6434: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 799: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1974: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 2065: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3838: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4064: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4077: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4759: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4760: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5388: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5449: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6344: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6467: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 501: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 893: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1217: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3234: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3240: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4009: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8333: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8334: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8335: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8336: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8337: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8338: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 454: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 480: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 481: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 484: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 502: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 505: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 512: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 621: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3777: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4375: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4391: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4420: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4735: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5308: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5320: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5525: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5531: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6430: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4453: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4456: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4457: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4458: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4460: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4593: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4594: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4596: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4597: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4598: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4599: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4603: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4604: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4607: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4610: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4613: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4614: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4616: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4618: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4619: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4621: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4624: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 434: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 435: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 438: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 441: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 458: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 465: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 479: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 504: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 509: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 536: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 625: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 664: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 693: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 708: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3992: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3993: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4097: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 362: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 448: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 467: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 487: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 553: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 642: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 657: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 669: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 676: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 687: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 718: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1293: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1914: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1925: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 510: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 540: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 631: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 684: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4180: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5293: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5519: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5565: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6455: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6462: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 537: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 538: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 547: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 773: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 819: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1929: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3691: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4769: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4785: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5288: Tensor on device meta is not on the expected device cuda:0!
+Saved raw inference results to ./runs/rl_correctness_weight1_maxtok512/raw_results_run_2.json
+
+Running pass 3/3...
+
+Error running model inference on task ID 445: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 464: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 507: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 525: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 534: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 638: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 779: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 879: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 910: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 984: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 986: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 988: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4152: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6161: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6164: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6165: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 437: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 462: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 469: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 475: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 476: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 478: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 498: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 522: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 617: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 626: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 635: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 651: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 711: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 720: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4698: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5597: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 7568: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 459: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 644: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 826: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4994: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4996: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4998: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5001: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5004: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5006: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5008: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5009: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5011: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5013: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5016: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5018: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5020: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5022: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5023: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5025: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5026: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5030: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6504: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6512: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 535: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 2353: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5270: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5271: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5274: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5275: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5276: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5277: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5339: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6131: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6134: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6136: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6137: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6273: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 457: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 494: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 637: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 640: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 673: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 765: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 876: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3995: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4026: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4104: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4133: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4142: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4173: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4188: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4190: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4386: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4399: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4405: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4415: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4712: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 559: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 628: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 633: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 639: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 645: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 652: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 695: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 699: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 721: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 790: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 792: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1594: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4146: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4148: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4181: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4768: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5123: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5399: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6206: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 7858: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4534: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4536: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4537: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4540: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4552: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4553: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4554: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4556: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4558: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4560: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4561: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4562: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4564: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4566: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4568: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4571: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5073: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5074: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5081: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5082: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5083: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5084: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5085: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5086: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5357: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5358: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5638: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5639: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5640: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5781: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5786: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6421: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6436: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6466: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6475: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 496: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4650: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4652: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4653: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5107: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5113: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5114: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5117: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5119: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5378: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5455: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5490: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5492: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5795: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6534: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6555: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6556: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6557: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 666: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 674: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 817: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 980: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 982: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 983: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1306: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1651: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3782: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5124: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5127: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5128: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5130: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5131: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5133: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5136: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5139: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5140: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5142: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5143: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 770: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1662: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 2492: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4327: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4329: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4330: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4332: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4337: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4352: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5152: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5154: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5156: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5161: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5164: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5245: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5246: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5247: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5248: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5249: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 447: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 520: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 542: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 543: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 544: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 545: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 665: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 671: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 757: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1298: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1587: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5227: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5228: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5229: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5238: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5239: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5240: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5241: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5242: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5505: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5507: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6435: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6509: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8326: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8327: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8328: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8329: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8330: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8331: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8332: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8339: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8340: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8341: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8342: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8343: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8162: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8163: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8164: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8165: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8166: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8167: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8323: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8324: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8325: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 431: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 514: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 524: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 526: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 527: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 548: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 562: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 694: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 696: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 713: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 886: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 888: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 2004: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4047: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5285: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5340: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5432: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5694: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5695: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6038: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6197: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6220: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6280: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6340: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6378: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6381: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6434: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 799: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1974: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 2065: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3838: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4064: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4077: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4759: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4760: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5388: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5449: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6344: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6467: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 501: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 893: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1217: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3234: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3240: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4009: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8333: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8334: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8335: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8336: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8337: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 8338: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 454: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 480: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 481: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 484: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 502: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 505: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 512: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 621: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3777: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4375: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4391: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4420: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4735: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5308: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5320: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5525: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5531: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6430: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4453: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4456: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4457: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4458: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4460: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4593: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4594: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4596: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4597: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4598: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4599: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4603: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4604: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4607: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4610: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4613: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4614: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4616: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4618: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4619: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4621: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4624: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 434: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 435: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 438: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 441: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 458: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 465: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 479: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 504: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 509: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 536: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 625: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 664: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 693: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 708: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3992: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3993: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4097: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 362: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 448: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 467: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 487: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 553: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 642: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 657: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 669: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 676: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 687: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 718: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1293: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1914: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1925: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 510: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 540: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 631: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 684: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4180: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5293: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5519: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5565: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6455: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 6462: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 537: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 538: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 547: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 773: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 819: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 1929: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 3691: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4769: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 4785: Tensor on device meta is not on the expected device cuda:0!
+
+Error running model inference on task ID 5288: Tensor on device meta is not on the expected device cuda:0!
+Saved raw inference results to ./runs/rl_correctness_weight1_maxtok512/raw_results_run_3.json
+
+Unloading vision model to free VRAM for the judge model...
+VRAM cleared.
+
+--- Phase 2: Starting LLM Judge using Qwen/Qwen2.5-7B-Instruct ---
+Loading judge model and tokenizer...
+Judge model loaded successfully.
+
+Judging pass 1/3...
+Saved completed evaluation results to ./runs/rl_correctness_weight1_maxtok512/model_results_run_1.json
+
+Judging pass 2/3...
+Saved completed evaluation results to ./runs/rl_correctness_weight1_maxtok512/model_results_run_2.json
+
+Judging pass 3/3...
+Saved completed evaluation results to ./runs/rl_correctness_weight1_maxtok512/model_results_run_3.json
+
+=== All Evaluation Passes Complete ===
+Computing final score summary...
+=== Evaluation Results ===
+
+Overall Average Accuracy: 0.0000 ± 0.0000
+
+Type-wise Average Accuracy:
+  Fine-grained Discrimination: 0.0000 ± 0.0000
+  Spatial Perception: 0.0000 ± 0.0000
+  Visual Pattern Recognition: 0.0000 ± 0.0000
+  Visual Tracking: 0.0000 ± 0.0000
+
+Subtype-wise Average Accuracy:
+  1Fine-grained Discrimination/2D Pattern Completion: 0.0000 ± 0.0000
+  1Fine-grained Discrimination/Count Clusters: 0.0000 ± 0.0000
+  1Fine-grained Discrimination/Count Same Patterns: 0.0000 ± 0.0000
+  1Fine-grained Discrimination/Find the different: 0.0000 ± 0.0000
+  1Fine-grained Discrimination/Find the same: 0.0000 ± 0.0000
+  1Fine-grained Discrimination/Find the shadow: 0.0000 ± 0.0000
+  1Fine-grained Discrimination/Pattern and Color Completion: 0.0000 ± 0.0000
+  1Fine-grained Discrimination/Reconstruction: 0.0000 ± 0.0000
+  2Visual Tracking/Connect the lines: 0.0000 ± 0.0000
+  2Visual Tracking/Lines Observation: 0.0000 ± 0.0000
+  2Visual Tracking/Maze: 0.0000 ± 0.0000
+  2Visual Tracking/Metro map: 0.0000 ± 0.0000
+  2Visual Tracking/Recognize numbers and letters: 0.0000 ± 0.0000
+  3Spatial Perception/3D Cube Unfold: 0.0000 ± 0.0000
+  3Spatial Perception/3D Pattern Completion: 0.0000 ± 0.0000
+  3Spatial Perception/3D Views: 0.0000 ± 0.0000
+  3Spatial Perception/Count 3D blocks: 0.0000 ± 0.0000
+  3Spatial Perception/Paper Folding: 0.0000 ± 0.0000
+  4Visual Pattern Recognition/Logic Patterns: 0.0000 ± 0.0000
+  4Visual Pattern Recognition/Mirroring Patterns: 0.0000 ± 0.0000
+  4Visual Pattern Recognition/Overlay Patterns: 0.0000 ± 0.0000
+  4Visual Pattern Recognition/Rotation Patterns: 0.0000 ± 0.0000
+==========================
+=== Slurm Job Completed ===

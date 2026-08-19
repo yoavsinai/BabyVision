@@ -29,3 +29,5 @@ babyvision_eval/checkpoints/
 *.png
 *.jpg
 *.jpeg
+
+!results/*.png

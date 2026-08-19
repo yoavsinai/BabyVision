@@ -40,13 +40,13 @@ On the 85 tasks where it *did* finish in time, it scored **18.8% (16/85)** - clo
 388 tasks × 3 passes at BAGEL's pace took ~15.5 hours on an A100, but the cluster partition caps jobs at 4 hours. Worked around it by:
 1. Checkpointing raw outputs to disk every 5 tasks, so a job could resume where it left off.
 2. Chaining dependent Slurm jobs so each one picked up from the last checkpoint:
-   - [bagel_eval_16877352](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/bagel_eval_16877352.out) (passes 1-2, timed out mid-pass-3)
-   - [bagel_eval_16877397](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/bagel_eval_16877397.out) (resumed pass 3, ran judging, finished)
+   - [bagel_eval_16877352](./logs/evaluation/bagel_eval_16877352.out) (passes 1-2, timed out mid-pass-3)
+   - [bagel_eval_16877397](./logs/evaluation/bagel_eval_16877397.out) (resumed pass 3, ran judging, finished)
 
 ---
 
 ## Raw data
 
-* [score_summary.txt](file:///home/dsi/sinayyo/BabyVision/babyvision_eval/runs/bagel/score_summary.txt)
-* Pass results: [1](file:///home/dsi/sinayyo/BabyVision/babyvision_eval/runs/bagel/model_results_run_1.json) / [2](file:///home/dsi/sinayyo/BabyVision/babyvision_eval/runs/bagel/model_results_run_2.json) / [3](file:///home/dsi/sinayyo/BabyVision/babyvision_eval/runs/bagel/model_results_run_3.json)
-* [Evaluation logs](file:///home/dsi/sinayyo/BabyVision/logs/evaluation/) / [Setup logs](file:///home/dsi/sinayyo/BabyVision/logs/setup/) / [Sbatch scripts](file:///home/dsi/sinayyo/BabyVision/sbatch_scripts/)
+* [score_summary.txt](./babyvision_eval/runs/bagel/score_summary.txt)
+* Pass results: [1](./babyvision_eval/runs/bagel/model_results_run_1.json) / [2](./babyvision_eval/runs/bagel/model_results_run_2.json) / [3](./babyvision_eval/runs/bagel/model_results_run_3.json)
+* [Evaluation logs](./logs/evaluation/) / [Setup logs](./logs/setup/) / [Sbatch scripts](./sbatch_scripts/)

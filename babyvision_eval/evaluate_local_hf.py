@@ -129,7 +129,7 @@ def main():
     if args.peft_adapter_path:
         from peft import PeftModel
         print(f"Loading Peft LoRA adapter from {args.peft_adapter_path}...")
-        model = PeftModel.from_pretrained(model, args.peft_adapter_path)
+        model = PeftModel.from_pretrained(model, args.peft_adapter_path, device_map="auto")
     if "qwen" in args.model_id.lower():
         min_pixels = 256 * 28 * 28
         max_pixels = 512 * 28 * 28

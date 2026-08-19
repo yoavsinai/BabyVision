@@ -106,7 +106,7 @@ def main():
         if args.peft_adapter_path:
             from peft import PeftModel
             print(f"Loading Peft LoRA adapter from {args.peft_adapter_path}...")
-            model = PeftModel.from_pretrained(model, args.peft_adapter_path)
+            model = PeftModel.from_pretrained(model, args.peft_adapter_path, device_map="auto")
 
         processor = AutoProcessor.from_pretrained(args.model_id, trust_remote_code=True)
         print("Model and processor loaded successfully.")
