@@ -1,0 +1,51 @@
+{
+  "generated_at": "2026-08-21T10:34:41.095302",
+  "total_tasks": 16,
+  "note": "Find the different subtype only (16 tasks) - dedicated summary, see README for rationale.",
+  "models": {
+    "bagel_find_different": {
+      "num_rounds": 1,
+      "mean_accuracy": 0.0625,
+      "std_accuracy": 0.0,
+      "round_accuracies": [
+        0.0625
+      ],
+      "type_accuracies": {
+        "Fine-grained Discrimination": {
+          "mean": 0.0625,
+          "std": 0.0
+        }
+      },
+      "rounds": {
+        "round1": {
+          "overall": {
+            "total": 16,
+            "evaluated": 16,
+            "correct": 1,
+            "incorrect": 15,
+            "missing_gen": 0,
+            "api_errors": 0,
+            "not_in_results": 0,
+            "accuracy": 0.0625
+          },
+          "breakdown": {
+            "by_type": {
+              "Fine-grained Discrimination": {
+                "correct": 1,
+                "total": 16,
+                "accuracy": 0.0625
+              }
+            },
+            "by_subtype": {
+              "Fine-grained Discrimination/Find the different": {
+                "correct": 1,
+                "total": 16,
+                "accuracy": 0.0625
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

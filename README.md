@@ -2,9 +2,7 @@
 
 > [!IMPORTANT]
 > **This is my seminar project, built on top of the BabyVision benchmark below.** For what I actually did - RL fine-tuning `google/gemma-4-E4B-it`, what worked and what didn't, and a bug I found along the way - start here:
-> - **[results/final_report.md](results/final_report.md)** - the write-up: what I ran, what I found, what's next
-> - **[index.html](index.html)** - interactive results dashboard (open it directly in a browser)
-> - **[BAGEL_EVALUATION_REPORT.md](BAGEL_EVALUATION_REPORT.md)** - a side comparison against ByteDance's BAGEL-7B-MoT
+> - **[results/final_report.pdf](results/final_report.pdf)** - the write-up: what I ran, what I found, what's next
 >
 > Everything below this point is the original BabyVision benchmark's own README, kept as-is for context on the dataset and eval harness I built on top of.
 
@@ -13,9 +11,9 @@
       <img src="./assets/baby_logo.png" width="30%">
   </picture>
   <br><br>
-  <strong>📊 <a href="./index.html">View the Interactive Results & Evaluation Dashboard</a></strong>
+  <strong>📊 See <a href="results/final_report.md">results/final_report.md</a> for results, charts, and analysis</strong>
   <br>
-  <em>Open the local [index.html](./index.html) dashboard in your browser to view interactive charts, subtype comparisons, and execution logs.</em>
+  <em>(An interactive dashboard also exists, archived at <a href="_deprecated/index.html">_deprecated/index.html</a> - not part of the submission, see <a href="_deprecated/README.md">_deprecated/README.md</a>.)</em>
 </div>
 
 

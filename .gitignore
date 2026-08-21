@@ -31,3 +31,14 @@ babyvision_eval/checkpoints/
 *.jpeg
 
 !results/*.png
+
+# LaTeX/pandoc build byproducts from results/make_pdf.py
+results/final_report.log
+results/final_report.out
+results/final_report.aux
+results/final_report.toc
+results/_final_report_pdfbuild.md
+
+# Report source and build script - only the built PDF is tracked
+results/final_report.md
+results/make_pdf.py

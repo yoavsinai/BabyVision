@@ -1,0 +1,2 @@
+No-answer rate per round: ['6.7%', '5.9%', '7.5%']
+No-answer rate (mean ± std across 3 round(s)): 6.7% ± 0.6%

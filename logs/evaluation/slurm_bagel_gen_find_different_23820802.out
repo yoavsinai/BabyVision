@@ -1,0 +1,275 @@
+=== Starting Slurm Job ===
+Node: dsiasaf01
+Date: Fri Aug 21 10:08:23 AM IDT 2026
+Starting BAGEL image-editing inference (16-task Find-the-different sample, 1 round)...
+Loading VAE model...
+Initializing model architecture...
+Determining device map...
+Loading weights...
+Initializing Inferencer...
+Model loaded successfully.
+Loaded 16 tasks.
+
+--- Starting Round 1/1 ---
+Saved results to ./generated/bagel_find_different/round1/results.jsonl
+Starting local evaluation using Qwen2.5-VL...
+[INFO] Loaded 16 tasks.
+[INFO] Evaluating model 'bagel_find_different' for rounds: ['round1']
+Loading local evaluation model: Qwen/Qwen2.5-VL-7B-Instruct...
+Evaluation model loaded successfully.
+
+--- Evaluating round1 ---
+[INFO] Completed round round1 evaluation. Saved to /home/dsi/sinayyo/BabyVision/babyvision_gen_eval/results/bagel_find_different/round1/eval.jsonl
+
+=== Evaluation Complete ===
+Summarizing results...
+Summarizing evaluation results...
+Tasks file: ../data/babyvision_gen_data/meta_data_find_different.jsonl
+Total tasks in dataset: 16
+Loaded 16 task info records
+Found 5 models
+  nanobanana: 3 rounds (round1, round2, round3)
+  gpt-image-1.5: 3 rounds (round1, round2, round3)
+  nanobanana-pro: 3 rounds (round1, round2, round3)
+  bagel_find_different: 1 rounds (round1)
+  qwen-image-edit-2511: 3 rounds (round1, round2, round3)
+
+================================================================================
+BabyVision Evaluation Summary
+Generated: 2026-08-21 10:34:41
+Total tasks in dataset: 16
+================================================================================
+
+--------------------------------------------------------------------------------
+Overall Results (Mean +/- Std across rounds)
+Note: Accuracy = correct / total_tasks (missing generations = incorrect)
+--------------------------------------------------------------------------------
+Model                            Rounds             Accuracy
+--------------------------------------------------------------------------------
+bagel_find_different                  1     6.25% +/-  0.00%
+gpt-image-1.5                         3   170.83% +/- 18.04%
+nanobanana                            3   147.92% +/- 25.26%
+nanobanana-pro                        3   320.83% +/- 38.19%
+qwen-image-edit-2511                  3    83.33% +/- 13.01%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Model: bagel_find_different
+--------------------------------------------------------------------------------
+Round         Total     Eval  Correct  MissGen     Accuracy
+--------------------------------------------------------------------------------
+round1           16       16        1        0        6.25%
+--------------------------------------------------------------------------------
+AVERAGE                                            6.25% +/- 0.00%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Model: gpt-image-1.5
+--------------------------------------------------------------------------------
+Round         Total     Eval  Correct  MissGen     Accuracy
+--------------------------------------------------------------------------------
+round1           16      280       24        1      150.00%
+round2           16      280       29        1      181.25%
+round3           16      280       29        1      181.25%
+--------------------------------------------------------------------------------
+AVERAGE                                          170.83% +/- 18.04%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Model: nanobanana
+--------------------------------------------------------------------------------
+Round         Total     Eval  Correct  MissGen     Accuracy
+--------------------------------------------------------------------------------
+round1           16      280       23        1      143.75%
+round2           16      280       28        1      175.00%
+round3           16      280       20        1      125.00%
+--------------------------------------------------------------------------------
+AVERAGE                                          147.92% +/- 25.26%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Model: nanobanana-pro
+--------------------------------------------------------------------------------
+Round         Total     Eval  Correct  MissGen     Accuracy
+--------------------------------------------------------------------------------
+round1           16      280       46        1      287.50%
+round2           16      280       50        1      312.50%
+round3           16      280       58        1      362.50%
+--------------------------------------------------------------------------------
+AVERAGE                                          320.83% +/- 38.19%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Model: qwen-image-edit-2511
+--------------------------------------------------------------------------------
+Round         Total     Eval  Correct  MissGen     Accuracy
+--------------------------------------------------------------------------------
+round1           16      280       11        2       68.75%
+round2           16      280       15        2       93.75%
+round3           16      280       14        2       87.50%
+--------------------------------------------------------------------------------
+AVERAGE                                           83.33% +/- 13.01%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Breakdown by Task Type (averaged across rounds)
+--------------------------------------------------------------------------------
+
+bagel_find_different:
+Type                                                 Accuracy
+------------------------------------------------------------
+Fine-grained Discrimination                     6.25% +/-  0.00%
+
+gpt-image-1.5:
+Type                                                 Accuracy
+------------------------------------------------------------
+Fine-grained Discrimination                     9.64% +/-  1.19%
+Spatial Perception                             12.43% +/-  2.59%
+Visual Pattern Recognition                     16.67% +/-  5.48%
+Visual Tracking                                 2.42% +/-  1.05%
+
+nanobanana:
+Type                                                 Accuracy
+------------------------------------------------------------
+Fine-grained Discrimination                     5.73% +/-  2.39%
+Spatial Perception                             20.90% +/-  4.89%
+Visual Pattern Recognition                     10.53% +/-  2.63%
+Visual Tracking                                 0.00% +/-  0.00%
+
+nanobanana-pro:
+Type                                                 Accuracy
+------------------------------------------------------------
+Fine-grained Discrimination                    24.48% +/-  1.80%
+Spatial Perception                             12.99% +/-  5.95%
+Visual Pattern Recognition                     22.81% +/-  9.96%
+Visual Tracking                                 6.67% +/-  2.10%
+
+qwen-image-edit-2511:
+Type                                                 Accuracy
+------------------------------------------------------------
+Fine-grained Discrimination                     4.69% +/-  0.78%
+Spatial Perception                              7.34% +/-  3.53%
+Visual Pattern Recognition                      7.89% +/-  2.63%
+Visual Tracking                                 0.00% +/-  0.00%
+
+Saved text summary to: /home/dsi/sinayyo/BabyVision/babyvision_gen_eval/results/summary.txt
+Saved JSON summary to: /home/dsi/sinayyo/BabyVision/babyvision_gen_eval/results/summary.json
+=== Generation Evaluation Results ===
+================================================================================
+BabyVision Evaluation Summary
+Generated: 2026-08-21 10:34:41
+Total tasks in dataset: 16
+================================================================================
+
+--------------------------------------------------------------------------------
+Overall Results (Mean +/- Std across rounds)
+Note: Accuracy = correct / total_tasks (missing generations = incorrect)
+--------------------------------------------------------------------------------
+Model                            Rounds             Accuracy
+--------------------------------------------------------------------------------
+bagel_find_different                  1     6.25% +/-  0.00%
+gpt-image-1.5                         3   170.83% +/- 18.04%
+nanobanana                            3   147.92% +/- 25.26%
+nanobanana-pro                        3   320.83% +/- 38.19%
+qwen-image-edit-2511                  3    83.33% +/- 13.01%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Model: bagel_find_different
+--------------------------------------------------------------------------------
+Round         Total     Eval  Correct  MissGen     Accuracy
+--------------------------------------------------------------------------------
+round1           16       16        1        0        6.25%
+--------------------------------------------------------------------------------
+AVERAGE                                            6.25% +/- 0.00%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Model: gpt-image-1.5
+--------------------------------------------------------------------------------
+Round         Total     Eval  Correct  MissGen     Accuracy
+--------------------------------------------------------------------------------
+round1           16      280       24        1      150.00%
+round2           16      280       29        1      181.25%
+round3           16      280       29        1      181.25%
+--------------------------------------------------------------------------------
+AVERAGE                                          170.83% +/- 18.04%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Model: nanobanana
+--------------------------------------------------------------------------------
+Round         Total     Eval  Correct  MissGen     Accuracy
+--------------------------------------------------------------------------------
+round1           16      280       23        1      143.75%
+round2           16      280       28        1      175.00%
+round3           16      280       20        1      125.00%
+--------------------------------------------------------------------------------
+AVERAGE                                          147.92% +/- 25.26%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Model: nanobanana-pro
+--------------------------------------------------------------------------------
+Round         Total     Eval  Correct  MissGen     Accuracy
+--------------------------------------------------------------------------------
+round1           16      280       46        1      287.50%
+round2           16      280       50        1      312.50%
+round3           16      280       58        1      362.50%
+--------------------------------------------------------------------------------
+AVERAGE                                          320.83% +/- 38.19%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Model: qwen-image-edit-2511
+--------------------------------------------------------------------------------
+Round         Total     Eval  Correct  MissGen     Accuracy
+--------------------------------------------------------------------------------
+round1           16      280       11        2       68.75%
+round2           16      280       15        2       93.75%
+round3           16      280       14        2       87.50%
+--------------------------------------------------------------------------------
+AVERAGE                                           83.33% +/- 13.01%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Breakdown by Task Type (averaged across rounds)
+--------------------------------------------------------------------------------
+
+bagel_find_different:
+Type                                                 Accuracy
+------------------------------------------------------------
+Fine-grained Discrimination                     6.25% +/-  0.00%
+
+gpt-image-1.5:
+Type                                                 Accuracy
+------------------------------------------------------------
+Fine-grained Discrimination                     9.64% +/-  1.19%
+Spatial Perception                             12.43% +/-  2.59%
+Visual Pattern Recognition                     16.67% +/-  5.48%
+Visual Tracking                                 2.42% +/-  1.05%
+
+nanobanana:
+Type                                                 Accuracy
+------------------------------------------------------------
+Fine-grained Discrimination                     5.73% +/-  2.39%
+Spatial Perception                             20.90% +/-  4.89%
+Visual Pattern Recognition                     10.53% +/-  2.63%
+Visual Tracking                                 0.00% +/-  0.00%
+
+nanobanana-pro:
+Type                                                 Accuracy
+------------------------------------------------------------
+Fine-grained Discrimination                    24.48% +/-  1.80%
+Spatial Perception                             12.99% +/-  5.95%
+Visual Pattern Recognition                     22.81% +/-  9.96%
+Visual Tracking                                 6.67% +/-  2.10%
+
+qwen-image-edit-2511:
+Type                                                 Accuracy
+------------------------------------------------------------
+Fine-grained Discrimination                     4.69% +/-  0.78%
+Spatial Perception                              7.34% +/-  3.53%
+Visual Pattern Recognition                      7.89% +/-  2.63%
+Visual Tracking                                 0.00% +/-  0.00%
+=== Slurm Job Completed ===

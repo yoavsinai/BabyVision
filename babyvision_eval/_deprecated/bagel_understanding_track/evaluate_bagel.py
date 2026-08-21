@@ -56,6 +56,7 @@ def main():
     parser.add_argument("--output-dir", type=str, default="./runs/bagel", help="Output directory")
     parser.add_argument("--num-passes", type=int, default=3, help="Number of evaluation passes")
     parser.add_argument("--skip-judge", action="store_true", help="Skip running the judge phase")
+    parser.add_argument("--max-think-tokens", type=int, default=1024, help="Max tokens for BAGEL's internal thinking step")
 
     args = parser.parse_args()
     os.makedirs(args.output_dir, exist_ok=True)
@@ -214,7 +215,7 @@ def main():
                     think=True,
                     understanding_output=True,
                     do_sample=False,
-                    max_think_token_n=1024,
+                    max_think_token_n=args.max_think_tokens,
                 )
                 model_output_result = result["text"]
                 extracted_answer = extract_boxed_answer(model_output_result)

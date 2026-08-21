@@ -1,0 +1,37 @@
+================================================================================
+BabyVision Evaluation Summary - Find the different (subtype-only)
+Generated: 2026-08-21 10:34:41
+Total tasks in dataset: 16
+Note: dedicated summary for the targeted BAGEL "Find the different" gen-track
+test (16 tasks, the subtype every other evaluated model scored 0% on). Kept
+separate from the main summary.txt/summary.json, which cover the full
+280-task generation-track run across all models.
+================================================================================
+
+--------------------------------------------------------------------------------
+Overall Results (Mean +/- Std across rounds)
+Note: Accuracy = correct / total_tasks (missing generations = incorrect)
+--------------------------------------------------------------------------------
+Model                            Rounds             Accuracy
+--------------------------------------------------------------------------------
+bagel_find_different                  1     6.25% +/-  0.00%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Model: bagel_find_different
+--------------------------------------------------------------------------------
+Round         Total     Eval  Correct  MissGen     Accuracy
+--------------------------------------------------------------------------------
+round1           16       16        1        0        6.25%
+--------------------------------------------------------------------------------
+AVERAGE                                            6.25% +/- 0.00%
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Breakdown by Task Type (averaged across rounds)
+--------------------------------------------------------------------------------
+
+bagel_find_different:
+Type                                                 Accuracy
+------------------------------------------------------------
+Fine-grained Discrimination                     6.25% +/-  0.00%

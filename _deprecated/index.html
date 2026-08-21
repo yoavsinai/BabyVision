@@ -211,10 +211,6 @@
       background: var(--secondary);
     }
 
-    .metric-card.bagel::before {
-      background: var(--accent);
-    }
-
     .metric-label {
       font-size: 0.85rem;
       color: var(--text-muted);
@@ -612,10 +608,6 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         GRPO Reinforcement Learning
       </button>
-      <button class="tab-btn" onclick="switchTab(event, 'bagel-study')">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 16v-4M12 8h.01"/></svg>
-        BAGEL CoT Case Study
-      </button>
       <button class="tab-btn" onclick="switchTab(event, 'logs-explorer')">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
         Log Explorer & Artifacts
@@ -642,11 +634,6 @@
           <div class="metric-value" style="color: #8e7cc3">13.32%</div>
           <div class="metric-subtext">Was 2.84% at 512 tok - see below, this was a token-budget artifact</div>
         </div>
-        <div class="metric-card bagel">
-          <div class="metric-label">BAGEL (7B-MoT)</div>
-          <div class="metric-value" style="color: var(--accent)">4.12%</div>
-          <div class="metric-subtext">Not re-run yet, but the same pattern likely applies (see below)</div>
-        </div>
       </div>
 
       <!-- Main Project Intro -->
@@ -662,9 +649,6 @@
             </p>
             <p style="margin-bottom: 1rem;">
               The BabyVision paper shows RL fine-tuning (GRPO) can improve visual reasoning; the main thread here was applying that same recipe to a model the paper didn't cover, <code>google/gemma-4-E4B-it</code>, to see if it helps there too. Adding multimodal LoRA targets and scaling up the correctness reward weight got me to <strong>13.75% overall accuracy</strong>, up from a <strong>12.97%</strong> baseline, with the lowest truncation rate of any Gemma variant I tried.
-            </p>
-            <p>
-              I also ran a comparison eval on ByteDance's <strong>BAGEL-7B-MoT</strong> model, which surfaced its own token-limit issues with verbose chain-of-thought outputs.
             </p>
             <div class="alert-box error">
               <strong>🐛 Bug found: 256-token cap on Gemma.</strong> My supervisor told me the RL results looked odd, which sent me digging - turned out <code>evaluate_local_hf.py</code> capped Gemma's generation at 256 tokens while every other model got 512, silently truncating a chunk of its answers before they reached <code>\boxed{...}</code>.
@@ -697,13 +681,9 @@
                   <span>4. Gemma 4 Baseline</span>
                   <span>12.97%</span>
                 </div>
-                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; padding: 0.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.05)">
+                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; padding: 0.25rem 0;">
                   <span>5. Gemma 4 RL (cw=1)</span>
                   <span>11.34%</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; padding: 0.25rem 0;">
-                  <span>6. BAGEL (7B-MoT)</span>
-                  <span style="color: var(--accent);">4.12%</span>
                 </div>
               </div>
             </div>
@@ -785,9 +765,6 @@
         <p style="margin-top: 1rem; margin-bottom: 1rem;">
           The pattern is consistent: raising the token budget lowers the no-answer rate, and accuracy tracks it almost every time. <strong>Qwen is the clearest proof this is real and causal, not noise</strong> - going from 81.4% to 1.8% no-answer rate took it from "looks much worse than every Gemma variant" to roughly tied with the best one. It wasn't getting smarter between 512 and 1024 tokens, it was just finally being given enough room to finish an answer it already knew. RL (weight=2) stands out for having a very low no-answer rate at <em>every</em> budget I tried (never above 1.8%) - a real, repeatable effect of the stronger correctness reward, unlike some of the smaller accuracy swings elsewhere in the table.
         </p>
-        <div class="alert-box accent">
-          <strong>Same story likely applies to BAGEL.</strong> I didn't get to re-run it with more headroom, but the pattern is identical: BAGEL's <code>max_think_token_n=1024</code> cap meant 78% of its answers were cut off mid-thought, and its accuracy on just the 22% that did finish was 18.8% - over 4x its reported 4.12% overall score. That's an even worse truncation rate than Qwen's original 81.4%, so if the same relationship holds, BAGEL's real score is likely being undersold by a lot more than its headline number suggests. If I had more GPU time (a single BAGEL pass already took ~15.5 hours against a 4-hour partition limit, worked around with checkpointing), raising that cap would be the first thing I'd try. See <a href="./BAGEL_EVALUATION_REPORT.md">BAGEL_EVALUATION_REPORT.md</a> for details.
-        </div>
       </div>
 
     </div>
@@ -822,7 +799,6 @@
                 <th>RL (cw=2, Mine)</th>
                 <th>System Prompt RL</th>
                 <th>Qwen Baseline</th>
-                <th>BAGEL</th>
               </tr>
             </thead>
             <tbody>
@@ -833,7 +809,6 @@
                 <td class="highlight-cell">12.88% ± 0.87%</td>
                 <td>11.86% ± 3.52%</td>
                 <td>9.20% ± 0.87%</td>
-                <td>4.91%</td>
               </tr>
               <tr>
                 <td>📍 <strong>Spatial Perception</strong></td>
@@ -842,7 +817,6 @@
                 <td class="highlight-cell">18.32% ± 1.37%</td>
                 <td class="highlight-cell">18.32% ± 3.15%</td>
                 <td>16.48% ± 0.90%</td>
-                <td>2.20%</td>
               </tr>
               <tr>
                 <td>🌀 <strong>Visual Pattern Recognition</strong></td>
@@ -851,7 +825,6 @@
                 <td>12.42% ± 3.33%</td>
                 <td>15.03% ± 4.62%</td>
                 <td class="highlight-cell">24.18% ± 0.92%</td>
-                <td>5.88%</td>
               </tr>
               <tr>
                 <td>👁️ <strong>Visual Tracking</strong></td>
@@ -860,7 +833,6 @@
                 <td>11.24% ± 1.14%</td>
                 <td>11.24% ± 2.84%</td>
                 <td>11.24% ± 0.57%</td>
-                <td>3.61%</td>
               </tr>
               <tr style="background: rgba(255,255,255,0.02)">
                 <td>⭐ <strong>Overall Accuracy Score</strong></td>
@@ -869,7 +841,6 @@
                 <td class="highlight-cell" style="font-size: 1.05rem;"><strong>13.75% ± 0.49%</strong></td>
                 <td><strong>13.66% ± 0.56%</strong></td>
                 <td style="color: #8e7cc3;"><strong>13.32% ± 0.44%</strong></td>
-                <td style="color: var(--accent);"><strong>4.12%</strong></td>
               </tr>
             </tbody>
           </table>
@@ -900,7 +871,6 @@
                 <th>Subtype</th>
                 <th>Baseline</th>
                 <th>RL (cw=2)</th>
-                <th>BAGEL Accuracy</th>
               </tr>
             </thead>
             <tbody>
@@ -910,7 +880,6 @@
                 <td>2D Pattern Completion</td>
                 <td>33.33% ± 6.24%</td>
                 <td class="highlight-cell">45.00% ± 4.08%</td>
-                <td>15.00%</td>
               </tr>
               <!-- Row 2 -->
               <tr data-cat="Fine-grained Discrimination">
@@ -918,7 +887,6 @@
                 <td>Count Clusters</td>
                 <td>11.11% ± 4.54%</td>
                 <td class="highlight-cell">12.96% ± 2.62%</td>
-                <td>5.56%</td>
               </tr>
               <!-- Row 3 -->
               <tr data-cat="Fine-grained Discrimination">
@@ -926,7 +894,6 @@
                 <td>Find the Shadow</td>
                 <td>5.80% ± 4.10%</td>
                 <td class="highlight-cell">7.25% ± 2.05%</td>
-                <td>8.70%</td>
               </tr>
               <!-- Row 4 -->
               <tr data-cat="Fine-grained Discrimination">
@@ -934,7 +901,6 @@
                 <td>Pattern and Color Completion</td>
                 <td>30.00% ± 8.16%</td>
                 <td class="highlight-cell">33.33% ± 2.36%</td>
-                <td>10.00%</td>
               </tr>
               <!-- Row 5 -->
               <tr data-cat="Fine-grained Discrimination">
@@ -942,7 +908,6 @@
                 <td>Find the same</td>
                 <td>1.96% ± 2.77%</td>
                 <td class="highlight-cell">1.96% ± 2.77%</td>
-                <td>0.00%</td>
               </tr>
               <!-- Row 6 -->
               <tr data-cat="Visual Pattern Recognition">
@@ -950,7 +915,6 @@
                 <td>Rotation Patterns</td>
                 <td>23.33% ± 12.47%</td>
                 <td class="highlight-cell">26.67% ± 20.55%</td>
-                <td>20.00%</td>
               </tr>
               <!-- Row 7 -->
               <tr data-cat="Visual Pattern Recognition">
@@ -958,7 +922,6 @@
                 <td>Logic Patterns</td>
                 <td class="highlight-cell">4.76% ± 6.73%</td>
                 <td>2.38% ± 3.37%</td>
-                <td>0.00%</td>
               </tr>
               <!-- Row 8 -->
               <tr data-cat="Visual Pattern Recognition">
@@ -966,7 +929,6 @@
                 <td>Overlay Patterns</td>
                 <td class="highlight-cell">21.57% ± 7.34%</td>
                 <td>15.69% ± 2.77%</td>
-                <td>5.88%</td>
               </tr>
               <!-- Row 9 -->
               <tr data-cat="Spatial Perception">
@@ -974,7 +936,6 @@
                 <td>3D Pattern Completion</td>
                 <td>33.33% ± 9.07%</td>
                 <td class="highlight-cell">46.30% ± 6.93%</td>
-                <td>11.11%</td>
               </tr>
               <!-- Row 10 -->
               <tr data-cat="Spatial Perception">
@@ -982,7 +943,6 @@
                 <td>Paper Folding</td>
                 <td>13.89% ± 10.39%</td>
                 <td class="highlight-cell">16.67% ± 11.79%</td>
-                <td>0.00%</td>
               </tr>
               <!-- Row 11 -->
               <tr data-cat="Visual Tracking">
@@ -990,7 +950,6 @@
                 <td>Connect the lines</td>
                 <td>7.02% ± 2.48%</td>
                 <td class="highlight-cell">15.79% ± 0.00%</td>
-                <td>5.26%</td>
               </tr>
               <!-- Row 12 -->
               <tr data-cat="Visual Tracking">
@@ -998,7 +957,6 @@
                 <td>Maze</td>
                 <td class="highlight-cell">20.00% ± 4.08%</td>
                 <td>18.33% ± 2.36%</td>
-                <td>5.00%</td>
               </tr>
               <!-- Row 13 -->
               <tr data-cat="Visual Tracking">
@@ -1006,7 +964,6 @@
                 <td>Recognize numbers/letters</td>
                 <td class="highlight-cell">18.84% ± 4.10%</td>
                 <td>11.59% ± 2.05%</td>
-                <td>4.35%</td>
               </tr>
             </tbody>
           </table>
@@ -1088,46 +1045,6 @@
 
     </div>
 
-    <!-- PANE 4: BAGEL CASE STUDY -->
-    <div id="bagel-study" class="tab-pane">
-      
-      <div class="card-large">
-        <div class="card-title">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-          The CoT Token Truncation Dilemma
-        </div>
-        <p style="margin-bottom: 1.25rem;">
-          ByteDance's <strong>BAGEL-7B-MoT</strong> is a visual model optimized for Chain-of-Thought reasoning. During evaluation, it achieved an overall score of only <strong>4.12%</strong>. This case study details the mathematical and structural reason for this rating.
-        </p>
-
-        <div style="background: rgba(245, 158, 11, 0.04); border: 1px solid rgba(245, 158, 11, 0.15); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;">
-          <h4 style="color: var(--accent); margin-bottom: 0.5rem;">Visual Reasoning vs. Context Truncation</h4>
-          <p style="font-size: 0.95rem; line-height: 1.6; color: #d1d5db; margin-bottom: 0.75rem;">
-            BAGEL features a highly structured, descriptive internal dialogue. In my evaluation, the maximum thinking length was capped at <code>max_think_token_n=1024</code>.
-          </p>
-          <ul style="list-style-type: square; list-style-position: inside; font-size: 0.9rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.4rem;">
-            <li><strong>78.1% Truncation rate:</strong> In 303 of the 388 tasks, BAGEL hit the 1024-token ceiling during its descriptive planning stage, cutting off before ever outputting a final boxed answer.</li>
-            <li><strong>Robust Accuracy on Completed Chains:</strong> On the 85 tasks where it was able to conclude its thinking within the token bounds, BAGEL scored <strong>18.8% accuracy (16/85 correct)</strong>. This significantly outperforms Gemma-4's baseline logic on the same subset.</li>
-          </ul>
-          <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.75rem;">
-            This is the same failure mode documented in the <strong>GRPO Reinforcement Learning</strong> tab's token-budget callout: Qwen looked far worse than every Gemma variant at a 512-token cap (81.4% no-answer rate) and jumped to roughly tied with the best Gemma run once given 1024 tokens. BAGEL's 78.1% truncation rate here is in the same range as Qwen's was - strong circumstantial evidence its real score is being undersold by a similar margin.
-          </p>
-        </div>
-        
-        <h4 style="font-family:'Outfit'; font-size: 1.1rem; margin-bottom: 0.75rem;">Typical BAGEL Truncation Log Sample:</h4>
-        <pre><code>[BAGEL Reasoning Process]
-**Inspecting Grid Silhouettes**
-I have begun scanning the 7x7 grid of tiger silhouettes...
-I am verifying the tail positioning of tigers in Row 1.
-Tiger (1,1): tail tip points upwards. Tiger (1,2): tail tip points upwards...
-[... 1020 tokens of step-by-step description ...]
-Checking Row 5, Column 6 tail alignment. Tail tip curves left...
->> [CRITICAL SHUTDOWN: max_think_token_n (1024) exceeded. Generation halted.]
-Extracted Answer: None (Graded as 0%)</code></pre>
-      </div>
-
-    </div>
-
     <!-- PANE 5: LOG EXPLORER -->
     <div id="logs-explorer" class="tab-pane">
       
@@ -1143,24 +1060,21 @@ Extracted Answer: None (Graded as 0%)</code></pre>
         <div style="background:rgba(0,0,0,0.2); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 12px;">
           <div class="folder-tree">
             <div class="folder-item directory">📁 logs/ <span style="color:var(--text-muted); font-size:0.8rem; font-weight:400;">-- Centralized Slurm Execution and Setup Logs</span></div>
-            <div class="folder-item file">📂 <a href="./logs/setup/">setup/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- CUDA, flash-attn builds and library tests</span></div>
-            <div class="folder-item file">📂 <a href="./logs/training/">training/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Active GRPO reinforcement learning runs</span></div>
-            <div class="folder-item file">📂 <a href="./logs/evaluation/">evaluation/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Multi-pass evaluations for all model configs</span></div>
-            <div class="folder-item file">📂 <a href="./logs/archive/">archive/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Historic, duplicate, and interrupted test runs</span></div>
+            <div class="folder-item file">📂 <a href="../logs/setup/">setup/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- CUDA, flash-attn builds and library tests</span></div>
+            <div class="folder-item file">📂 <a href="../logs/training/">training/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Active GRPO reinforcement learning runs</span></div>
+            <div class="folder-item file">📂 <a href="../logs/evaluation/">evaluation/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Multi-pass evaluations for all model configs</span></div>
+            <div class="folder-item file">📂 <a href="../logs/archive/">archive/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Historic, duplicate, and interrupted test runs</span></div>
             
             <div class="folder-item directory" style="margin-top:0.5rem;">📁 sbatch_scripts/ <span style="color:var(--text-muted); font-size:0.8rem; font-weight:400;">-- Consolidated Slurm Submission Files</span></div>
-            <div class="folder-item file"><a href="./sbatch_scripts/evaluation/run_bagel_eval.sbatch">evaluation/run_bagel_eval.sbatch</a></div>
-            <div class="folder-item file"><a href="./sbatch_scripts/training/run_gemma_rl_correctness_weight2.sbatch">training/run_gemma_rl_correctness_weight2.sbatch</a></div>
-            <div class="folder-item file"><a href="./sbatch_scripts/evaluation/run_gemma_rl_correctness_weight2_eval.sbatch">evaluation/run_gemma_rl_correctness_weight2_eval.sbatch</a></div>
-            
+            <div class="folder-item file"><a href="../sbatch_scripts/training/run_gemma_rl_correctness_weight2.sbatch">training/run_gemma_rl_correctness_weight2.sbatch</a></div>
+            <div class="folder-item file"><a href="../sbatch_scripts/evaluation/run_gemma_rl_correctness_weight2_eval.sbatch">evaluation/run_gemma_rl_correctness_weight2_eval.sbatch</a></div>
+
             <div class="folder-item directory" style="margin-top:0.5rem;">📁 babyvision_eval/ <span style="color:var(--text-muted); font-size:0.8rem; font-weight:400;">-- MLLM Evaluation Engine</span></div>
-            <div class="folder-item file">📂 <a href="./babyvision_eval/runs/rl_correctness_weight2_maxtok1024/">runs/rl_correctness_weight2_maxtok1024/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- best RL (correctness_weight=2) outputs, current final numbers</span></div>
-            <div class="folder-item file">📂 <a href="./babyvision_eval/runs/qwen_baseline_maxtok1024/">runs/qwen_baseline_maxtok1024/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Qwen baseline at 1024 tokens, 13.32% (was 2.84% at 512)</span></div>
-            <div class="folder-item file">📂 <a href="./babyvision_eval/runs/bagel/">runs/bagel/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Raw JSON and summary scores for BAGEL</span></div>
-            <div class="folder-item file">📂 <a href="./babyvision_eval/_deprecated/scratch_tests/">_deprecated/scratch_tests/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Deprecated: older testing folders</span></div>
-            
-            <div class="folder-item directory" style="margin-top:0.5rem;">📄 <a href="./results/final_report.md">results/final_report.md</a> <span style="color:var(--text-muted); font-size:0.8rem; font-weight:400;">-- Gemma RL experiment notes</span></div>
-            <div class="folder-item directory">📄 <a href="./BAGEL_EVALUATION_REPORT.md">BAGEL_EVALUATION_REPORT.md</a> <span style="color:var(--text-muted); font-size:0.8rem; font-weight:400;">-- BAGEL comparison notes</span></div>
+            <div class="folder-item file">📂 <a href="../babyvision_eval/runs/rl_correctness_weight2_maxtok1024/">runs/rl_correctness_weight2_maxtok1024/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- best RL (correctness_weight=2) outputs, current final numbers</span></div>
+            <div class="folder-item file">📂 <a href="../babyvision_eval/runs/qwen_baseline_maxtok1024/">runs/qwen_baseline_maxtok1024/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Qwen baseline at 1024 tokens, 13.32% (was 2.84% at 512)</span></div>
+            <div class="folder-item file">📂 <a href="../babyvision_eval/_deprecated/scratch_tests/">_deprecated/scratch_tests/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Deprecated: older testing folders</span></div>
+
+            <div class="folder-item directory" style="margin-top:0.5rem;">📄 <a href="../results/final_report.md">results/final_report.md</a> <span style="color:var(--text-muted); font-size:0.8rem; font-weight:400;">-- Gemma RL experiment notes</span></div>
           </div>
         </div>
       </div>
@@ -1180,8 +1094,8 @@ Extracted Answer: None (Graded as 0%)</code></pre>
               <span class="log-desc">RL training, correctness_weight=1 (language-only LoRA)</span>
             </div>
             <div style="display:flex; gap:0.5rem;">
-              <a href="./logs/training/gemma_rl_v1_training_16875257.out" class="log-action-btn">Out</a>
-              <a href="./logs/training/gemma_rl_v1_training_16875257.err" class="log-action-btn">Err</a>
+              <a href="../logs/training/gemma_rl_v1_training_16875257.out" class="log-action-btn">Out</a>
+              <a href="../logs/training/gemma_rl_v1_training_16875257.err" class="log-action-btn">Err</a>
             </div>
           </div>
           <div class="log-item">
@@ -1190,8 +1104,8 @@ Extracted Answer: None (Graded as 0%)</code></pre>
               <span class="log-desc">RL training, correctness_weight=2 (multimodal LoRA) - the best model</span>
             </div>
             <div style="display:flex; gap:0.5rem;">
-              <a href="./logs/training/gemma_rl_v2_training_16877068.out" class="log-action-btn">Out</a>
-              <a href="./logs/training/gemma_rl_v2_training_16877068.err" class="log-action-btn">Err</a>
+              <a href="../logs/training/gemma_rl_v2_training_16877068.out" class="log-action-btn">Out</a>
+              <a href="../logs/training/gemma_rl_v2_training_16877068.err" class="log-action-btn">Err</a>
             </div>
           </div>
           <div class="log-item">
@@ -1200,8 +1114,8 @@ Extracted Answer: None (Graded as 0%)</code></pre>
               <span class="log-desc">System-prompt RL training</span>
             </div>
             <div style="display:flex; gap:0.5rem;">
-              <a href="./logs/training/gemma_system_prompt_rl_training_16877070.out" class="log-action-btn">Out</a>
-              <a href="./logs/training/gemma_system_prompt_rl_training_16877070.err" class="log-action-btn">Err</a>
+              <a href="../logs/training/gemma_system_prompt_rl_training_16877070.out" class="log-action-btn">Out</a>
+              <a href="../logs/training/gemma_system_prompt_rl_training_16877070.err" class="log-action-btn">Err</a>
             </div>
           </div>
         </div>
@@ -1214,8 +1128,8 @@ Extracted Answer: None (Graded as 0%)</code></pre>
               <span class="log-desc">Baseline Gemma, no training</span>
             </div>
             <div style="display:flex; gap:0.5rem;">
-              <a href="./logs/evaluation/gemma_baseline_eval_16875224.out" class="log-action-btn">Out</a>
-              <a href="./logs/evaluation/gemma_baseline_eval_16875224.err" class="log-action-btn">Err</a>
+              <a href="../logs/evaluation/gemma_baseline_eval_16875224.out" class="log-action-btn">Out</a>
+              <a href="../logs/evaluation/gemma_baseline_eval_16875224.err" class="log-action-btn">Err</a>
             </div>
           </div>
           <div class="log-item">
@@ -1224,8 +1138,8 @@ Extracted Answer: None (Graded as 0%)</code></pre>
               <span class="log-desc">RL eval, correctness_weight=1</span>
             </div>
             <div style="display:flex; gap:0.5rem;">
-              <a href="./logs/evaluation/gemma_rl_v1_eval_16876673.out" class="log-action-btn">Out</a>
-              <a href="./logs/evaluation/gemma_rl_v1_eval_16876673.err" class="log-action-btn">Err</a>
+              <a href="../logs/evaluation/gemma_rl_v1_eval_16876673.out" class="log-action-btn">Out</a>
+              <a href="../logs/evaluation/gemma_rl_v1_eval_16876673.err" class="log-action-btn">Err</a>
             </div>
           </div>
           <div class="log-item">
@@ -1234,8 +1148,8 @@ Extracted Answer: None (Graded as 0%)</code></pre>
               <span class="log-desc">RL eval, correctness_weight=2</span>
             </div>
             <div style="display:flex; gap:0.5rem;">
-              <a href="./logs/evaluation/gemma_rl_v2_eval_16877072.out" class="log-action-btn">Out</a>
-              <a href="./logs/evaluation/gemma_rl_v2_eval_16877072.err" class="log-action-btn">Err</a>
+              <a href="../logs/evaluation/gemma_rl_v2_eval_16877072.out" class="log-action-btn">Out</a>
+              <a href="../logs/evaluation/gemma_rl_v2_eval_16877072.err" class="log-action-btn">Err</a>
             </div>
           </div>
           <div class="log-item">
@@ -1244,8 +1158,8 @@ Extracted Answer: None (Graded as 0%)</code></pre>
               <span class="log-desc">System-prompt RL eval</span>
             </div>
             <div style="display:flex; gap:0.5rem;">
-              <a href="./logs/evaluation/gemma_system_prompt_rl_eval_16877197.out" class="log-action-btn">Out</a>
-              <a href="./logs/evaluation/gemma_system_prompt_rl_eval_16877197.err" class="log-action-btn">Err</a>
+              <a href="../logs/evaluation/gemma_system_prompt_rl_eval_16877197.out" class="log-action-btn">Out</a>
+              <a href="../logs/evaluation/gemma_system_prompt_rl_eval_16877197.err" class="log-action-btn">Err</a>
             </div>
           </div>
         </div>
@@ -1258,8 +1172,8 @@ Extracted Answer: None (Graded as 0%)</code></pre>
               <span class="log-desc">Baseline Gemma, no training - 12.03%</span>
             </div>
             <div style="display:flex; gap:0.5rem;">
-              <a href="./logs/evaluation/slurm_gemma_23604080.out" class="log-action-btn">Out</a>
-              <a href="./logs/evaluation/slurm_gemma_23604080.err" class="log-action-btn">Err</a>
+              <a href="../logs/evaluation/slurm_gemma_23604080.out" class="log-action-btn">Out</a>
+              <a href="../logs/evaluation/slurm_gemma_23604080.err" class="log-action-btn">Err</a>
             </div>
           </div>
           <div class="log-item">
@@ -1268,8 +1182,8 @@ Extracted Answer: None (Graded as 0%)</code></pre>
               <span class="log-desc">RL eval, correctness_weight=1 - 12.20%</span>
             </div>
             <div style="display:flex; gap:0.5rem;">
-              <a href="./logs/evaluation/slurm_gemma_rl_correctness_weight1_maxtok512_eval_23657919.out" class="log-action-btn">Out</a>
-              <a href="./logs/evaluation/slurm_gemma_rl_correctness_weight1_maxtok512_eval_23657919.err" class="log-action-btn">Err</a>
+              <a href="../logs/evaluation/slurm_gemma_rl_correctness_weight1_maxtok512_eval_23657919.out" class="log-action-btn">Out</a>
+              <a href="../logs/evaluation/slurm_gemma_rl_correctness_weight1_maxtok512_eval_23657919.err" class="log-action-btn">Err</a>
             </div>
           </div>
           <div class="log-item">
@@ -1278,8 +1192,8 @@ Extracted Answer: None (Graded as 0%)</code></pre>
               <span class="log-desc">RL eval, correctness_weight=2 - 13.66%</span>
             </div>
             <div style="display:flex; gap:0.5rem;">
-              <a href="./logs/evaluation/slurm_gemma_rl_correctness_weight2_maxtok512_eval_23657920.out" class="log-action-btn">Out</a>
-              <a href="./logs/evaluation/slurm_gemma_rl_correctness_weight2_maxtok512_eval_23657920.err" class="log-action-btn">Err</a>
+              <a href="../logs/evaluation/slurm_gemma_rl_correctness_weight2_maxtok512_eval_23657920.out" class="log-action-btn">Out</a>
+              <a href="../logs/evaluation/slurm_gemma_rl_correctness_weight2_maxtok512_eval_23657920.err" class="log-action-btn">Err</a>
             </div>
           </div>
           <div class="log-item">
@@ -1288,8 +1202,8 @@ Extracted Answer: None (Graded as 0%)</code></pre>
               <span class="log-desc">System-prompt RL eval - 10.48%</span>
             </div>
             <div style="display:flex; gap:0.5rem;">
-              <a href="./logs/evaluation/slurm_system_prompt_rl_maxtok512_eval_23657921.out" class="log-action-btn">Out</a>
-              <a href="./logs/evaluation/slurm_system_prompt_rl_maxtok512_eval_23657921.err" class="log-action-btn">Err</a>
+              <a href="../logs/evaluation/slurm_system_prompt_rl_maxtok512_eval_23657921.out" class="log-action-btn">Out</a>
+              <a href="../logs/evaluation/slurm_system_prompt_rl_maxtok512_eval_23657921.err" class="log-action-btn">Err</a>
             </div>
           </div>
         </div>
@@ -1302,8 +1216,8 @@ Extracted Answer: None (Graded as 0%)</code></pre>
               <span class="log-desc">Baseline Gemma, no training - 12.97%</span>
             </div>
             <div style="display:flex; gap:0.5rem;">
-              <a href="./logs/evaluation/slurm_gemma_23671051.out" class="log-action-btn">Out</a>
-              <a href="./logs/evaluation/slurm_gemma_23671051.err" class="log-action-btn">Err</a>
+              <a href="../logs/evaluation/slurm_gemma_23671051.out" class="log-action-btn">Out</a>
+              <a href="../logs/evaluation/slurm_gemma_23671051.err" class="log-action-btn">Err</a>
             </div>
           </div>
           <div class="log-item">
@@ -1312,8 +1226,8 @@ Extracted Answer: None (Graded as 0%)</code></pre>
               <span class="log-desc">RL eval, correctness_weight=1 - 11.34%</span>
             </div>
             <div style="display:flex; gap:0.5rem;">
-              <a href="./logs/evaluation/slurm_gemma_rl_correctness_weight1_maxtok1024_eval_23671052.out" class="log-action-btn">Out</a>
-              <a href="./logs/evaluation/slurm_gemma_rl_correctness_weight1_maxtok1024_eval_23671052.err" class="log-action-btn">Err</a>
+              <a href="../logs/evaluation/slurm_gemma_rl_correctness_weight1_maxtok1024_eval_23671052.out" class="log-action-btn">Out</a>
+              <a href="../logs/evaluation/slurm_gemma_rl_correctness_weight1_maxtok1024_eval_23671052.err" class="log-action-btn">Err</a>
             </div>
           </div>
           <div class="log-item">
@@ -1322,8 +1236,8 @@ Extracted Answer: None (Graded as 0%)</code></pre>
               <span class="log-desc">RL eval, correctness_weight=2 - 13.75%, best result</span>
             </div>
             <div style="display:flex; gap:0.5rem;">
-              <a href="./logs/evaluation/slurm_gemma_rl_correctness_weight2_maxtok1024_eval_23671053.out" class="log-action-btn">Out</a>
-              <a href="./logs/evaluation/slurm_gemma_rl_correctness_weight2_maxtok1024_eval_23671053.err" class="log-action-btn">Err</a>
+              <a href="../logs/evaluation/slurm_gemma_rl_correctness_weight2_maxtok1024_eval_23671053.out" class="log-action-btn">Out</a>
+              <a href="../logs/evaluation/slurm_gemma_rl_correctness_weight2_maxtok1024_eval_23671053.err" class="log-action-btn">Err</a>
             </div>
           </div>
           <div class="log-item">
@@ -1332,8 +1246,8 @@ Extracted Answer: None (Graded as 0%)</code></pre>
               <span class="log-desc">System-prompt RL eval - 13.66%</span>
             </div>
             <div style="display:flex; gap:0.5rem;">
-              <a href="./logs/evaluation/slurm_system_prompt_rl_maxtok1024_eval_23671054.out" class="log-action-btn">Out</a>
-              <a href="./logs/evaluation/slurm_system_prompt_rl_maxtok1024_eval_23671054.err" class="log-action-btn">Err</a>
+              <a href="../logs/evaluation/slurm_system_prompt_rl_maxtok1024_eval_23671054.out" class="log-action-btn">Out</a>
+              <a href="../logs/evaluation/slurm_system_prompt_rl_maxtok1024_eval_23671054.err" class="log-action-btn">Err</a>
             </div>
           </div>
           <div class="log-item">
@@ -1342,22 +1256,8 @@ Extracted Answer: None (Graded as 0%)</code></pre>
               <span class="log-desc">Qwen baseline eval - 13.32% (was 2.84% at 512 tokens)</span>
             </div>
             <div style="display:flex; gap:0.5rem;">
-              <a href="./logs/evaluation/slurm_hf_maxtok1024_23671055.out" class="log-action-btn">Out</a>
-              <a href="./logs/evaluation/slurm_hf_maxtok1024_23671055.err" class="log-action-btn">Err</a>
-            </div>
-          </div>
-        </div>
-
-        <h4 style="font-family: 'Outfit'; font-size: 0.95rem; margin: 0 0 0.75rem; color: var(--text-muted);">BAGEL comparison</h4>
-        <div class="log-list">
-          <div class="log-item">
-            <div class="log-info">
-              <span class="log-name">bagel_eval_16877397</span>
-              <span class="log-desc">Final successful pass 3 evaluation and judging (chained after 16877352 timed out)</span>
-            </div>
-            <div style="display:flex; gap:0.5rem;">
-              <a href="./logs/evaluation/bagel_eval_16877397.out" class="log-action-btn">Out</a>
-              <a href="./logs/evaluation/bagel_eval_16877397.err" class="log-action-btn">Err</a>
+              <a href="../logs/evaluation/slurm_hf_maxtok1024_23671055.out" class="log-action-btn">Out</a>
+              <a href="../logs/evaluation/slurm_hf_maxtok1024_23671055.err" class="log-action-btn">Err</a>
             </div>
           </div>
         </div>
@@ -1371,7 +1271,7 @@ Extracted Answer: None (Graded as 0%)</code></pre>
   <footer>
     <span>Project: BabyVision Benchmark Analysis</span>
     <span>Date: June 2026</span>
-    <span>Model Backbone: Gemma 4 VLM & BAGEL 7B</span>
+    <span>Model Backbone: Gemma 4 VLM & Qwen2.5-VL</span>
   </footer>
 
   <!-- Scripts for Tabs & Chart initialization -->
@@ -1432,14 +1332,6 @@ Extracted Answer: None (Graded as 0%)</code></pre>
               data: [9.20, 16.48, 24.18, 11.24, 13.32],
               backgroundColor: 'rgba(142, 124, 195, 0.6)',
               borderColor: 'rgba(142, 124, 195, 0.95)',
-              borderWidth: 1,
-              borderRadius: 6
-            },
-            {
-              label: 'BAGEL (7B-MoT)',
-              data: [4.91, 2.20, 5.88, 3.61, 4.12],
-              backgroundColor: 'rgba(245, 158, 11, 0.5)',
-              borderColor: 'rgba(245, 158, 11, 0.9)',
               borderWidth: 1,
               borderRadius: 6
             }
