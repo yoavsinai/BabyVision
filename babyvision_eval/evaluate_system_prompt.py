@@ -171,9 +171,9 @@ def main():
                     # Disable LoRA adapter to query frozen base VLM
                     if args.peft_adapter_path:
                         with model.disable_adapter():
-                            eval_gen = model.generate(**eval_inputs, max_new_tokens=512)
+                            eval_gen = model.generate(**eval_inputs, max_new_tokens=1024)
                     else:
-                        eval_gen = model.generate(**eval_inputs, max_new_tokens=512)
+                        eval_gen = model.generate(**eval_inputs, max_new_tokens=1024)
                 
                 eval_gen_trimmed = eval_gen[0][len(eval_inputs.input_ids[0]):]
                 model_output_result = processor.decode(eval_gen_trimmed, skip_special_tokens=True).strip()

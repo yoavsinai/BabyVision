@@ -1,0 +1,11 @@
+=== Starting Slurm Job ===
+Node: hpc8l4-01
+Date: Fri Aug 21 09:16:25 AM IDT 2026
+Loaded 388 tasks from ../data/babyvision_data/meta_data.jsonl
+
+--- Phase 1: Starting Vision Inference using Qwen/Qwen2.5-VL-7B-Instruct ---
+Passes remaining to run: [1, 2, 3]
+Loading vision model and processor...
+Model loaded successfully.
+
+Running pass 1/3...

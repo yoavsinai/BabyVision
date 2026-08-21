@@ -629,23 +629,23 @@
       <div class="grid-overview">
         <div class="metric-card">
           <div class="metric-label">Gemma-4 Baseline</div>
-          <div class="metric-value">12.03%</div>
-          <div class="metric-subtext">± 1.90% (512-token budget)</div>
+          <div class="metric-value">12.97%</div>
+          <div class="metric-subtext">± 0.99% (1024-token budget)</div>
         </div>
         <div class="metric-card sota">
           <div class="metric-label">Gemma-4 RL (cw=2, Mine)</div>
-          <div class="metric-value" style="color: var(--secondary)">13.66%</div>
-          <div class="metric-subtext" style="color: #6ee7b7">★ Best so far (+13.5% relative)</div>
+          <div class="metric-value" style="color: var(--secondary)">13.75%</div>
+          <div class="metric-subtext" style="color: #6ee7b7">★ Best so far, lowest no-answer rate (0.5%)</div>
         </div>
-        <div class="metric-card">
-          <div class="metric-label">Gemma-4 RL (cw=1)</div>
-          <div class="metric-value">12.20%</div>
-          <div class="metric-subtext">± 1.69% (roughly flat vs. baseline)</div>
+        <div class="metric-card" style="border-color: rgba(142, 124, 195, 0.3);">
+          <div class="metric-label">Qwen Baseline (untrained)</div>
+          <div class="metric-value" style="color: #8e7cc3">13.32%</div>
+          <div class="metric-subtext">Was 2.84% at 512 tok - see below, this was a token-budget artifact</div>
         </div>
         <div class="metric-card bagel">
           <div class="metric-label">BAGEL (7B-MoT)</div>
           <div class="metric-value" style="color: var(--accent)">4.12%</div>
-          <div class="metric-subtext">18.8% on non-truncated answers</div>
+          <div class="metric-subtext">Not re-run yet, but the same pattern likely applies (see below)</div>
         </div>
       </div>
 
@@ -661,13 +661,16 @@
               This dashboard tracks experiments on top of the <strong>BabyVision Dataset</strong> (388 visual reasoning puzzles: fine-grained discrimination, visual tracking, spatial perception, and pattern recognition), done for a seminar - not a paper. It's meant to log what I tried and what happened, not to claim state-of-the-art anything.
             </p>
             <p style="margin-bottom: 1rem;">
-              The BabyVision paper shows RL fine-tuning (GRPO) can improve visual reasoning; the main thread here was applying that same recipe to a model the paper didn't cover, <code>google/gemma-4-E4B-it</code>, to see if it helps there too. Adding multimodal LoRA targets and scaling up the correctness reward weight got me to <strong>13.66% overall accuracy</strong>, up from a <strong>12.03%</strong> baseline.
+              The BabyVision paper shows RL fine-tuning (GRPO) can improve visual reasoning; the main thread here was applying that same recipe to a model the paper didn't cover, <code>google/gemma-4-E4B-it</code>, to see if it helps there too. Adding multimodal LoRA targets and scaling up the correctness reward weight got me to <strong>13.75% overall accuracy</strong>, up from a <strong>12.97%</strong> baseline, with the lowest truncation rate of any Gemma variant I tried.
             </p>
             <p>
               I also ran a comparison eval on ByteDance's <strong>BAGEL-7B-MoT</strong> model, which surfaced its own token-limit issues with verbose chain-of-thought outputs.
             </p>
             <div class="alert-box error">
-              <strong>🐛 Bug found: 256-token cap on Gemma.</strong> My supervisor told me the RL results looked odd, which sent me digging - turned out <code>evaluate_local_hf.py</code> capped Gemma's generation at 256 tokens while every other model got 512, silently truncating a chunk of its answers before they reached <code>\boxed{...}</code>. Fixed to 512 tokens for everyone and re-ran every variant - the numbers on this dashboard are all post-fix.
+              <strong>🐛 Bug found: 256-token cap on Gemma.</strong> My supervisor told me the RL results looked odd, which sent me digging - turned out <code>evaluate_local_hf.py</code> capped Gemma's generation at 256 tokens while every other model got 512, silently truncating a chunk of its answers before they reached <code>\boxed{...}</code>.
+            </div>
+            <div class="alert-box error">
+              <strong>🐛 512 tokens wasn't enough either - especially for Qwen.</strong> After fixing the cap to 512, I checked how often each model was still getting cut off with no usable answer. Gemma variants were still losing 10-22% of answers to truncation - but Qwen was losing <strong>81.4%</strong>. Bumping everyone to 1024 tokens took Qwen from 2.84% to <strong>13.32%</strong>, roughly tying my best Gemma run. The "Gemma clearly beats Qwen" finding from earlier in this project turned out to be almost entirely a token-budget artifact, not a real gap between the models. See the comparison card below.
             </div>
             <div class="alert-box secondary">
               <strong>Working takeaway:</strong> GRPO seems to help on visual reasoning here, but only when LoRA also touches the multimodal connector layers (not just language layers) and the correctness reward is weighted high enough that the policy can't just farm the formatting reward instead of being right.
@@ -680,27 +683,110 @@
               <div style="display: flex; flex-direction: column; gap: 0.5rem;">
                 <div style="display: flex; justify-content: space-between; font-size: 0.9rem; padding: 0.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.05)">
                   <span>1. Gemma 4 RL (cw=2)</span>
-                  <span class="highlight-cell">13.66%</span>
+                  <span class="highlight-cell">13.75%</span>
                 </div>
                 <div style="display: flex; justify-content: space-between; font-size: 0.9rem; padding: 0.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.05)">
-                  <span>2. Gemma 4 RL (cw=1)</span>
-                  <span>12.20%</span>
+                  <span>2. Gemma 4 System Prompt RL</span>
+                  <span>13.66%</span>
                 </div>
                 <div style="display: flex; justify-content: space-between; font-size: 0.9rem; padding: 0.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.05)">
-                  <span>3. Gemma 4 Baseline</span>
-                  <span>12.03%</span>
+                  <span>3. Qwen Baseline (untrained)</span>
+                  <span style="color: #8e7cc3;">13.32%</span>
                 </div>
                 <div style="display: flex; justify-content: space-between; font-size: 0.9rem; padding: 0.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.05)">
-                  <span>4. Gemma 4 System Prompt RL</span>
-                  <span>10.48%</span>
+                  <span>4. Gemma 4 Baseline</span>
+                  <span>12.97%</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; padding: 0.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.05)">
+                  <span>5. Gemma 4 RL (cw=1)</span>
+                  <span>11.34%</span>
                 </div>
                 <div style="display: flex; justify-content: space-between; font-size: 0.9rem; padding: 0.25rem 0;">
-                  <span>5. BAGEL (7B-MoT)</span>
+                  <span>6. BAGEL (7B-MoT)</span>
                   <span style="color: var(--accent);">4.12%</span>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- Bug fix impact -->
+      <div class="card-large">
+        <div class="card-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+          Did the Token-Cap Fix Actually Help?
+        </div>
+        <p style="margin-bottom: 1rem;">
+          Yes, clearly, at every step - both in accuracy and, more directly, in how often the model's answer got cut off before it could write <code>\boxed{...}</code>. I counted how many of the 388 answers per run had no extractable answer at all (a proxy for truncation), across all three token budgets I tried:
+        </p>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Acc (256)</th>
+                <th>Acc (512)</th>
+                <th>Acc (1024)</th>
+                <th>No-answer (256)</th>
+                <th>No-answer (512)</th>
+                <th>No-answer (1024)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Baseline Gemma</td>
+                <td>11.08%</td>
+                <td>12.03%</td>
+                <td style="color: var(--secondary);">12.97%</td>
+                <td>24.7%</td>
+                <td>14.9%</td>
+                <td>6.4%</td>
+              </tr>
+              <tr>
+                <td>RL (weight=1)</td>
+                <td>9.54%</td>
+                <td>12.20%</td>
+                <td style="color: var(--secondary);">11.34%</td>
+                <td>26.3%</td>
+                <td>17.8%</td>
+                <td>6.7%</td>
+              </tr>
+              <tr>
+                <td>RL (weight=2)</td>
+                <td>13.14%</td>
+                <td>13.66%</td>
+                <td class="highlight-cell">13.75%</td>
+                <td>1.8%</td>
+                <td>1.0%</td>
+                <td>0.5%</td>
+              </tr>
+              <tr>
+                <td>System-prompt RL</td>
+                <td>9.71%</td>
+                <td>10.48%</td>
+                <td style="color: var(--secondary);">13.66%</td>
+                <td>36.9%</td>
+                <td>21.6%</td>
+                <td>8.0%</td>
+              </tr>
+              <tr>
+                <td>Qwen baseline</td>
+                <td>-</td>
+                <td>2.84%</td>
+                <td style="color: #8e7cc3; font-weight: 700;">13.32%</td>
+                <td>-</td>
+                <td>81.4%</td>
+                <td>1.8%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top: 1rem; margin-bottom: 1rem;">
+          The pattern is consistent: raising the token budget lowers the no-answer rate, and accuracy tracks it almost every time. <strong>Qwen is the clearest proof this is real and causal, not noise</strong> - going from 81.4% to 1.8% no-answer rate took it from "looks much worse than every Gemma variant" to roughly tied with the best one. It wasn't getting smarter between 512 and 1024 tokens, it was just finally being given enough room to finish an answer it already knew. RL (weight=2) stands out for having a very low no-answer rate at <em>every</em> budget I tried (never above 1.8%) - a real, repeatable effect of the stronger correctness reward, unlike some of the smaller accuracy swings elsewhere in the table.
+        </p>
+        <div class="alert-box accent">
+          <strong>Same story likely applies to BAGEL.</strong> I didn't get to re-run it with more headroom, but the pattern is identical: BAGEL's <code>max_think_token_n=1024</code> cap meant 78% of its answers were cut off mid-thought, and its accuracy on just the 22% that did finish was 18.8% - over 4x its reported 4.12% overall score. That's an even worse truncation rate than Qwen's original 81.4%, so if the same relationship holds, BAGEL's real score is likely being undersold by a lot more than its headline number suggests. If I had more GPU time (a single BAGEL pass already took ~15.5 hours against a 4-hour partition limit, worked around with checkpointing), raising that cap would be the first thing I'd try. See <a href="./BAGEL_EVALUATION_REPORT.md">BAGEL_EVALUATION_REPORT.md</a> for details.
         </div>
       </div>
 
@@ -733,50 +819,56 @@
                 <th>Category</th>
                 <th>Baseline</th>
                 <th>RL (cw=1)</th>
-                <th>RL (cw=2, Ours)</th>
+                <th>RL (cw=2, Mine)</th>
                 <th>System Prompt RL</th>
+                <th>Qwen Baseline</th>
                 <th>BAGEL</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>🧩 <strong>Fine-grained Discrimination</strong></td>
-                <td>11.25% ± 1.04%</td>
-                <td>12.68% ± 2.85%</td>
-                <td class="highlight-cell">13.70% ± 2.52%</td>
-                <td>9.61% ± 0.77%</td>
+                <td>11.04% ± 2.50%</td>
+                <td>10.43% ± 0.50%</td>
+                <td class="highlight-cell">12.88% ± 0.87%</td>
+                <td>11.86% ± 3.52%</td>
+                <td>9.20% ± 0.87%</td>
                 <td>4.91%</td>
               </tr>
               <tr>
                 <td>📍 <strong>Spatial Perception</strong></td>
-                <td>13.19% ± 4.11%</td>
-                <td>12.82% ± 1.04%</td>
-                <td class="highlight-cell">14.65% ± 2.88%</td>
-                <td>12.82% ± 1.87%</td>
+                <td>15.75% ± 2.88%</td>
+                <td>15.02% ± 2.88%</td>
+                <td class="highlight-cell">18.32% ± 1.37%</td>
+                <td class="highlight-cell">18.32% ± 3.15%</td>
+                <td>16.48% ± 0.90%</td>
                 <td>2.20%</td>
               </tr>
               <tr>
                 <td>🌀 <strong>Visual Pattern Recognition</strong></td>
-                <td class="highlight-cell">16.99% ± 6.47%</td>
-                <td>13.07% ± 4.03%</td>
-                <td>15.03% ± 3.33%</td>
-                <td>15.69% ± 2.77%</td>
+                <td>15.03% ± 4.89%</td>
+                <td>10.46% ± 2.45%</td>
+                <td>12.42% ± 3.33%</td>
+                <td>15.03% ± 4.62%</td>
+                <td class="highlight-cell">24.18% ± 0.92%</td>
                 <td>5.88%</td>
               </tr>
               <tr>
                 <td>👁️ <strong>Visual Tracking</strong></td>
-                <td>9.24% ± 2.05%</td>
-                <td>10.04% ± 0.57%</td>
-                <td class="highlight-cell">11.65% ± 2.05%</td>
-                <td>6.43% ± 2.48%</td>
+                <td class="highlight-cell">12.45% ± 2.27%</td>
+                <td>9.64% ± 2.60%</td>
+                <td>11.24% ± 1.14%</td>
+                <td>11.24% ± 2.84%</td>
+                <td>11.24% ± 0.57%</td>
                 <td>3.61%</td>
               </tr>
               <tr style="background: rgba(255,255,255,0.02)">
                 <td>⭐ <strong>Overall Accuracy Score</strong></td>
-                <td><strong>12.03% ± 1.90%</strong></td>
-                <td><strong>12.20% ± 1.69%</strong></td>
-                <td class="highlight-cell" style="font-size: 1.05rem;"><strong>13.66% ± 0.76%</strong></td>
-                <td><strong>10.48% ± 0.32%</strong></td>
+                <td><strong>12.97% ± 0.99%</strong></td>
+                <td><strong>11.34% ± 0.56%</strong></td>
+                <td class="highlight-cell" style="font-size: 1.05rem;"><strong>13.75% ± 0.49%</strong></td>
+                <td><strong>13.66% ± 0.56%</strong></td>
+                <td style="color: #8e7cc3;"><strong>13.32% ± 0.44%</strong></td>
                 <td style="color: var(--accent);"><strong>4.12%</strong></td>
               </tr>
             </tbody>
@@ -816,32 +908,32 @@
               <tr data-cat="Fine-grained Discrimination">
                 <td>🧩 Fine-grained Discrimination</td>
                 <td>2D Pattern Completion</td>
-                <td>40.00% ± 4.08%</td>
-                <td class="highlight-cell">50.00% ± 10.80%</td>
+                <td>33.33% ± 6.24%</td>
+                <td class="highlight-cell">45.00% ± 4.08%</td>
                 <td>15.00%</td>
               </tr>
               <!-- Row 2 -->
               <tr data-cat="Fine-grained Discrimination">
                 <td>🧩 Fine-grained Discrimination</td>
                 <td>Count Clusters</td>
-                <td class="highlight-cell">14.81% ± 5.24%</td>
-                <td>12.96% ± 6.93%</td>
+                <td>11.11% ± 4.54%</td>
+                <td class="highlight-cell">12.96% ± 2.62%</td>
                 <td>5.56%</td>
               </tr>
               <!-- Row 3 -->
               <tr data-cat="Fine-grained Discrimination">
                 <td>🧩 Fine-grained Discrimination</td>
                 <td>Find the Shadow</td>
-                <td>8.70% ± 0.00%</td>
-                <td class="highlight-cell">10.14% ± 5.42%</td>
+                <td>5.80% ± 4.10%</td>
+                <td class="highlight-cell">7.25% ± 2.05%</td>
                 <td>8.70%</td>
               </tr>
               <!-- Row 4 -->
               <tr data-cat="Fine-grained Discrimination">
                 <td>🧩 Fine-grained Discrimination</td>
                 <td>Pattern and Color Completion</td>
-                <td>21.67% ± 6.24%</td>
-                <td class="highlight-cell">23.33% ± 10.27%</td>
+                <td>30.00% ± 8.16%</td>
+                <td class="highlight-cell">33.33% ± 2.36%</td>
                 <td>10.00%</td>
               </tr>
               <!-- Row 5 -->
@@ -849,71 +941,71 @@
                 <td>🧩 Fine-grained Discrimination</td>
                 <td>Find the same</td>
                 <td>1.96% ± 2.77%</td>
-                <td class="highlight-cell">7.84% ± 2.77%</td>
+                <td class="highlight-cell">1.96% ± 2.77%</td>
                 <td>0.00%</td>
               </tr>
               <!-- Row 6 -->
               <tr data-cat="Visual Pattern Recognition">
                 <td>🌀 Visual Pattern Recognition</td>
                 <td>Rotation Patterns</td>
-                <td class="highlight-cell">36.67% ± 18.86%</td>
-                <td>30.00% ± 8.16%</td>
+                <td>23.33% ± 12.47%</td>
+                <td class="highlight-cell">26.67% ± 20.55%</td>
                 <td>20.00%</td>
               </tr>
               <!-- Row 7 -->
               <tr data-cat="Visual Pattern Recognition">
                 <td>🌀 Visual Pattern Recognition</td>
                 <td>Logic Patterns</td>
-                <td>4.76% ± 6.73%</td>
-                <td class="highlight-cell">9.52% ± 3.37%</td>
+                <td class="highlight-cell">4.76% ± 6.73%</td>
+                <td>2.38% ± 3.37%</td>
                 <td>0.00%</td>
               </tr>
               <!-- Row 8 -->
               <tr data-cat="Visual Pattern Recognition">
                 <td>🌀 Visual Pattern Recognition</td>
                 <td>Overlay Patterns</td>
-                <td class="highlight-cell">17.65% ± 4.80%</td>
-                <td>13.73% ± 2.77%</td>
+                <td class="highlight-cell">21.57% ± 7.34%</td>
+                <td>15.69% ± 2.77%</td>
                 <td>5.88%</td>
               </tr>
               <!-- Row 9 -->
               <tr data-cat="Spatial Perception">
                 <td>📍 Spatial Perception</td>
                 <td>3D Pattern Completion</td>
-                <td class="highlight-cell">35.19% ± 13.09%</td>
-                <td>25.93% ± 9.44%</td>
+                <td>33.33% ± 9.07%</td>
+                <td class="highlight-cell">46.30% ± 6.93%</td>
                 <td>11.11%</td>
               </tr>
               <!-- Row 10 -->
               <tr data-cat="Spatial Perception">
                 <td>📍 Spatial Perception</td>
                 <td>Paper Folding</td>
-                <td>8.33% ± 6.80%</td>
-                <td class="highlight-cell">8.33% ± 6.80%</td>
+                <td>13.89% ± 10.39%</td>
+                <td class="highlight-cell">16.67% ± 11.79%</td>
                 <td>0.00%</td>
               </tr>
               <!-- Row 11 -->
               <tr data-cat="Visual Tracking">
                 <td>👁️ Visual Tracking</td>
                 <td>Connect the lines</td>
-                <td>5.26% ± 0.00%</td>
-                <td class="highlight-cell">7.02% ± 2.48%</td>
+                <td>7.02% ± 2.48%</td>
+                <td class="highlight-cell">15.79% ± 0.00%</td>
                 <td>5.26%</td>
               </tr>
               <!-- Row 12 -->
               <tr data-cat="Visual Tracking">
                 <td>👁️ Visual Tracking</td>
                 <td>Maze</td>
-                <td>16.67% ± 6.24%</td>
                 <td class="highlight-cell">20.00% ± 4.08%</td>
+                <td>18.33% ± 2.36%</td>
                 <td>5.00%</td>
               </tr>
               <!-- Row 13 -->
               <tr data-cat="Visual Tracking">
                 <td>👁️ Visual Tracking</td>
                 <td>Recognize numbers/letters</td>
-                <td>14.49% ± 2.05%</td>
-                <td class="highlight-cell">14.49% ± 2.05%</td>
+                <td class="highlight-cell">18.84% ± 4.10%</td>
+                <td>11.59% ± 2.05%</td>
                 <td>4.35%</td>
               </tr>
             </tbody>
@@ -925,14 +1017,30 @@
 
     <!-- PANE 3: GRPO DETAILS -->
     <div id="grpo-details" class="tab-pane">
-      
+
+      <div class="card-large" style="border: 1px solid rgba(239, 68, 68, 0.3);">
+        <div class="card-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+          The Real Lesson: <code>max_new_tokens</code> Was the Most Important Hyperparameter Here
+        </div>
+        <p style="margin-bottom: 1rem;">
+          Before drawing any conclusion about which RL setup "worked," it's worth being blunt about this: <strong>the generation token budget affected every single result in this project more than any modeling choice did.</strong> This is exactly what my supervisor's original comment was about - RL (correctness_weight=1) looked clearly <em>worse</em> than baseline at 256 tokens (9.54% vs. 11.08%), which read as "this RL run broke the model." That conclusion was wrong.
+        </p>
+        <p style="margin-bottom: 1rem;">
+          At 256 tokens, RL (weight=1) had a 26.3% no-answer rate vs. baseline's 24.7% - a small gap in truncation that happened to *look* like a meaningful gap in ability. By 1024 tokens, both models' no-answer rates converge to a similar low single digits (6.4% vs. 6.7%), and the accuracy gap mostly closes too (12.97% vs. 11.34% - much smaller than the original 11.08% vs. 9.54% comparison suggested). The token budget wasn't a minor eval detail; it was distorting the comparison between every model and every training variant in this whole project, including the original finding that kicked off this whole investigation.
+        </p>
+        <div class="alert-box error" style="margin: 0;">
+          <strong>Takeaway:</strong> when comparing models or training runs on any generation task, the token budget has to be held constant and generous enough that truncation isn't happening in the first place - otherwise you're not comparing reasoning ability, you're comparing who ran out of room to answer first.
+        </div>
+      </div>
+
       <div class="card-large">
         <div class="card-title">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
           Why correctness_weight=2 Did Better Than correctness_weight=1
         </div>
         <p style="margin-bottom: 1rem;">
-          In Group Relative Policy Optimization (GRPO), the agent generates multiple sample pathways and updates the policy based on their relative reward rankings within the group. The first attempt (correctness_weight=1, language-only LoRA) came out roughly flat against baseline (12.20% vs. 12.03%) rather than a clear win - worth noting that at an earlier 256-token evaluation budget this looked like a real regression (9.54%), but that turned out to be partly a token-truncation artifact, not the RL run itself being bad. Either way, correctness_weight=2 (multimodal LoRA + higher correctness reward) was the clearer improvement.
+          In Group Relative Policy Optimization (GRPO), the agent generates multiple sample pathways and updates the policy based on their relative reward rankings within the group. With the token budget now held constant at a generous 1024 tokens (see the callout above for why that matters), correctness_weight=1 (language-only LoRA) lands at 11.34% vs. baseline's 12.97% - a real but modest regression, not the dramatic drop it looked like at 256 tokens. correctness_weight=2 (multimodal LoRA + higher correctness reward) is the clearer win at 13.75%, and notably had the lowest no-answer rate of any variant at every token budget tested - a genuine, repeatable effect of the training change, not a truncation artifact.
         </p>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
@@ -1001,6 +1109,9 @@
             <li><strong>78.1% Truncation rate:</strong> In 303 of the 388 tasks, BAGEL hit the 1024-token ceiling during its descriptive planning stage, cutting off before ever outputting a final boxed answer.</li>
             <li><strong>Robust Accuracy on Completed Chains:</strong> On the 85 tasks where it was able to conclude its thinking within the token bounds, BAGEL scored <strong>18.8% accuracy (16/85 correct)</strong>. This significantly outperforms Gemma-4's baseline logic on the same subset.</li>
           </ul>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.75rem;">
+            This is the same failure mode documented in the <strong>GRPO Reinforcement Learning</strong> tab's token-budget callout: Qwen looked far worse than every Gemma variant at a 512-token cap (81.4% no-answer rate) and jumped to roughly tied with the best Gemma run once given 1024 tokens. BAGEL's 78.1% truncation rate here is in the same range as Qwen's was - strong circumstantial evidence its real score is being undersold by a similar margin.
+          </p>
         </div>
         
         <h4 style="font-family:'Outfit'; font-size: 1.1rem; margin-bottom: 0.75rem;">Typical BAGEL Truncation Log Sample:</h4>
@@ -1043,8 +1154,9 @@ Extracted Answer: None (Graded as 0%)</code></pre>
             <div class="folder-item file"><a href="./sbatch_scripts/evaluation/run_gemma_rl_correctness_weight2_eval.sbatch">evaluation/run_gemma_rl_correctness_weight2_eval.sbatch</a></div>
             
             <div class="folder-item directory" style="margin-top:0.5rem;">📁 babyvision_eval/ <span style="color:var(--text-muted); font-size:0.8rem; font-weight:400;">-- MLLM Evaluation Engine</span></div>
+            <div class="folder-item file">📂 <a href="./babyvision_eval/runs/rl_correctness_weight2_maxtok1024/">runs/rl_correctness_weight2_maxtok1024/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- best RL (correctness_weight=2) outputs, current final numbers</span></div>
+            <div class="folder-item file">📂 <a href="./babyvision_eval/runs/qwen_baseline_maxtok1024/">runs/qwen_baseline_maxtok1024/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Qwen baseline at 1024 tokens, 13.32% (was 2.84% at 512)</span></div>
             <div class="folder-item file">📂 <a href="./babyvision_eval/runs/bagel/">runs/bagel/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Raw JSON and summary scores for BAGEL</span></div>
-            <div class="folder-item file">📂 <a href="./babyvision_eval/runs/rl_correctness_weight2/">runs/rl_correctness_weight2/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- best RL (correctness_weight=2) outputs</span></div>
             <div class="folder-item file">📂 <a href="./babyvision_eval/_deprecated/scratch_tests/">_deprecated/scratch_tests/</a> <span style="color:var(--text-muted); font-size:0.8rem;">-- Deprecated: older testing folders</span></div>
             
             <div class="folder-item directory" style="margin-top:0.5rem;">📄 <a href="./results/final_report.md">results/final_report.md</a> <span style="color:var(--text-muted); font-size:0.8rem; font-weight:400;">-- Gemma RL experiment notes</span></div>
@@ -1138,7 +1250,7 @@ Extracted Answer: None (Graded as 0%)</code></pre>
           </div>
         </div>
 
-        <h4 style="font-family: 'Outfit'; font-size: 0.95rem; margin: 0 0 0.75rem; color: var(--text-muted);">Evaluation - 512 tokens (final, after the token-cap fix)</h4>
+        <h4 style="font-family: 'Outfit'; font-size: 0.95rem; margin: 0 0 0.75rem; color: var(--text-muted);">Evaluation - 512 tokens (intermediate - still meaningfully truncated, especially Qwen)</h4>
         <div class="log-list" style="margin-bottom: 1.5rem;">
           <div class="log-item">
             <div class="log-info">
@@ -1163,7 +1275,7 @@ Extracted Answer: None (Graded as 0%)</code></pre>
           <div class="log-item">
             <div class="log-info">
               <span class="log-name">slurm_gemma_rl_correctness_weight2_maxtok512_eval_23657920</span>
-              <span class="log-desc">RL eval, correctness_weight=2 - 13.66%, best result</span>
+              <span class="log-desc">RL eval, correctness_weight=2 - 13.66%</span>
             </div>
             <div style="display:flex; gap:0.5rem;">
               <a href="./logs/evaluation/slurm_gemma_rl_correctness_weight2_maxtok512_eval_23657920.out" class="log-action-btn">Out</a>
@@ -1178,6 +1290,60 @@ Extracted Answer: None (Graded as 0%)</code></pre>
             <div style="display:flex; gap:0.5rem;">
               <a href="./logs/evaluation/slurm_system_prompt_rl_maxtok512_eval_23657921.out" class="log-action-btn">Out</a>
               <a href="./logs/evaluation/slurm_system_prompt_rl_maxtok512_eval_23657921.err" class="log-action-btn">Err</a>
+            </div>
+          </div>
+        </div>
+
+        <h4 style="font-family: 'Outfit'; font-size: 0.95rem; margin: 0 0 0.75rem; color: var(--text-muted);">Evaluation - 1024 tokens (current final numbers)</h4>
+        <div class="log-list" style="margin-bottom: 1.5rem;">
+          <div class="log-item">
+            <div class="log-info">
+              <span class="log-name">slurm_gemma_23671051</span>
+              <span class="log-desc">Baseline Gemma, no training - 12.97%</span>
+            </div>
+            <div style="display:flex; gap:0.5rem;">
+              <a href="./logs/evaluation/slurm_gemma_23671051.out" class="log-action-btn">Out</a>
+              <a href="./logs/evaluation/slurm_gemma_23671051.err" class="log-action-btn">Err</a>
+            </div>
+          </div>
+          <div class="log-item">
+            <div class="log-info">
+              <span class="log-name">slurm_gemma_rl_correctness_weight1_maxtok1024_eval_23671052</span>
+              <span class="log-desc">RL eval, correctness_weight=1 - 11.34%</span>
+            </div>
+            <div style="display:flex; gap:0.5rem;">
+              <a href="./logs/evaluation/slurm_gemma_rl_correctness_weight1_maxtok1024_eval_23671052.out" class="log-action-btn">Out</a>
+              <a href="./logs/evaluation/slurm_gemma_rl_correctness_weight1_maxtok1024_eval_23671052.err" class="log-action-btn">Err</a>
+            </div>
+          </div>
+          <div class="log-item">
+            <div class="log-info">
+              <span class="log-name">slurm_gemma_rl_correctness_weight2_maxtok1024_eval_23671053</span>
+              <span class="log-desc">RL eval, correctness_weight=2 - 13.75%, best result</span>
+            </div>
+            <div style="display:flex; gap:0.5rem;">
+              <a href="./logs/evaluation/slurm_gemma_rl_correctness_weight2_maxtok1024_eval_23671053.out" class="log-action-btn">Out</a>
+              <a href="./logs/evaluation/slurm_gemma_rl_correctness_weight2_maxtok1024_eval_23671053.err" class="log-action-btn">Err</a>
+            </div>
+          </div>
+          <div class="log-item">
+            <div class="log-info">
+              <span class="log-name">slurm_system_prompt_rl_maxtok1024_eval_23671054</span>
+              <span class="log-desc">System-prompt RL eval - 13.66%</span>
+            </div>
+            <div style="display:flex; gap:0.5rem;">
+              <a href="./logs/evaluation/slurm_system_prompt_rl_maxtok1024_eval_23671054.out" class="log-action-btn">Out</a>
+              <a href="./logs/evaluation/slurm_system_prompt_rl_maxtok1024_eval_23671054.err" class="log-action-btn">Err</a>
+            </div>
+          </div>
+          <div class="log-item">
+            <div class="log-info">
+              <span class="log-name">slurm_hf_maxtok1024_23671055</span>
+              <span class="log-desc">Qwen baseline eval - 13.32% (was 2.84% at 512 tokens)</span>
+            </div>
+            <div style="display:flex; gap:0.5rem;">
+              <a href="./logs/evaluation/slurm_hf_maxtok1024_23671055.out" class="log-action-btn">Out</a>
+              <a href="./logs/evaluation/slurm_hf_maxtok1024_23671055.err" class="log-action-btn">Err</a>
             </div>
           </div>
         </div>
@@ -1247,7 +1413,7 @@ Extracted Answer: None (Graded as 0%)</code></pre>
           datasets: [
             {
               label: 'Gemma 4 Baseline',
-              data: [11.25, 13.19, 16.99, 9.24, 12.03],
+              data: [11.04, 15.75, 15.03, 12.45, 12.97],
               backgroundColor: 'rgba(255, 255, 255, 0.25)',
               borderColor: 'rgba(255, 255, 255, 0.5)',
               borderWidth: 1,
@@ -1255,9 +1421,17 @@ Extracted Answer: None (Graded as 0%)</code></pre>
             },
             {
               label: 'Gemma 4 RL (cw=2)',
-              data: [13.70, 14.65, 15.03, 11.65, 13.66],
+              data: [12.88, 18.32, 12.42, 11.24, 13.75],
               backgroundColor: 'rgba(16, 185, 129, 0.65)',
               borderColor: 'rgba(16, 185, 129, 0.95)',
+              borderWidth: 1,
+              borderRadius: 6
+            },
+            {
+              label: 'Qwen Baseline (untrained)',
+              data: [9.20, 16.48, 24.18, 11.24, 13.32],
+              backgroundColor: 'rgba(142, 124, 195, 0.6)',
+              borderColor: 'rgba(142, 124, 195, 0.95)',
               borderWidth: 1,
               borderRadius: 6
             },

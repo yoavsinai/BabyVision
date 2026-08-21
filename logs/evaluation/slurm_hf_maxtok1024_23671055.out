@@ -1,0 +1,73 @@
+=== Starting Slurm Job ===
+Node: hpc8l4-01
+Date: Wed Aug 19 04:58:43 PM IDT 2026
+Loaded 388 tasks from ../data/babyvision_data/meta_data.jsonl
+
+--- Phase 1: Starting Vision Inference using Qwen/Qwen2.5-VL-7B-Instruct ---
+Passes remaining to run: [1, 2, 3]
+Loading vision model and processor...
+Model loaded successfully.
+
+Running pass 1/3...
+Saved raw inference results to ./runs/qwen_baseline_maxtok1024/raw_results_run_1.json
+
+Running pass 2/3...
+Saved raw inference results to ./runs/qwen_baseline_maxtok1024/raw_results_run_2.json
+
+Running pass 3/3...
+Saved raw inference results to ./runs/qwen_baseline_maxtok1024/raw_results_run_3.json
+
+Unloading vision model to free VRAM for the judge model...
+VRAM cleared.
+
+--- Phase 2: Starting LLM Judge using Qwen/Qwen2.5-7B-Instruct ---
+Passes remaining to judge: [1, 2, 3]
+Loading judge model and tokenizer...
+Judge model loaded successfully.
+
+Judging pass 1/3...
+Saved completed evaluation results to ./runs/qwen_baseline_maxtok1024/model_results_run_1.json
+
+Judging pass 2/3...
+Saved completed evaluation results to ./runs/qwen_baseline_maxtok1024/model_results_run_2.json
+
+Judging pass 3/3...
+Saved completed evaluation results to ./runs/qwen_baseline_maxtok1024/model_results_run_3.json
+
+=== All Evaluation Passes Complete ===
+Computing final score summary...
+=== Evaluation Results ===
+
+Overall Average Accuracy: 0.1332 ± 0.0044
+
+Type-wise Average Accuracy:
+  Fine-grained Discrimination: 0.0920 ± 0.0087
+  Spatial Perception: 0.1648 ± 0.0090
+  Visual Pattern Recognition: 0.2418 ± 0.0092
+  Visual Tracking: 0.1124 ± 0.0057
+
+Subtype-wise Average Accuracy:
+  1Fine-grained Discrimination/2D Pattern Completion: 0.2333 ± 0.0850
+  1Fine-grained Discrimination/Count Clusters: 0.0556 ± 0.0000
+  1Fine-grained Discrimination/Count Same Patterns: 0.0286 ± 0.0000
+  1Fine-grained Discrimination/Find the different: 0.0000 ± 0.0000
+  1Fine-grained Discrimination/Find the same: 0.0196 ± 0.0277
+  1Fine-grained Discrimination/Find the shadow: 0.0435 ± 0.0355
+  1Fine-grained Discrimination/Pattern and Color Completion: 0.3333 ± 0.0236
+  1Fine-grained Discrimination/Reconstruction: 0.0238 ± 0.0337
+  2Visual Tracking/Connect the lines: 0.0526 ± 0.0000
+  2Visual Tracking/Lines Observation: 0.0000 ± 0.0000
+  2Visual Tracking/Maze: 0.2667 ± 0.0236
+  2Visual Tracking/Metro map: 0.0000 ± 0.0000
+  2Visual Tracking/Recognize numbers and letters: 0.1304 ± 0.0000
+  3Spatial Perception/3D Cube Unfold: 0.1389 ± 0.0393
+  3Spatial Perception/3D Pattern Completion: 0.2222 ± 0.0000
+  3Spatial Perception/3D Views: 0.2346 ± 0.0349
+  3Spatial Perception/Count 3D blocks: 0.0455 ± 0.0000
+  3Spatial Perception/Paper Folding: 0.1667 ± 0.0000
+  4Visual Pattern Recognition/Logic Patterns: 0.1905 ± 0.0673
+  4Visual Pattern Recognition/Mirroring Patterns: 0.0000 ± 0.0000
+  4Visual Pattern Recognition/Overlay Patterns: 0.3333 ± 0.0277
+  4Visual Pattern Recognition/Rotation Patterns: 0.4000 ± 0.0816
+==========================
+=== Slurm Job Completed ===

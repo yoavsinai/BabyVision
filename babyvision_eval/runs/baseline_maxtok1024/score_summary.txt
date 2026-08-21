@@ -1,0 +1,32 @@
+
+Overall Average Accuracy: 0.1297 ± 0.0099
+
+Type-wise Average Accuracy:
+  Fine-grained Discrimination: 0.1104 ± 0.0250
+  Spatial Perception: 0.1575 ± 0.0288
+  Visual Pattern Recognition: 0.1503 ± 0.0489
+  Visual Tracking: 0.1245 ± 0.0227
+
+Subtype-wise Average Accuracy:
+  1Fine-grained Discrimination/2D Pattern Completion: 0.3333 ± 0.0624
+  1Fine-grained Discrimination/Count Clusters: 0.1111 ± 0.0454
+  1Fine-grained Discrimination/Count Same Patterns: 0.0190 ± 0.0135
+  1Fine-grained Discrimination/Find the different: 0.0000 ± 0.0000
+  1Fine-grained Discrimination/Find the same: 0.0196 ± 0.0277
+  1Fine-grained Discrimination/Find the shadow: 0.0580 ± 0.0410
+  1Fine-grained Discrimination/Pattern and Color Completion: 0.3000 ± 0.0816
+  1Fine-grained Discrimination/Reconstruction: 0.0714 ± 0.0583
+  2Visual Tracking/Connect the lines: 0.0702 ± 0.0248
+  2Visual Tracking/Lines Observation: 0.0000 ± 0.0000
+  2Visual Tracking/Maze: 0.2000 ± 0.0408
+  2Visual Tracking/Metro map: 0.0556 ± 0.0393
+  2Visual Tracking/Recognize numbers and letters: 0.1884 ± 0.0410
+  3Spatial Perception/3D Cube Unfold: 0.0556 ± 0.0393
+  3Spatial Perception/3D Pattern Completion: 0.3333 ± 0.0907
+  3Spatial Perception/3D Views: 0.1111 ± 0.0302
+  3Spatial Perception/Count 3D blocks: 0.1364 ± 0.0371
+  3Spatial Perception/Paper Folding: 0.1389 ± 0.1039
+  4Visual Pattern Recognition/Logic Patterns: 0.0476 ± 0.0673
+  4Visual Pattern Recognition/Mirroring Patterns: 0.1000 ± 0.0000
+  4Visual Pattern Recognition/Overlay Patterns: 0.2157 ± 0.0734
+  4Visual Pattern Recognition/Rotation Patterns: 0.2333 ± 0.1247

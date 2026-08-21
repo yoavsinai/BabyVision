@@ -10,16 +10,16 @@ Ran **ByteDance-Seed/BAGEL-7B-MoT** through the BabyVision benchmark to see how 
 ## The numbers
 
 * **BAGEL:** 4.12% (`0.0412 ± 0.0000`)
-* **Gemma 4 baseline:** 11.08% (`0.1108 ± 0.0117`)
+* **Gemma 4 baseline:** 12.97% (`0.1297 ± 0.0099`, 1024-token budget - see [final_report.md](./results/final_report.md))
 
 4.12% looks bad, but it's mostly an artifact, not a sign BAGEL is worse at visual reasoning - see below.
 
 | Category | BAGEL (bfloat16, CoT) | Gemma 4 (baseline) |
 | :--- | :---: | :---: |
-| Fine-grained Discrimination | 4.91% | 10.84% |
-| Spatial Perception | 2.20% | 13.92% |
-| Visual Pattern Recognition | 5.88% | 9.80% |
-| Visual Tracking | 3.61% | 9.24% |
+| Fine-grained Discrimination | 4.91% | 11.04% |
+| Spatial Perception | 2.20% | 15.75% |
+| Visual Pattern Recognition | 5.88% | 15.03% |
+| Visual Tracking | 3.61% | 12.45% |
 
 Subtypes where BAGEL actually finished its answer: 2D Pattern Completion 15.00%, 3D Pattern Completion 11.11%, Find the Shadow 8.70%, Pattern and Color Completion 10.00%, Overlay Patterns 5.88%, Rotation Patterns 20.00%, Count Clusters 5.56%, Connect the Lines/Maze/Recognize Characters 4.3-5.2%. Everything else scored 0% because of token truncation (see below), not because the model got it wrong.
 
@@ -29,7 +29,11 @@ Subtypes where BAGEL actually finished its answer: 2D Pattern Completion 15.00%,
 
 BAGEL has a very verbose internal "thinking" step before it answers, and the eval script capped that at `max_think_token_n=1024`. In **303 of 388 tasks (78%)**, BAGEL used up all 1024 tokens thinking and never got to write `\boxed{Answer}` - so it scored 0% on those by default, regardless of whether it was on the right track.
 
-On the 85 tasks where it *did* finish in time, it scored **18.8% (16/85)** - closer to Gemma's ballpark, and suggests the low headline number is mostly a token-budget problem, similar in spirit to the Gemma 256-vs-512 bug elsewhere in this project. Worth trying with a higher `max_think_token_n` if I come back to this.
+On the 85 tasks where it *did* finish in time, it scored **18.8% (16/85)** - over 4x the 4.12% headline number, and closer to Gemma's ballpark. This is the same failure mode documented at length elsewhere in this project (see [final_report.md](./results/final_report.md#did-the-fix-actually-help)): capping generation too tight doesn't make a model dumber, it just stops it from finishing.
+
+The clearest proof of that is what happened with Qwen. At a 512-token cap Qwen had an 81.4% no-answer rate and scored 2.84% - it looked dramatically worse than every Gemma variant. Bumping it to 1024 tokens dropped the no-answer rate to 1.8% and its score jumped to 13.32%, roughly tying my best Gemma run. Nothing about the model changed - it just finally had room to finish. BAGEL's truncation rate here (78%) is in that same range as Qwen's original 81.4%, so if the same relationship holds, its real score is likely being undersold by a similarly large margin.
+
+**If I had more compute/time, this is the first thing I'd fix**: bump `max_think_token_n` well past 1024 and re-run. I didn't get to it mainly because of the wall-clock cost - BAGEL already needed the checkpoint-and-chain workaround below just to finish a single pass at the current (too-tight) budget, and raising the cap would only make each pass slower.
 
 (Also: BAGEL was run greedy (`do_sample=False`), so all 3 passes were identical - hence `± 0.0000`.)
 
