@@ -50,8 +50,8 @@ Checkpointing raw outputs to disk every 5 tasks (so a job could resume where a p
 
 | Job | Elapsed | Result | Logs |
 | :--- | :---: | :--- | :---: |
-| `16877328` | 49m50s | Got into pass 1 generation and built up a chunk of the checkpoint progress before being manually stopped | [Out](../../../logs/evaluation/bagel_eval_16877328.out) / [Err](../../../logs/evaluation/bagel_eval_16877328.err) |
-| `16877352` | 1h59m52s | **The one that finished.** Resumed passes 1-2 from checkpoints (already complete, including the progress from `16877328`), pass 3 resumed from 235/388, generated the rest, then ran the full judging phase - this produced the final 4.12% score | [Out](../../../logs/evaluation/bagel_eval_16877352.out) / [Err](../../../logs/evaluation/bagel_eval_16877352.err) |
+| `16877328` | 49m50s | Got into pass 1 generation and built up a chunk of the checkpoint progress before being manually stopped | [Out](../../../logs/evaluation/bagel_understanding_track_eval_16877328.out) / [Err](../../../logs/evaluation/bagel_understanding_track_eval_16877328.err) |
+| `16877352` | 1h59m52s | **The one that finished.** Resumed passes 1-2 from checkpoints (already complete, including the progress from `16877328`), pass 3 resumed from 235/388, generated the rest, then ran the full judging phase - this produced the final 4.12% score | [Out](../../../logs/evaluation/bagel_understanding_track_eval_16877352.out) / [Err](../../../logs/evaluation/bagel_understanding_track_eval_16877352.err) |
 
 Both jobs finished well inside their 4-hour partition limit (`A100-4h`), so the checkpointing wasn't really needed to dodge a wall-clock cap here - `16877328` shows a Slurm state of `CANCELLED+` (manually stopped) rather than `TIMEOUT`, and there's no crash or error in its logs at the point it stopped. Most likely it was killed mid-debugging rather than by the scheduler. The checkpointing was genuinely useful, just for a different reason than I first assumed: it meant a manual restart (or one of the earlier environment-crash attempts) didn't throw away progress, not that a 4-hour cap was actually being hit.
 

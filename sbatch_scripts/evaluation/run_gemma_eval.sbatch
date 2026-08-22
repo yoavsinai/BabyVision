@@ -17,14 +17,14 @@ cd babyvision_eval
     --model-id "google/gemma-4-E4B-it" \
     --judge-model-id "Qwen/Qwen2.5-7B-Instruct" \
     --test-json-path "../data/babyvision_data/meta_data.jsonl" \
-    --output-dir "./runs/baseline" \
+    --output-dir "./runs/baseline_maxtok256" \
     --num-passes 3
 
 echo "Computing final score summary..."
-/home/dsi/sinayyo/.conda/envs/babyvision_py310/bin/python3 compute_score.py runs/baseline/model_results_run_*.json > runs/baseline/score_summary.txt
+/home/dsi/sinayyo/.conda/envs/babyvision_py310/bin/python3 compute_score.py runs/baseline_maxtok256/model_results_run_*.json > runs/baseline_maxtok256/score_summary.txt
 
 echo "=== Evaluation Results ==="
-cat runs/baseline/score_summary.txt
+cat runs/baseline_maxtok256/score_summary.txt
 echo "=========================="
 
 echo "=== Slurm Job Completed ==="

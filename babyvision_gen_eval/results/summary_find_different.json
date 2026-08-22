@@ -2,6 +2,7 @@
   "generated_at": "2026-08-21T10:34:41.095302",
   "total_tasks": 16,
   "note": "Find the different subtype only (16 tasks) - dedicated summary, see README for rationale.",
+  "correction_2026-08-22": "The numbers below are the raw, unedited output of the automated LLM judge (Qwen2.5-VL) and are left as-is for the record, but the single correct verdict (taskId 6165, round1) is a judge error: manual inspection of the circled pixel locations shows BAGEL's output and the ground truth mark different animals in the grid. The corrected result for this run is 0/16 (0.0 accuracy), matching every other configuration evaluated on this subtype. See results/final_report.md, 'Implications for BAGEL Evaluation'.",
   "models": {
     "bagel_find_different": {
       "num_rounds": 1,

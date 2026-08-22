@@ -17,14 +17,14 @@ cd babyvision_eval
     --model-id "Qwen/Qwen2.5-VL-7B-Instruct" \
     --judge-model-id "Qwen/Qwen2.5-7B-Instruct" \
     --test-json-path "../data/babyvision_data/meta_data.jsonl" \
-    --output-dir "./runs/qwen_baseline" \
+    --output-dir "./runs/qwen_baseline_maxtok512_archived" \
     --num-passes 3
 
 echo "Computing final score summary..."
-../.venv/bin/python3 compute_score.py runs/qwen_baseline/model_results_run_*.json > runs/qwen_baseline/score_summary.txt
+../.venv/bin/python3 compute_score.py runs/qwen_baseline_maxtok512_archived/model_results_run_*.json > runs/qwen_baseline_maxtok512_archived/score_summary.txt
 
 echo "=== Evaluation Results ==="
-cat runs/qwen_baseline/score_summary.txt
+cat runs/qwen_baseline_maxtok512_archived/score_summary.txt
 echo "=========================="
 
 echo "=== Slurm Job Completed ==="

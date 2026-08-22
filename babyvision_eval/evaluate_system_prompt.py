@@ -38,7 +38,7 @@ def main():
     parser.add_argument("--model-id", type=str, default="google/gemma-4-E4B-it", help="Hugging Face model ID")
     parser.add_argument("--judge-model-id", type=str, default="Qwen/Qwen2.5-7B-Instruct", help="Hugging Face model ID for judge")
     parser.add_argument("--test-json-path", type=str, default="../data/babyvision_data/meta_data.jsonl", help="Path to test JSONL file")
-    parser.add_argument("--output-dir", type=str, default="./runs/system_prompt_rl", help="Output directory")
+    parser.add_argument("--output-dir", type=str, default="./runs/system_prompt_rl_maxtok256", help="Output directory")
     parser.add_argument("--num-passes", type=int, default=3, help="Number of evaluation passes")
     parser.add_argument("--skip-judge", action="store_true", help="Skip running the judge phase")
     parser.add_argument("--peft-adapter-path", type=str, default=None, help="Path to PEFT/LoRA adapter weights")

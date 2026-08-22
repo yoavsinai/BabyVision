@@ -18,14 +18,14 @@ cd babyvision_eval
     --peft-adapter-path "./checkpoints/system_prompt_rl/final_lora" \
     --judge-model-id "Qwen/Qwen2.5-7B-Instruct" \
     --test-json-path "../data/babyvision_data/meta_data.jsonl" \
-    --output-dir "./runs/system_prompt_rl" \
+    --output-dir "./runs/system_prompt_rl_maxtok256" \
     --num-passes 3
 
 echo "Computing final score summary..."
-/home/dsi/sinayyo/.conda/envs/babyvision_py310/bin/python3 compute_score.py runs/system_prompt_rl/model_results_run_*.json > runs/system_prompt_rl/score_summary.txt
+/home/dsi/sinayyo/.conda/envs/babyvision_py310/bin/python3 compute_score.py runs/system_prompt_rl_maxtok256/model_results_run_*.json > runs/system_prompt_rl_maxtok256/score_summary.txt
 
 echo "=== Evaluation Results ==="
-cat runs/system_prompt_rl/score_summary.txt
+cat runs/system_prompt_rl_maxtok256/score_summary.txt
 echo "=========================="
 
 echo "=== Slurm Job Completed ==="
