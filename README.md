@@ -10,8 +10,6 @@
   <picture>
       <img src="./assets/baby_logo.png" width="30%">
   </picture>
-  <br><br>
-  <em>(An interactive dashboard also exists, archived at <a href="_deprecated/index.html">_deprecated/index.html</a> - not part of the submission, see <a href="_deprecated/README.md">_deprecated/README.md</a>.)</em>
 </div>
 
 

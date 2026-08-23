@@ -5,9 +5,7 @@ BabyVision Generation Track - BAGEL Inference Script
 Runs ByteDance-Seed/BAGEL-7B-MoT in its native image-editing mode
 (understanding_output=False, think=True) to generate annotated answer
 images for BabyVision-Gen tasks, instead of BAGEL's text-answering mode
-used on the (deprecated) understanding track - see
-babyvision_eval/_deprecated/bagel_understanding_track/README.md for why
-that track was the wrong benchmark for BAGEL.
+used on the earlier, deprecated understanding-track evaluation.
 
 Output layout matches every other generation model in this repo:
     generated/{model_name}/round{N}/images/{uuid}_task{taskId}.png
